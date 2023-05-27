@@ -43,15 +43,14 @@ jobs:
         CONSUL_K8S_CONTROL_PLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-k8s-control-plane") | .image' charts/Chart.yaml)
         CONSUL_DATAPLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-dataplane") | .image' charts/Chart.yaml)
         ENVOY_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "envoy") | .image' charts/Chart.yaml)
-
+        echo "$CONSUL_VERSION"
+        echo "$CONSUL_K8S_CONTROL_PLANE_VERSION"
+        echo "$CONSUL_DATAPLANE_VERSION"
+        echo "$ENVOY_VERSION"
         echo "CONSUL_VERSION=$CONSUL_VERSION" >> $GITHUB_ENV
         echo "CONSUL_K8S_CONTROL_PLANE_VERSION=$CONSUL_K8S_CONTROL_PLANE_VERSION" >> $GITHUB_ENV
         echo "CONSUL_DATAPLANE_VERSION=$CONSUL_DATAPLANE_VERSION" >> $GITHUB_ENV
         echo "ENVOY_VERSION=$ENVOY_VERSION" >> $GITHUB_ENV
-        echo ${{ env.CONSUL_VERSION }}
-        echo ${{ env.CONSUL_K8S_CONTROL_PLANE_VERSION }}
-        echo ${{ env.CONSUL_DATAPLANE_VERSION }}
-        echo ${{ env.ENVOY_VERSION }}
 
     - name: Login to Github Container Registry
       uses: docker/login-action@v2
