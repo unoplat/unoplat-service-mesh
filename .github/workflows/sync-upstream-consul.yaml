@@ -37,6 +37,12 @@ jobs:
       run: |
         sudo snap install yq
 
+    - name: Check Chart.yaml and CONSUL_VERSION
+      run: |
+        cat charts/Chart.yaml
+        CONSUL_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul") | .image' charts/Chart.yaml)
+        echo "CONSUL_VERSION is $CONSUL_VERSION"
+
     - name: Extract versions
       run: |
         CONSUL_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul") | .image' charts/Chart.yaml)
