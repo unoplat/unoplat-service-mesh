@@ -1,0 +1,150 @@
+name: Update Consul 
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Run daily at 00:00 UTC
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  update-values:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout our repository
+      uses: actions/checkout@v2
+      with:
+        ref: develop
+
+    - name: Set up Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.11.1
+
+    - name: Add Redpanda Helm repository
+      run: |
+        helm repo add hashicorp https://helm.releases.hashicorp.com
+        helm repo update
+
+    - name: Fetch Redpanda Helm chart
+      run: |
+        helm pull hashicorp/consul --untar
+
+    - name: Move Redpanda Helm Charts to charts folder
+      run: |
+        rsync -a consul/ charts/
+
+    - name: Install yq
+      run: |
+        sudo snap install yq
+
+    - name: Extract versions
+      run: |
+        CONSUL_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul") | .image' Chart.yaml)
+        CONSUL_K8S_CONTROL_PLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-k8s-control-plane") | .image' Chart.yaml)
+        CONSUL_DATAPLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-dataplane") | .image' Chart.yaml)
+        ENVOY_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "envoy") | .image' Chart.yaml)
+
+        echo "CONSUL_VERSION=$CONSUL_VERSION" >> $GITHUB_ENV
+        echo "CONSUL_K8S_CONTROL_PLANE_VERSION=$CONSUL_K8S_CONTROL_PLANE_VERSION" >> $GITHUB_ENV
+        echo "CONSUL_DATAPLANE_VERSION=$CONSUL_DATAPLANE_VERSION" >> $GITHUB_ENV
+        echo "ENVOY_VERSION=$ENVOY_VERSION" >> $GITHUB_ENV
+
+    - name: Login to Github Container Registry
+      uses: docker/login-action@v2
+      with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Fetch consul images with specified tag
+      run: |
+        docker pull $CONSUL_VERSION
+        docker pull $CONSUL_K8S_CONTROL_PLANE_VERSION
+        docker pull $CONSUL_DATAPLANE_VERSION
+        docker pull $ENVOY_VERSION
+        
+
+    - name: Run Trivy vulnerability scanner for consul  plane
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: $CONSUL_VERSION
+        format: 'sarif'
+        output: 'consul.sarif'
+
+    - name: Upload Trivy scan results for consul to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'consul.sarif'
+
+    - name: temp action to check output file
+      run: git status 
+          
+    - name: Run Trivy vulnerability scanner for consul control plane
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: $CONSUL_K8S_CONTROL_PLANE_VERSION
+        format: 'sarif'
+        output: 'consul-control-plane.sarif'
+
+    - name: Upload Trivy scan results for consul control plane to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'consul-control-plane.sarif'
+
+    - name: Run Trivy vulnerability scanner for consul data plane
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: $CONSUL_DATAPLANE_VERSION
+        format: 'sarif'
+        output: 'consul-data-plane.sarif'
+
+    - name: Upload Trivy scan results for consul data plane to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'consul-data-plane.sarif'
+
+    - name: Run Trivy vulnerability scanner for consul data plane
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: $ENVOY_VERSION
+        format: 'sarif'
+        output: 'consul-envoy.sarif'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: 'consul-envoy.sarif'                
+
+    - uses: kubescape/github-action@main
+      continue-on-error: true
+      with:
+        format: sarif
+        outputFile: results
+        files: "charts/*.yaml"
+
+    - name: Upload Kubescape scan results to Github Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: results.sarif        
+    # - name: Push changes to our repository
+    #   run: |
+    #     git config --global user.name "GitHub Action"
+    #     git config --global user.email "action@github.com"
+    #     git add charts/values.yaml
+    #     git commit -m "Update Redpanda Helm Chart values"
+    #     git push origin develop
+
+    # - name: Package Helm chart
+    #   run: |
+    #     helm package charts
+
+    # - name: Log in to GitHub Container Registry
+    #   run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    # - name: Push Helm chart to GitHub Packages
+    #   env:
+    #     CHART_VERSION: ${{ steps.update-values.outputs.chart-version }}
+    #   run: |
+    #     HELM_CHART_FILE="redpanda-${CHART_VERSION}.tgz"
+    #     HELM_CHART_REF="ghcr.io/${{ github.repository_owner }}/redpanda:${CHART_VERSION}"
+    #     curl -H "Authorization: Bearer ${{ secrets.GHCR_TOKEN }}" -X POST -T ${HELM_CHART_FILE} "${HELM_CHART_REF}"
