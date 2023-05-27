@@ -40,7 +40,8 @@ jobs:
     - name: Check Chart.yaml and CONSUL_VERSION
       run: |
         cat charts/Chart.yaml
-        CONSUL_VERSION=$(yq eval -r '.annotations."artifacthub.io/images"' charts/Chart.yaml | grep "consul" | cut -d: -f2 | tr -d '[:space:]')
+        IMAGES=$(yq eval -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
+        CONSUL_VERSION=$(echo "$IMAGES" | yq eval -r 'select(.name == "consul") | .image' -)
         echo "CONSUL_VERSION is $CONSUL_VERSION"
 
     - name: Extract versions
