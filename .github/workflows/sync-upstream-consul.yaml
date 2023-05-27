@@ -131,14 +131,24 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: helm_results.sarif  
-        category: "Kubescape scan for Helm Charts"      
-    # - name: Push changes to our repository
-    #   run: |
-    #     git config --global user.name "GitHub Action"
-    #     git config --global user.email "action@github.com"
-    #     git add charts/values.yaml
-    #     git commit -m "Update Redpanda Helm Chart values"
-    #     git push origin develop
+        category: "Kubescape scan for Helm Charts"
+
+    - name: Moving scan results to approapriate folders
+      run: |
+        mv helm_results.sarif reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results.sarif
+        mv consul.sarif reports/container-security-analysis/consul.sarif
+        mv consul-control-plane.sarif reports/container-security-analysis/consul-control-plane.sarif
+        mv consul-data-plane.sarif reports/container-security-analysis/consul-data-plane.sarif
+        mv consul-envoy.sarif reports/container-security-analysis/consul-envoy.sarif
+
+    - name: Push changes to our repository
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        git add charts/*
+        git add reports/*
+        git commit -m "added charts and scan results"
+        git push origin develop
 
     # - name: Package Helm chart
     #   run: |
