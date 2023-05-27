@@ -37,12 +37,6 @@ jobs:
       run: |
         sudo snap install yq
 
-    - name: Check Chart.yaml and CONSUL_VERSION
-      run: |
-        cat charts/Chart.yaml
-        IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
-        CONSUL_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul") | .image' -)
-        echo "CONSUL_VERSION is $CONSUL_VERSION"
     - name: Extract versions
       run: |
         IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
@@ -77,7 +71,7 @@ jobs:
     - name: Run Trivy vulnerability scanner for consul  plane
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: $CONSUL_VERSION
+        image-ref: ${{ env.CONSUL_VERSION }}
         format: 'sarif'
         output: 'consul.sarif'
 
@@ -92,7 +86,7 @@ jobs:
     - name: Run Trivy vulnerability scanner for consul control plane
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: $CONSUL_K8S_CONTROL_PLANE_VERSION
+        image-ref: ${{ env.CONSUL_K8S_CONTROL_PLANE_VERSION }}
         format: 'sarif'
         output: 'consul-control-plane.sarif'
 
@@ -104,7 +98,7 @@ jobs:
     - name: Run Trivy vulnerability scanner for consul data plane
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: $CONSUL_DATAPLANE_VERSION
+        image-ref: ${{ env.CONSUL_DATAPLANE_VERSION }}
         format: 'sarif'
         output: 'consul-data-plane.sarif'
 
@@ -116,7 +110,7 @@ jobs:
     - name: Run Trivy vulnerability scanner for consul data plane
       uses: aquasecurity/trivy-action@master
       with:
-        image-ref: $ENVOY_VERSION
+        image-ref: ${{ env.ENVOY_VERSION }}
         format: 'sarif'
         output: 'consul-envoy.sarif'
 
