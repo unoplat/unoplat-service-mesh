@@ -20,16 +20,16 @@ jobs:
       with:
         version: v3.11.1
 
-    - name: Add Redpanda Helm repository
+    - name: Add Consul Helm repository
       run: |
         helm repo add hashicorp https://helm.releases.hashicorp.com
         helm repo update
 
-    - name: Fetch Redpanda Helm chart
+    - name: Fetch Consul Helm chart
       run: |
         helm pull hashicorp/consul --untar
 
-    - name: Move Redpanda Helm Charts to charts folder
+    - name: Move Consul Helm Charts to charts folder
       run: |
         rsync -a consul/ charts/
 
@@ -39,10 +39,10 @@ jobs:
 
     - name: Extract versions
       run: |
-        CONSUL_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul") | .image' Chart.yaml)
-        CONSUL_K8S_CONTROL_PLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-k8s-control-plane") | .image' Chart.yaml)
-        CONSUL_DATAPLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-dataplane") | .image' Chart.yaml)
-        ENVOY_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "envoy") | .image' Chart.yaml)
+        CONSUL_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul") | .image' charts/Chart.yaml)
+        CONSUL_K8S_CONTROL_PLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-k8s-control-plane") | .image' charts/Chart.yaml)
+        CONSUL_DATAPLANE_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "consul-dataplane") | .image' charts/Chart.yaml)
+        ENVOY_VERSION=$(yq eval '.annotations."artifacthub.io/images" | select(.name == "envoy") | .image' charts/Chart.yaml)
 
         echo "CONSUL_VERSION=$CONSUL_VERSION" >> $GITHUB_ENV
         echo "CONSUL_K8S_CONTROL_PLANE_VERSION=$CONSUL_K8S_CONTROL_PLANE_VERSION" >> $GITHUB_ENV
