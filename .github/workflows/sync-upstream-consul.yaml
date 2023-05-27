@@ -124,7 +124,7 @@ jobs:
       continue-on-error: true
       with:
         format: sarif
-        outputFile: results
+        outputFile: helm_results
         files: "charts/*.yaml"
 
     - name: Upload Kubescape scan results to Github Code Scanning
