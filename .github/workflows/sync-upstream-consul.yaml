@@ -150,6 +150,15 @@ jobs:
         git commit -m "added charts and scan results"
         git push origin upstream-sync
 
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        title: 'Sync with Upstream'
+        commit-message: 'Changes Detected'
+        branch: 'upstream-sync'
+        base: 'develop'
+        token: ${{ secrets.GITHUB_TOKEN }    
+
     # - name: Package Helm chart
     #   run: |
     #     helm package charts
