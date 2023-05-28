@@ -1,9 +1,11 @@
-name: Update Consul 
+name: Develop Branch Action
+
+# todo: add a step to attach observability to consul.
 
 on:
-  schedule:
-    - cron: '0 9 * * 1' # Run daily at 00:00 UTC
-  workflow_dispatch: # Allows manual triggering of the workflow
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   update-values:
@@ -19,20 +21,7 @@ jobs:
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
-
-    - name: Add Consul Helm repository
-      run: |
-        helm repo add hashicorp https://helm.releases.hashicorp.com
-        helm repo update
-
-    - name: Fetch Consul Helm chart
-      run: |
-        helm pull hashicorp/consul --untar
-
-    - name: Move Consul Helm Charts to charts folder
-      run: |
-        rsync -a consul/ charts/
-
+   
     - name: Install yq
       run: |
         sudo snap install yq
@@ -148,28 +137,4 @@ jobs:
         git add charts/*
         git add reports/*
         git commit -m "added charts and scan results"
-        git push origin upstream-sync
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        title: 'Sync with Upstream'
-        commit-message: 'Changes Detected'
-        branch: 'upstream-sync'
-        base: 'develop'
-        token: ${{ secrets.GITHUB_TOKEN }    
-
-    # - name: Package Helm chart
-    #   run: |
-    #     helm package charts
-
-    # - name: Log in to GitHub Container Registry
-    #   run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-    # - name: Push Helm chart to GitHub Packages
-    #   env:
-    #     CHART_VERSION: ${{ steps.update-values.outputs.chart-version }}
-    #   run: |
-    #     HELM_CHART_FILE="redpanda-${CHART_VERSION}.tgz"
-    #     HELM_CHART_REF="ghcr.io/${{ github.repository_owner }}/redpanda:${CHART_VERSION}"
-    #     curl -H "Authorization: Bearer ${{ secrets.GHCR_TOKEN }}" -X POST -T ${HELM_CHART_FILE} "${HELM_CHART_REF}"
+        git push origin ${GITHUB_REF#refs/heads/}
