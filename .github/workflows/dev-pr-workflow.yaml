@@ -22,10 +22,14 @@ jobs:
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
-   
+
+    - name: Setup brew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
     - name: Install yq
       run: |
-        sudo snap install yq
+        brew install yq
 
     - name: Extract versions
       run: |
@@ -135,7 +139,9 @@ jobs:
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
+        git pull origin
         git add charts/*
         git add reports/*
         git commit -m "added charts and scan results"
-        git push origin ${GITHUB_REF#refs/heads/}
+        echo ${{ github.head_ref }}
+        git push origin ${{ github.head_ref }}
