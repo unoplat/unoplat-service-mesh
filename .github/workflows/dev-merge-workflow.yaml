@@ -21,22 +21,10 @@ jobs:
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
- 
-    - name: Setup brew
-      run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bash_profile
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        sudo apt-get install build-essential
-        brew install gcc
-        test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-        test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        test -r ~/.bash_profile && echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bash_profile
-        echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.profile             
 
     - name: Install yq
       run: |
-        brew install yq
+        sudo snap install yq --channel=v3/stable
 
     - name: set version with dev
       run: |
