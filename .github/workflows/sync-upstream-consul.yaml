@@ -33,7 +33,6 @@ jobs:
       run: |
         rsync -a consul/ charts/
 
-
     - name: Install yq
       run: |
         sudo snap install yq
