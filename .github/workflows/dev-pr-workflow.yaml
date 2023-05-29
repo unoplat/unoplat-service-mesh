@@ -25,8 +25,8 @@ jobs:
         
     - name: Install yq
       run: |
-        sudo snap install yq --channel=v3/stable
-
+        sudo snap install yq
+        
     - name: Extract versions
       run: |
         IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
