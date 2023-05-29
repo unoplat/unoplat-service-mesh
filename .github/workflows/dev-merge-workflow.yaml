@@ -26,6 +26,7 @@ jobs:
       run: |
         sudo snap install yq
 
+
     - name: set version with dev
       run: |
         yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
