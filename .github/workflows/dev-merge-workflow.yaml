@@ -5,6 +5,7 @@ on:
     types: [closed]
     branches:
       - develop
+  workflow_dispatch:  
 
 jobs:
   dev-pr-merge:
@@ -14,16 +15,24 @@ jobs:
     - name: Checkout our repository
       uses: actions/checkout@v2
       with:
-        ref: upstream-sync
+        ref: develop
 
     - name: Set up Helm
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
  
+    - name: Setup brew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bash_profile
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+        sudo apt-get install build-essential
+        brew install gcc
+
     - name: Install yq
       run: |
-        sudo snap install yq
+        brew install yq
 
     - name: set version with dev
       run: |
@@ -32,7 +41,8 @@ jobs:
     - name: Publish Helm charts
       uses: stefanprodan/helm-gh-pages@master
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}    
+        token: ${{ secrets.GITHUB_TOKEN }}
+        charts_dir: charts   
 
        
 
