@@ -10,56 +10,56 @@
           "name": "Trivy",
           "rules": [
             {
+              "id": "CVE-2023-2603",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Integer Overflow in _libcap_strdup()"
+              },
+              "fullDescription": {
+                "text": "No description is available for this CVE."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2603",
+              "help": {
+                "text": "Vulnerability CVE-2023-2603\nSeverity: MEDIUM\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nNo description is available for this CVE.",
+                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nNo description is available for this CVE."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
               "id": "CVE-2023-2602",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "[LCAP-CR-23-01]"
+                "text": "Memory Leak on pthread_create() Error"
               },
               "fullDescription": {
-                "text": "[LCAP-CR-23-01]"
+                "text": "No description is available for this CVE."
               },
               "defaultConfiguration": {
                 "level": "note"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2602",
               "help": {
-                "text": "Vulnerability CVE-2023-2602\nSeverity: UNKNOWN\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)\n",
-                "markdown": "**Vulnerability CVE-2023-2602**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|libcap2|2.66-r1|[CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)|\n\n"
+                "text": "Vulnerability CVE-2023-2602\nSeverity: LOW\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)\nNo description is available for this CVE.",
+                "markdown": "**Vulnerability CVE-2023-2602**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libcap2|2.66-r1|[CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)|\n\nNo description is available for this CVE."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "0.0",
+                "security-severity": "2.0",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "UNKNOWN"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2023-2603",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "[LCAP-CR-23-02]"
-              },
-              "fullDescription": {
-                "text": "[LCAP-CR-23-02]"
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2603",
-              "help": {
-                "text": "Vulnerability CVE-2023-2603\nSeverity: UNKNOWN\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\n",
-                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\n"
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "0.0",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "UNKNOWN"
+                  "LOW"
                 ]
               }
             },
@@ -469,33 +469,6 @@
               }
             },
             {
-              "id": "GHSA-vvpx-j8f3-3w6h",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "Uncontrolled Resource Consumption"
-              },
-              "fullDescription": {
-                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "helpUri": "https://github.com/advisories/GHSA-vvpx-j8f3-3w6h",
-              "help": {
-                "text": "Vulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
-                "markdown": "**Vulnerability GHSA-vvpx-j8f3-3w6h**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|golang.org/x/net|0.7.0|[GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "0.0",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "UNKNOWN"
-                ]
-              }
-            },
-            {
               "id": "CVE-2022-29526",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -636,38 +609,11 @@
       },
       "results": [
         {
-          "ruleId": "CVE-2023-2602",
-          "ruleIndex": 0,
-          "level": "note",
-          "message": {
-            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul-k8s-control-plane",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul-k8s-control-plane: libcap@2.66-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-2603",
-          "ruleIndex": 1,
-          "level": "note",
+          "ruleIndex": 0,
+          "level": "warning",
           "message": {
-            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -691,10 +637,10 @@
         },
         {
           "ruleId": "CVE-2023-2602",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
+            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: LOW\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
           },
           "locations": [
             {
@@ -711,17 +657,17 @@
                 }
               },
               "message": {
-                "text": "hashicorp/consul-k8s-control-plane: libcap-utils@2.66-r0"
+                "text": "hashicorp/consul-k8s-control-plane: libcap@2.66-r0"
               }
             }
           ]
         },
         {
           "ruleId": "CVE-2023-2603",
-          "ruleIndex": 1,
-          "level": "note",
+          "ruleIndex": 0,
+          "level": "warning",
           "message": {
-            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -745,10 +691,37 @@
         },
         {
           "ruleId": "CVE-2023-2602",
-          "ruleIndex": 0,
+          "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
+            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: LOW\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcap-utils@2.66-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2603",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -771,11 +744,11 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-2603",
+          "ruleId": "CVE-2023-2602",
           "ruleIndex": 1,
           "level": "note",
           "message": {
-            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: UNKNOWN\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2602\nSeverity: LOW\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)"
           },
           "locations": [
             {
@@ -1257,35 +1230,8 @@
           ]
         },
         {
-          "ruleId": "GHSA-vvpx-j8f3-3w6h",
-          "ruleIndex": 17,
-          "level": "note",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-29526",
-          "ruleIndex": 18,
+          "ruleIndex": 17,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
@@ -1312,7 +1258,7 @@
         },
         {
           "ruleId": "CVE-2021-38561",
-          "ruleIndex": 19,
+          "ruleIndex": 18,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
@@ -1339,7 +1285,7 @@
         },
         {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
+          "ruleIndex": 19,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
@@ -1366,7 +1312,7 @@
         },
         {
           "ruleId": "CVE-2020-14040",
-          "ruleIndex": 21,
+          "ruleIndex": 20,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
@@ -1501,7 +1447,7 @@
         },
         {
           "ruleId": "CVE-2022-21698",
-          "ruleIndex": 22,
+          "ruleIndex": 21,
           "level": "error",
           "message": {
             "text": "Package: github.com/prometheus/client_golang\nInstalled Version: v1.11.0\nVulnerability CVE-2022-21698\nSeverity: HIGH\nFixed Version: 1.11.1\nLink: [CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)"
@@ -1608,33 +1554,6 @@
           ]
         },
         {
-          "ruleId": "GHSA-vvpx-j8f3-3w6h",
-          "ruleIndex": 17,
-          "level": "note",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-k8s-control-plane",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-k8s-control-plane: golang.org/x/net@v0.0.0-20220127200216-cd36cc0744dd"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-27664",
           "ruleIndex": 13,
           "level": "error",
@@ -1716,35 +1635,8 @@
           ]
         },
         {
-          "ruleId": "GHSA-vvpx-j8f3-3w6h",
-          "ruleIndex": 17,
-          "level": "note",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-cni",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
+          "ruleIndex": 19,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.7\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
