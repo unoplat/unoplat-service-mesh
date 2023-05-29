@@ -32,10 +32,10 @@ jobs:
     - name: Move Consul Helm Charts to charts folder
       run: |
         rsync -a consul/ charts/
-        
+
     - name: Install yq
       run: |
-        sudo snap install yq --channel=v3/stable
+        sudo snap install yq
 
     - name: Extract versions
       run: |

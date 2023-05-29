@@ -25,7 +25,7 @@ jobs:
         
     - name: Install yq
       run: |
-        sudo snap install yq --channel=v3/stable
+        sudo snap install yq
 
     - name: Extract versions
       run: |
