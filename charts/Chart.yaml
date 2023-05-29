@@ -28,6 +28,6 @@ icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.pn
 kubeVersion: '>=1.22.0-0'
 name: consul
 sources:
-- https://github.com/hashicorp/consul
-- https://github.com/hashicorp/consul-k8s
+  - https://github.com/hashicorp/consul
+  - https://github.com/hashicorp/consul-k8s
 version: 1.1.1
