@@ -3,9 +3,10 @@ name: Develop Branch Action
 # todo: add a step to attach observability to consul.
 
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - develop
+  workflow_dispatch:    
 
 jobs:
   dev-pr:
@@ -15,7 +16,7 @@ jobs:
     - name: Checkout our repository
       uses: actions/checkout@v2
       with:
-        ref: upstream-sync
+        ref: ${{ github.head_ref }}
 
     - name: Set up Helm
       uses: azure/setup-helm@v3
