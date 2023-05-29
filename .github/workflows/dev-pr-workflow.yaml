@@ -139,4 +139,5 @@ jobs:
         git add charts/*
         git add reports/*
         git commit -m "added charts and scan results"
+        echo ${{ github.head_ref }}
         git push origin ${{ github.head_ref }}
