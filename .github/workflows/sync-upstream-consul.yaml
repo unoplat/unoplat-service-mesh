@@ -157,7 +157,7 @@ jobs:
         commit-message: 'Changes Detected'
         branch: 'upstream-sync'
         base: 'develop'
-        token: ${{ secrets.GITHUB_TOKEN }    
+        token: ${{ secrets.GITHUB_TOKEN }}  
 
     # - name: Package Helm chart
     #   run: |
