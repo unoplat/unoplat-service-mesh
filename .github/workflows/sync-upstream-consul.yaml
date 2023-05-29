@@ -32,18 +32,10 @@ jobs:
     - name: Move Consul Helm Charts to charts folder
       run: |
         rsync -a consul/ charts/
-
-    - name: Setup brew
-      run: |
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-        (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/runner/.bash_profile
-        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-        sudo apt-get install build-essential
-        brew install gcc
-
+        
     - name: Install yq
       run: |
-        brew install yq
+        sudo snap install yq --channel=v3/stable
 
     - name: Extract versions
       run: |
