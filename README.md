@@ -1,3 +1,3 @@
 # base-project-structure
 
-dummy text dummy
+dummy text dummy text
