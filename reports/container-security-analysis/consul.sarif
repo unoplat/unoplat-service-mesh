@@ -287,17 +287,19 @@
               },
               "fullDescription": {
 
-                "text": "No description is available for this CVE."
+
+                "text": "A vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
 
               },
+
               "defaultConfiguration": {
                 "level": "warning"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2603",
               "help": {
+                "text": "Vulnerability CVE-2023-2603\nSeverity: MEDIUM\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB.",
+                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
 
-                "text": "Vulnerability CVE-2023-2603\nSeverity: MEDIUM\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nNo description is available for this CVE.",
-                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nNo description is available for this CVE."
               },
               "properties": {
                 "precision": "very-high",
@@ -323,8 +325,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2602",
               "help": {
-                "text": "Vulnerability CVE-2023-2602\nSeverity: LOW\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)\nNo description is available for this CVE.",
-                "markdown": "**Vulnerability CVE-2023-2602**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libcap2|2.66-r1|[CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)|\n\nNo description is available for this CVE."
+                "text": "Vulnerability CVE-2023-2602\nSeverity: LOW\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)\nA vulnerability was found in the pthread_create() function in libcap. This issue may allow a malicious actor to use cause __real_pthread_create() to return an error, which can exhaust the process memory.",
+                "markdown": "**Vulnerability CVE-2023-2602**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libcap2|2.66-r1|[CVE-2023-2602](https://avd.aquasec.com/nvd/cve-2023-2602)|\n\nA vulnerability was found in the pthread_create() function in libcap. This issue may allow a malicious actor to use cause __real_pthread_create() to return an error, which can exhaust the process memory."
 
               },
               "properties": {
