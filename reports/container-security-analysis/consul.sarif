@@ -286,7 +286,8 @@
                 "text": "Integer Overflow in _libcap_strdup()"
               },
               "fullDescription": {
-                "text": "No description is available for this CVE."
+
+                "text": "A vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
               },
               "defaultConfiguration": {
                 "level": "warning"
