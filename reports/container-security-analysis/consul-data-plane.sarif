@@ -712,33 +712,6 @@
               }
             },
             {
-              "id": "GHSA-vvpx-j8f3-3w6h",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "Uncontrolled Resource Consumption"
-              },
-              "fullDescription": {
-                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "helpUri": "https://github.com/advisories/GHSA-vvpx-j8f3-3w6h",
-              "help": {
-                "text": "Vulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
-                "markdown": "**Vulnerability GHSA-vvpx-j8f3-3w6h**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|UNKNOWN|golang.org/x/net|0.7.0|[GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "0.0",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "UNKNOWN"
-                ]
-              }
-            },
-            {
               "id": "CVE-2022-29526",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -1689,35 +1662,8 @@
           ]
         },
         {
-          "ruleId": "GHSA-vvpx-j8f3-3w6h",
-          "ruleIndex": 26,
-          "level": "note",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability GHSA-vvpx-j8f3-3w6h\nSeverity: UNKNOWN\nFixed Version: 0.7.0\nLink: [GHSA-vvpx-j8f3-3w6h](https://github.com/advisories/GHSA-vvpx-j8f3-3w6h)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "usr/local/bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "usr/local/bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-29526",
-          "ruleIndex": 27,
+          "ruleIndex": 26,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
@@ -1744,7 +1690,7 @@
         },
         {
           "ruleId": "CVE-2021-38561",
-          "ruleIndex": 28,
+          "ruleIndex": 27,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
@@ -1771,7 +1717,7 @@
         },
         {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 29,
+          "ruleIndex": 28,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
@@ -1798,7 +1744,7 @@
         },
         {
           "ruleId": "CVE-2020-14040",
-          "ruleIndex": 30,
+          "ruleIndex": 29,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
