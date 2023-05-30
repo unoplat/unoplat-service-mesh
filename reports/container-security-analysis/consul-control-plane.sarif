@@ -16,9 +16,8 @@
                 "text": "Integer Overflow in _libcap_strdup()"
               },
               "fullDescription": {
-
                 "text": "A vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
-              },
+             },
               "defaultConfiguration": {
                 "level": "warning"
               },
@@ -44,8 +43,7 @@
                 "text": "Memory Leak on pthread_create() Error"
               },
               "fullDescription": {
-
-                "text": "A vulnerability was found in the pthread_create() function in libcap. This issue may allow a malicious actor to use cause __real_pthread_create() to return an error, which can exhaust the process memory."
+                "text": "No description is available for this CVE."
               },
               "defaultConfiguration": {
                 "level": "note"
