@@ -16,7 +16,9 @@
                 "text": "Integer Overflow in _libcap_strdup()"
               },
               "fullDescription": {
+
                 "text": "No description is available for this CVE."
+
               },
               "defaultConfiguration": {
                 "level": "warning"
@@ -43,6 +45,7 @@
                 "text": "Memory Leak on pthread_create() Error"
               },
               "fullDescription": {
+
                 "text": "No description is available for this CVE."
               },
               "defaultConfiguration": {
