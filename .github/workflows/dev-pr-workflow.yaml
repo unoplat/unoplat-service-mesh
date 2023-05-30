@@ -4,6 +4,7 @@ name: Develop Branch Action
 
 on:
   pull_request_target:
+    types: [opened]
     branches:
       - develop
   workflow_dispatch:    
