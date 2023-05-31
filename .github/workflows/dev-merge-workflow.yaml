@@ -31,9 +31,16 @@ jobs:
       with:
         version: v3.11.1
 
-    - name: Install yq
+# Not required as of now
+    # - name: set version with dev
+    #   run: |
+    #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
+
+
+    - name: Developer Values YAML
       run: |
-        sudo snap install yq
+        cp -f charts/consul/environments/dev/values.yaml charts/consul/
+
 
 # Not required as of now
     # - name: set version with dev
@@ -44,6 +51,7 @@ jobs:
     - name: Developer Values YAML
       run: |
         cp -f charts/consul/environments/dev/values.yaml charts/consul/
+
 
     - name: Save current changes for client-cluster-values.yaml
       run: |
