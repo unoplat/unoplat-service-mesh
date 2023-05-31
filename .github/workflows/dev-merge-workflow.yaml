@@ -31,10 +31,6 @@ jobs:
       with:
         version: v3.11.1
 
-    - name: Install yq
-      run: |
-        sudo snap install yq
-
 # Not required as of now
     # - name: set version with dev
     #   run: |
@@ -46,11 +42,11 @@ jobs:
 
         cp -f charts/consul/environments/dev/values.yaml charts/consul/
 
+
+
     - name: Save current changes for client-cluster-values.yaml
       run: |
-        git add charts/consul/values.yaml
-        git commit -m "updated dev values"
-        git push origin develop    
+         git diff --exit-code charts/consul/values.yaml || (git add charts/consul/values.yaml && git commit -m "updated dev values" && git push origin develop)
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.5.0
