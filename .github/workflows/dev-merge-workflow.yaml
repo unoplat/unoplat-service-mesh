@@ -44,9 +44,7 @@ jobs:
 
     - name: Save current changes for client-cluster-values.yaml
       run: |
-        git add charts/consul/values.yaml
-        git commit -m "updated dev values"
-        git push origin develop    
+         git diff --exit-code charts/consul/values.yaml || (git add charts/consul/values.yaml && git commit -m "updated dev values" && git push origin develop)
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.5.0
