@@ -35,10 +35,14 @@ jobs:
       run: |
         sudo snap install yq
 
+# Not required as of now
+    # - name: set version with dev
+    #   run: |
+    #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
 
-    - name: set version with dev
+    - name: Add Changed Files to Git
       run: |
-        yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
+        git add charts/Chart.yaml
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.5.0
