@@ -43,6 +43,7 @@ jobs:
 
     - name: Developer Values YAML
       run: |
+
         cp -f charts/consul/environments/dev/values.yaml charts/consul/
 
     - name: Save current changes for client-cluster-values.yaml
