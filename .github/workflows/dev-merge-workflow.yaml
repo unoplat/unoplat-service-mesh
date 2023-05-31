@@ -40,9 +40,16 @@ jobs:
     #   run: |
     #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
 
-    - name: Add Changed Files to Git
+
+    - name: Developer Values YAML
       run: |
-        git add charts/Chart.yaml
+        cp -f charts/consul/environments/developer/values.yaml charts/consul/
+
+    - name: Save current changes for client-cluster-values.yaml
+      run: |
+        git add charts/consul/values.yaml
+        git commit -m "updated dev values"
+        git push origin develop    
 
     - name: Run chart-releaser
       uses: helm/chart-releaser-action@v1.5.0
