@@ -31,3 +31,4 @@ sources:
   - https://github.com/hashicorp/consul
   - https://github.com/hashicorp/consul-k8s
 version: dev-1.1.3
+
