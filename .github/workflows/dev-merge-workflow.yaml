@@ -47,12 +47,6 @@ jobs:
     #   run: |
     #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
 
-
-    - name: Developer Values YAML
-      run: |
-        cp -f charts/consul/environments/dev/values.yaml charts/consul/
-
-
     - name: Save current changes for client-cluster-values.yaml
       run: |
         git add charts/consul/values.yaml
