@@ -39,11 +39,12 @@ jobs:
 
     - name: Developer Values YAML
       run: |
-
         cp -f charts/consul/environments/dev/values.yaml charts/consul/
 
-
-
+# Not required as of now
+    # - name: set version with dev
+    #   run: |
+    #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
     - name: Save current changes for client-cluster-values.yaml
       run: |
          git diff --exit-code charts/consul/values.yaml || (git add charts/consul/values.yaml && git commit -m "updated dev values" && git push origin develop)
