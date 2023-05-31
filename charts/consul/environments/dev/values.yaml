@@ -804,6 +804,7 @@ server:
       memory: "200Mi"
       cpu: "250m"
 
+
   # The security context for the server pods. This should be a YAML map corresponding to a
   # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
   # By default, servers will run as non-root, with user ID `100` and group ID `1000`,
