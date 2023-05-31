@@ -30,7 +30,7 @@ jobs:
         
     - name: Extract versions
       run: |
-        IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
+        IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/consul/Chart.yaml)
         CONSUL_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul") | .image' -)
         CONSUL_K8S_CONTROL_PLANE_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul-k8s-control-plane") | .image' -)
         CONSUL_DATAPLANE_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul-dataplane") | .image' -)
