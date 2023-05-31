@@ -40,6 +40,7 @@ jobs:
     #   run: |
     #     yq eval '.version = "dev-" + .version' charts/Chart.yaml -i
 
+
     - name: Developer Values YAML
       run: |
         cp -f charts/consul/environments/developer/values.yaml charts/consul/
