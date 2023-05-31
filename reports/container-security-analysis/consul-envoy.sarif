@@ -226,6 +226,33 @@
               }
             },
             {
+              "id": "CVE-2023-2650",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Possible DoS translating ASN.1 object identifiers"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with \u0026#39;n\u0026#39; being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer\u0026#39;s certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2650",
+              "help": {
+                "text": "Vulnerability CVE-2023-2650\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low.",
+                "markdown": "**Vulnerability CVE-2023-2650**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|1.1.1f-1ubuntu2.19|[CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)|\n\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
               "id": "CVE-2023-0464",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -825,8 +852,35 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-0464",
+          "ruleId": "CVE-2023-2650",
           "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libssl1.1@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0464",
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
@@ -853,7 +907,7 @@
         },
         {
           "ruleId": "CVE-2023-0465",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
@@ -880,7 +934,7 @@
         },
         {
           "ruleId": "CVE-2023-0466",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
@@ -907,7 +961,7 @@
         },
         {
           "ruleId": "CVE-2022-3821",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "warning",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
@@ -934,7 +988,7 @@
         },
         {
           "ruleId": "CVE-2022-4415",
-          "ruleIndex": 12,
+          "ruleIndex": 13,
           "level": "warning",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
@@ -961,7 +1015,7 @@
         },
         {
           "ruleId": "CVE-2023-26604",
-          "ruleIndex": 13,
+          "ruleIndex": 14,
           "level": "note",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
@@ -1069,7 +1123,7 @@
         },
         {
           "ruleId": "CVE-2022-3821",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "warning",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
@@ -1096,7 +1150,7 @@
         },
         {
           "ruleId": "CVE-2022-4415",
-          "ruleIndex": 12,
+          "ruleIndex": 13,
           "level": "warning",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
@@ -1123,7 +1177,7 @@
         },
         {
           "ruleId": "CVE-2023-26604",
-          "ruleIndex": 13,
+          "ruleIndex": 14,
           "level": "note",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
@@ -1150,7 +1204,7 @@
         },
         {
           "ruleId": "CVE-2013-4235",
-          "ruleIndex": 14,
+          "ruleIndex": 15,
           "level": "note",
           "message": {
             "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
@@ -1177,7 +1231,7 @@
         },
         {
           "ruleId": "CVE-2023-29383",
-          "ruleIndex": 15,
+          "ruleIndex": 16,
           "level": "note",
           "message": {
             "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
@@ -1365,8 +1419,35 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-0464",
+          "ruleId": "CVE-2023-2650",
           "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: openssl@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0464",
+          "ruleIndex": 9,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
@@ -1393,7 +1474,7 @@
         },
         {
           "ruleId": "CVE-2023-0465",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
@@ -1420,7 +1501,7 @@
         },
         {
           "ruleId": "CVE-2023-0466",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
@@ -1447,7 +1528,7 @@
         },
         {
           "ruleId": "CVE-2013-4235",
-          "ruleIndex": 14,
+          "ruleIndex": 15,
           "level": "note",
           "message": {
             "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
@@ -1474,7 +1555,7 @@
         },
         {
           "ruleId": "CVE-2023-29383",
-          "ruleIndex": 15,
+          "ruleIndex": 16,
           "level": "note",
           "message": {
             "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
@@ -1501,7 +1582,7 @@
         },
         {
           "ruleId": "CVE-2023-31484",
-          "ruleIndex": 16,
+          "ruleIndex": 17,
           "level": "warning",
           "message": {
             "text": "Package: perl-base\nInstalled Version: 5.30.0-9ubuntu0.3\nVulnerability CVE-2023-31484\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)"
@@ -1528,7 +1609,7 @@
         },
         {
           "ruleId": "CVE-2022-48303",
-          "ruleIndex": 17,
+          "ruleIndex": 18,
           "level": "warning",
           "message": {
             "text": "Package: tar\nInstalled Version: 1.30+dfsg-7ubuntu0.20.04.2\nVulnerability CVE-2022-48303\nSeverity: MEDIUM\nFixed Version: 1.30+dfsg-7ubuntu0.20.04.3\nLink: [CVE-2022-48303](https://avd.aquasec.com/nvd/cve-2022-48303)"

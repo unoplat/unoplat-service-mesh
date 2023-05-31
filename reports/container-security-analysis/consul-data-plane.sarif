@@ -280,6 +280,33 @@
               }
             },
             {
+              "id": "CVE-2023-2650",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Possible DoS translating ASN.1 object identifiers"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with \u0026#39;n\u0026#39; being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer\u0026#39;s certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2650",
+              "help": {
+                "text": "Vulnerability CVE-2023-2650\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: \nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low.",
+                "markdown": "**Vulnerability CVE-2023-2650**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl||[CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)|\n\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
               "id": "CVE-2007-6755",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -1095,8 +1122,35 @@
           ]
         },
         {
-          "ruleId": "CVE-2007-6755",
+          "ruleId": "CVE-2023-2650",
           "ruleIndex": 10,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-dataplane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-dataplane: libssl1.1@1.1.1n-0+deb11u4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2007-6755",
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2007-6755\nSeverity: LOW\nFixed Version: \nLink: [CVE-2007-6755](https://avd.aquasec.com/nvd/cve-2007-6755)"
@@ -1123,7 +1177,7 @@
         },
         {
           "ruleId": "CVE-2010-0928",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2010-0928\nSeverity: LOW\nFixed Version: \nLink: [CVE-2010-0928](https://avd.aquasec.com/nvd/cve-2010-0928)"
@@ -1230,8 +1284,35 @@
           ]
         },
         {
-          "ruleId": "CVE-2007-6755",
+          "ruleId": "CVE-2023-2650",
           "ruleIndex": 10,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-dataplane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-dataplane: openssl@1.1.1n-0+deb11u4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2007-6755",
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2007-6755\nSeverity: LOW\nFixed Version: \nLink: [CVE-2007-6755](https://avd.aquasec.com/nvd/cve-2007-6755)"
@@ -1258,7 +1339,7 @@
         },
         {
           "ruleId": "CVE-2010-0928",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1n-0+deb11u4\nVulnerability CVE-2010-0928\nSeverity: LOW\nFixed Version: \nLink: [CVE-2010-0928](https://avd.aquasec.com/nvd/cve-2010-0928)"
@@ -1285,7 +1366,7 @@
         },
         {
           "ruleId": "CVE-2020-8911",
-          "ruleIndex": 12,
+          "ruleIndex": 13,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
@@ -1312,7 +1393,7 @@
         },
         {
           "ruleId": "CVE-2022-2582",
-          "ruleIndex": 13,
+          "ruleIndex": 14,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2022-2582\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2022-2582](https://avd.aquasec.com/nvd/cve-2022-2582)"
@@ -1339,7 +1420,7 @@
         },
         {
           "ruleId": "GHSA-76wf-9vgp-pj7w",
-          "ruleIndex": 14,
+          "ruleIndex": 15,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability GHSA-76wf-9vgp-pj7w\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [GHSA-76wf-9vgp-pj7w](https://github.com/advisories/GHSA-76wf-9vgp-pj7w)"
@@ -1366,7 +1447,7 @@
         },
         {
           "ruleId": "CVE-2020-8912",
-          "ruleIndex": 15,
+          "ruleIndex": 16,
           "level": "note",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
@@ -1393,7 +1474,7 @@
         },
         {
           "ruleId": "CVE-2019-19794",
-          "ruleIndex": 16,
+          "ruleIndex": 17,
           "level": "warning",
           "message": {
             "text": "Package: github.com/miekg/dns\nInstalled Version: v1.0.14\nVulnerability CVE-2019-19794\nSeverity: MEDIUM\nFixed Version: 1.1.25-0.20191211073109-8ebf2e419df7\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)"
@@ -1420,7 +1501,7 @@
         },
         {
           "ruleId": "CVE-2020-29652",
-          "ruleIndex": 17,
+          "ruleIndex": 18,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2020-29652\nSeverity: HIGH\nFixed Version: 0.0.0-20201216223049-8b5274cf687f\nLink: [CVE-2020-29652](https://avd.aquasec.com/nvd/cve-2020-29652)"
@@ -1447,7 +1528,7 @@
         },
         {
           "ruleId": "CVE-2021-43565",
-          "ruleIndex": 18,
+          "ruleIndex": 19,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2021-43565\nSeverity: HIGH\nFixed Version: 0.0.0-20211202192323-5770296d904e\nLink: [CVE-2021-43565](https://avd.aquasec.com/nvd/cve-2021-43565)"
@@ -1474,7 +1555,7 @@
         },
         {
           "ruleId": "CVE-2022-27191",
-          "ruleIndex": 19,
+          "ruleIndex": 20,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2022-27191\nSeverity: HIGH\nFixed Version: 0.0.0-20220314234659-1baeb1ce4c0b\nLink: [CVE-2022-27191](https://avd.aquasec.com/nvd/cve-2022-27191)"
@@ -1501,7 +1582,7 @@
         },
         {
           "ruleId": "CVE-2021-33194",
-          "ruleIndex": 20,
+          "ruleIndex": 21,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-33194\nSeverity: HIGH\nFixed Version: 0.0.0-20210520170846-37e1c6afe023\nLink: [CVE-2021-33194](https://avd.aquasec.com/nvd/cve-2021-33194)"
@@ -1528,7 +1609,7 @@
         },
         {
           "ruleId": "CVE-2021-44716",
-          "ruleIndex": 21,
+          "ruleIndex": 22,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-44716\nSeverity: HIGH\nFixed Version: 0.0.0-20211209124913-491a49abca63\nLink: [CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)"
@@ -1555,7 +1636,7 @@
         },
         {
           "ruleId": "CVE-2022-27664",
-          "ruleIndex": 22,
+          "ruleIndex": 23,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
@@ -1582,7 +1663,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 23,
+          "ruleIndex": 24,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1609,7 +1690,7 @@
         },
         {
           "ruleId": "CVE-2021-31525",
-          "ruleIndex": 24,
+          "ruleIndex": 25,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-31525\nSeverity: MEDIUM\nFixed Version: 0.0.0-20210428140749-89ef3d95e781\nLink: [CVE-2021-31525](https://avd.aquasec.com/nvd/cve-2021-31525)"
@@ -1636,7 +1717,7 @@
         },
         {
           "ruleId": "CVE-2022-41717",
-          "ruleIndex": 25,
+          "ruleIndex": 26,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
@@ -1663,7 +1744,7 @@
         },
         {
           "ruleId": "CVE-2022-29526",
-          "ruleIndex": 26,
+          "ruleIndex": 27,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
@@ -1690,7 +1771,7 @@
         },
         {
           "ruleId": "CVE-2021-38561",
-          "ruleIndex": 27,
+          "ruleIndex": 28,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
@@ -1717,7 +1798,7 @@
         },
         {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 28,
+          "ruleIndex": 29,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
@@ -1744,7 +1825,7 @@
         },
         {
           "ruleId": "CVE-2020-14040",
-          "ruleIndex": 29,
+          "ruleIndex": 30,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
