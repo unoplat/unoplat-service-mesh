@@ -2136,17 +2136,17 @@ connectInject:
     requests:
       # Recommended production default: 500Mi
       # @type: string
-      memory: "50Mi"
+      memory: "200Mi"
       # Recommended production default: 250m
       # @type: string
-      cpu: "50m"
+      cpu: "100m"
     limits:
       # Recommended production default: 500Mi
       # @type: string
-      memory: "50Mi"
+      memory: "200Mi"
       # Recommended production default: 250m
       # @type: string
-      cpu: "50m"
+      cpu: "100m"
 
   # Sets the failurePolicy for the mutating webhook. By default this will cause pods not part of the consul installation to fail scheduling while the webhook
   # is offline. This prevents a pod from skipping mutation if the webhook were to be momentarily offline.
