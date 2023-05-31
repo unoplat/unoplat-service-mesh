@@ -1,0 +1,21 @@
+name: Install/Upgrade on Civo
+
+on:
+  repository_dispatch:
+    types: [install_civo]
+  workflow_dispatch: 
+
+jobs:
+  install_civo:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.11.1
+
+    - name: Print payload
+      env:
+        MESSAGE: ${{ github.event.client_payload.message }}
+      run: echo $MESSAGE
