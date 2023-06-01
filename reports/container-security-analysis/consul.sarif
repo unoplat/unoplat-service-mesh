@@ -10,33 +10,6 @@
           "name": "Trivy",
           "rules": [
             {
-              "id": "CVE-2023-27536",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "GSS delegation too eager connection re-use"
-              },
-              "fullDescription": {
-                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
-              "help": {
-                "text": "Vulnerability CVE-2023-27536\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
-                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "9.8",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "CRITICAL"
-                ]
-              }
-            },
-            {
               "id": "CVE-2023-27533",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -106,6 +79,33 @@
               "help": {
                 "text": "Vulnerability CVE-2023-27535\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information.",
                 "markdown": "**Vulnerability CVE-2023-27535**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.88.1-r1|[CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)|\n\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-27536",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "GSS delegation too eager connection re-use"
+              },
+              "fullDescription": {
+                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
+              "help": {
+                "text": "Vulnerability CVE-2023-27536\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
+                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
               },
               "properties": {
                 "precision": "very-high",
@@ -340,15 +340,15 @@
                 "text": "Denial of service by excessive resource usage in verifying X509 policy constraints"
               },
               "fullDescription": {
-                "text": "A security vulnerability has been identified in all supported versions of OpenSSL related to the verification of X.509 certificate chains that include policy constraints. Attackers may be able to exploit this vulnerability by creating a malicious certificate chain that triggers exponential use of computational resources, leading to a denial-of-service (DoS) attack on affected systems. Policy processing is disabled by default but can be enabled by passing the `-policy\u0026#39; argument to the command line utilities or by calling the `X509_VERIFY_PARAM_set1_policies()\u0026#39; function."
+                "text": "A security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy\u0026#39; argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()\u0026#39; function."
               },
               "defaultConfiguration": {
                 "level": "error"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-0464",
               "help": {
-                "text": "Vulnerability CVE-2023-0464\nSeverity: HIGH\nPackage: openssl\nFixed Version: 3.0.8-r1\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)\nA security vulnerability has been identified in all supported versions of OpenSSL related to the verification of X.509 certificate chains that include policy constraints. Attackers may be able to exploit this vulnerability by creating a malicious certificate chain that triggers exponential use of computational resources, leading to a denial-of-service (DoS) attack on affected systems. Policy processing is disabled by default but can be enabled by passing the `-policy' argument to the command line utilities or by calling the `X509_VERIFY_PARAM_set1_policies()' function.",
-                "markdown": "**Vulnerability CVE-2023-0464**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|openssl|3.0.8-r1|[CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)|\n\nA security vulnerability has been identified in all supported versions of OpenSSL related to the verification of X.509 certificate chains that include policy constraints. Attackers may be able to exploit this vulnerability by creating a malicious certificate chain that triggers exponential use of computational resources, leading to a denial-of-service (DoS) attack on affected systems. Policy processing is disabled by default but can be enabled by passing the `-policy' argument to the command line utilities or by calling the `X509_VERIFY_PARAM_set1_policies()' function."
+                "text": "Vulnerability CVE-2023-0464\nSeverity: HIGH\nPackage: openssl\nFixed Version: 3.0.8-r1\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)\nA security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function.",
+                "markdown": "**Vulnerability CVE-2023-0464**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|openssl|3.0.8-r1|[CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)|\n\nA security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function."
               },
               "properties": {
                 "precision": "very-high",
@@ -663,35 +663,8 @@
       },
       "results": [
         {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: CRITICAL\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: curl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-27533",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27533\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27533](https://avd.aquasec.com/nvd/cve-2023-27533)"
@@ -718,7 +691,7 @@
         },
         {
           "ruleId": "CVE-2023-27534",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27534\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27534](https://avd.aquasec.com/nvd/cve-2023-27534)"
@@ -745,10 +718,37 @@
         },
         {
           "ruleId": "CVE-2023-27535",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: curl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
@@ -1230,35 +1230,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: CRITICAL\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: libcurl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-27533",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27533\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27533](https://avd.aquasec.com/nvd/cve-2023-27533)"
@@ -1285,7 +1258,7 @@
         },
         {
           "ruleId": "CVE-2023-27534",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27534\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27534](https://avd.aquasec.com/nvd/cve-2023-27534)"
@@ -1312,10 +1285,37 @@
         },
         {
           "ruleId": "CVE-2023-27535",
-          "ruleIndex": 3,
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 3,
+          "level": "error",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
