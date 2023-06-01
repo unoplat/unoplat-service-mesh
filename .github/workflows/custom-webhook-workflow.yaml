@@ -12,6 +12,7 @@ jobs:
     steps:
 
 
+
     - uses: azure/setup-kubectl@v3
       id: install    
 
@@ -27,6 +28,7 @@ jobs:
         token: ${{ secrets.CIVO_TOKEN }}
     - name: Save Civo kubeconfig
       run: civo kubernetes config CLUSTER_NAME
+
     - name: Print payload
       env:
         MESSAGE: ${{ github.event.client_payload.message }}
@@ -45,3 +47,4 @@ jobs:
       run: |
         version=$(helm search repo unoplat-service-mesh/consul --versions --devel --output json | jq -r '.[0].version')
         helm upgrade --install unoplat-consul-release --namespace unoplat-service-mesh unoplat-service-mesh/consul --version $version --devel --create-namespace 
+
