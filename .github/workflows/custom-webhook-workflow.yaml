@@ -32,11 +32,10 @@ jobs:
     #     MESSAGE: ${{ github.event.client_payload.message }}
     #   run: echo $MESSAGE
   
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+    - uses: azure/k8s-set-context@v3
       with:
-        args: get pods
+        method: kubeconfig
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
     - name: Install jq
       run: sudo apt-get install jq
 
