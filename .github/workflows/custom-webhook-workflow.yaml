@@ -11,6 +11,7 @@ jobs:
 
     steps:
 
+
     - uses: azure/setup-kubectl@v3
       id: install    
 
@@ -19,11 +20,20 @@ jobs:
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
-  
+
     - uses: azure/k8s-set-context@v3
       with:
         method: kubeconfig
         kubeconfig: ${{ secrets.KUBE_CONFIG }}
+
+
+
+    - name: Print payload
+      env:
+        MESSAGE: ${{ github.event.client_payload.message }}
+      run: echo $MESSAGE
+
+
     - name: Install jq
       run: sudo apt-get install jq
 
