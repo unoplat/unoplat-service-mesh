@@ -12,7 +12,6 @@ jobs:
     steps:
 
 
-
     - uses: azure/setup-kubectl@v3
       id: install    
 
@@ -22,17 +21,19 @@ jobs:
       with:
         version: v3.11.1
 
-    - name: Install civo
-      uses: civo/action-civo
+  
+    - uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
-        token: ${{ secrets.CIVO_TOKEN }}
-    - name: Save Civo kubeconfig
-      run: civo kubernetes config CLUSTER_NAME
+        args: get pods
+
 
     - name: Print payload
       env:
         MESSAGE: ${{ github.event.client_payload.message }}
       run: echo $MESSAGE
+
 
     - name: Install jq
       run: sudo apt-get install jq
