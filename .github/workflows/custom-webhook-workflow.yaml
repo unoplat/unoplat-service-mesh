@@ -11,6 +11,7 @@ jobs:
 
     steps:
 
+
     - uses: azure/setup-kubectl@v3
       id: install    
 
@@ -19,12 +20,21 @@ jobs:
       uses: azure/setup-helm@v3
       with:
         version: v3.11.1
+
   
     - uses: actions-hub/kubectl@master
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       with:
         args: get pods
+
+
+    - name: Print payload
+      env:
+        MESSAGE: ${{ github.event.client_payload.message }}
+      run: echo $MESSAGE
+
+
     - name: Install jq
       run: sudo apt-get install jq
 
@@ -38,3 +48,4 @@ jobs:
       run: |
         version=$(helm search repo unoplat-service-mesh/consul --versions --devel --output json | jq -r '.[0].version')
         helm upgrade --install unoplat-consul-release --namespace unoplat-service-mesh unoplat-service-mesh/consul --version $version --devel --create-namespace 
+
