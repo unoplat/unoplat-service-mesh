@@ -1,6 +1,6 @@
 {
   "version": "2.1.0",
-  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
   "runs": [
     {
       "tool": {
@@ -148,7 +148,7 @@
               "id": "CVE-2021-39537",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "ncurses: heap-based buffer overflow in _nc_captoinfo() in captoinfo.c"
+                "text": "heap-based buffer overflow in _nc_captoinfo() in captoinfo.c"
               },
               "fullDescription": {
                 "text": "An issue was discovered in ncurses through v6.2-1. _nc_captoinfo in captoinfo.c has a heap-based buffer overflow."
@@ -337,7 +337,7 @@
               "id": "CVE-2022-3821",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "systemd: buffer overrun in format_timespan() function"
+                "text": "buffer overrun in format_timespan() function"
               },
               "fullDescription": {
                 "text": "An off-by-one Error issue was discovered in Systemd in format_timespan() function of time-util.c. An attacker could supply specific values for time and accuracy that leads to buffer overrun in format_timespan(), leading to a Denial of Service."
@@ -482,8 +482,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-31484",
               "help": {
-                "text": "Vulnerability CVE-2023-31484\nSeverity: MEDIUM\nPackage: perl-base\nFixed Version: \nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS.",
-                "markdown": "**Vulnerability CVE-2023-31484**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|perl-base||[CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)|\n\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS."
+                "text": "Vulnerability CVE-2023-31484\nSeverity: MEDIUM\nPackage: perl-base\nFixed Version: 5.30.0-9ubuntu0.4\nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS.",
+                "markdown": "**Vulnerability CVE-2023-31484**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|perl-base|5.30.0-9ubuntu0.4|[CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)|\n\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS."
               },
               "properties": {
                 "precision": "very-high",
@@ -523,7 +523,7 @@
               }
             }
           ],
-          "version": "0.40.0"
+          "version": "0.42.0"
         }
       },
       "results": [
@@ -1585,7 +1585,7 @@
           "ruleIndex": 17,
           "level": "warning",
           "message": {
-            "text": "Package: perl-base\nInstalled Version: 5.30.0-9ubuntu0.3\nVulnerability CVE-2023-31484\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)"
+            "text": "Package: perl-base\nInstalled Version: 5.30.0-9ubuntu0.3\nVulnerability CVE-2023-31484\nSeverity: MEDIUM\nFixed Version: 5.30.0-9ubuntu0.4\nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)"
           },
           "locations": [
             {
