@@ -25,6 +25,43 @@ entries:
         url: https://keybase.io/hashicorp/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.15.1
+    created: "2023-06-06T14:16:26.254455022Z"
+    description: Official HashiCorp Consul Chart
+    digest: 5c1a4db26c1732644518f8a1ce9bfe364e52ffeb315956fa62140cf754a82ee0
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
+    kubeVersion: '>=1.22.0-0'
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.4-dev/consul-1.1.4-dev.tgz
+    version: 1.1.4-dev
+  - annotations:
+      artifacthub.io/images: |
+        - name: consul
+          image: hashicorp/consul:1.15.1
+        - name: consul-k8s-control-plane
+          image: hashicorp/consul-k8s-control-plane:1.1.1
+        - name: consul-dataplane
+          image: hashicorp/consul-dataplane:1.1.0
+        - name: envoy
+          image: envoyproxy/envoy:v1.25.1
+      artifacthub.io/license: MPL-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://www.consul.io/docs/k8s
+        - name: hashicorp/consul
+          url: https://github.com/hashicorp/consul
+        - name: hashicorp/consul-k8s
+          url: https://github.com/hashicorp/consul-k8s
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: C874011F0AB405110D02105534365D9472D7468F
+        url: https://keybase.io/hashicorp/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.15.1
     created: "2023-05-31T14:33:17.726890351Z"
     description: Official HashiCorp Consul Chart
     digest: b23db845f5579920dcdfeb3de7c038589e9b5a34a3a61695590cda866a5e6557
@@ -75,4 +112,4 @@ entries:
     urls:
     - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.2/consul-1.1.2.tgz
     version: 1.1.2
-generated: "2023-05-31T14:33:17.726906851Z"
+generated: "2023-06-06T14:16:26.254470922Z"
