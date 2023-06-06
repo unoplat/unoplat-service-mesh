@@ -2,7 +2,7 @@ name: Install/Upgrade on Civo
 
 on:
   repository_dispatch:
-    types: [install_civo]
+    types: [install_unoplat_mesh]
   workflow_dispatch: 
 
 jobs:
