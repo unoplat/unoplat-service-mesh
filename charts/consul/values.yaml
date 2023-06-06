@@ -390,7 +390,7 @@ global:
     # If true, the Helm chart will automatically manage ACL tokens and policies
     # for all Consul and consul-k8s-control-plane components.
     # This requires Consul >= 1.4.
-    manageSystemACLs: true
+    manageSystemACLs: false
 
     # A Kubernetes or Vault secret containing the bootstrap token to use for creating policies and
     # tokens for all Consul and consul-k8s-control-plane components. If `secretName` and `secretKey`
@@ -1570,8 +1570,8 @@ ui:
   # to port 443 has not been TLS terminated.
   ingress:
     # This will create an Ingress resource for the Consul UI.
-    # @type: falseboolean
-    enabled: true
+    # @type: boolean
+    enabled: false
 
     # Optionally set the ingressClassName.
     ingressClassName: ""
@@ -2568,7 +2568,7 @@ meshGateway:
 ingressGateways:
   # Enable ingress gateway deployment. Requires `connectInject.enabled=true`
   # and `client.enabled=true`.
-  enabled: true
+  enabled: false
 
   # Defaults sets default values for all gateway fields. With the exception
   # of annotations, defining any of these values in the `gateways` list
