@@ -2583,7 +2583,7 @@ ingressGateways:
     service:
       # Type of service: LoadBalancer, ClusterIP or NodePort. If using NodePort service
       # type, you must set the desired nodePorts in the `ports` setting below.
-      type: ClusterIP
+      type: LoadBalancer
 
       # Ports that will be exposed on the service and gateway container. Any
       # ports defined as ingress listeners on the gateway's Consul configuration
