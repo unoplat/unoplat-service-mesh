@@ -25,6 +25,43 @@ entries:
         url: https://keybase.io/hashicorp/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.15.1
+    created: "2023-06-08T14:39:39.998493222Z"
+    description: Official HashiCorp Consul Chart
+    digest: 1a95c2aaa1ab8ba537c6c3c72f26e58d6cf05ab60642aa4146b257c0cd473508
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
+    kubeVersion: '>=1.22.0-0'
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.7-dev/consul-1.1.7-dev.tgz
+    version: 1.1.7-dev
+  - annotations:
+      artifacthub.io/images: |
+        - name: consul
+          image: hashicorp/consul:1.15.1
+        - name: consul-k8s-control-plane
+          image: hashicorp/consul-k8s-control-plane:1.1.1
+        - name: consul-dataplane
+          image: hashicorp/consul-dataplane:1.1.0
+        - name: envoy
+          image: envoyproxy/envoy:v1.25.1
+      artifacthub.io/license: MPL-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://www.consul.io/docs/k8s
+        - name: hashicorp/consul
+          url: https://github.com/hashicorp/consul
+        - name: hashicorp/consul-k8s
+          url: https://github.com/hashicorp/consul-k8s
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: C874011F0AB405110D02105534365D9472D7468F
+        url: https://keybase.io/hashicorp/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.15.1
     created: "2023-06-07T15:42:22.941693296Z"
     description: Official HashiCorp Consul Chart
     digest: e057029e919b6ba16d8324a29a44d15b6ce8c726af88cb9ead4921ef24a62e4c
@@ -186,4 +223,4 @@ entries:
     urls:
     - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.2/consul-1.1.2.tgz
     version: 1.1.2
-generated: "2023-06-07T15:42:22.941849298Z"
+generated: "2023-06-08T14:39:39.998697638Z"
