@@ -226,6 +226,141 @@
               }
             },
             {
+              "id": "CVE-2022-21698",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "Denial of service using InstrumentHandlerCounter"
+              },
+              "fullDescription": {
+                "text": "client_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-21698",
+              "help": {
+                "text": "Vulnerability CVE-2022-21698\nSeverity: HIGH\nPackage: github.com/prometheus/client_golang\nFixed Version: 1.11.1\nLink: [CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)\nclient_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods.",
+                "markdown": "**Vulnerability CVE-2022-21698**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|github.com/prometheus/client_golang|1.11.1|[CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)|\n\nclient_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-27664",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "handle server errors after sending GOAWAY"
+              },
+              "fullDescription": {
+                "text": "In net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-27664",
+              "help": {
+                "text": "Vulnerability CVE-2022-27664\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error.",
+                "markdown": "**Vulnerability CVE-2022-27664**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.0.0-20220906165146-f3363e06e74c|[CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)|\n\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-41723",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "avoid quadratic complexity in HPACK decoding"
+              },
+              "fullDescription": {
+                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41723",
+              "help": {
+                "text": "Vulnerability CVE-2022-41723\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
+                "markdown": "**Vulnerability CVE-2022-41723**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.7.0|[CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-41717",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "excessive memory growth in a Go server accepting HTTP/2 requests"
+              },
+              "fullDescription": {
+                "text": "An attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41717",
+              "help": {
+                "text": "Vulnerability CVE-2022-41717\nSeverity: MEDIUM\nPackage: golang.org/x/net\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection.",
+                "markdown": "**Vulnerability CVE-2022-41717**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|golang.org/x/net|0.4.0|[CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)|\n\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-32149",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ParseAcceptLanguage takes a long time to parse complex tags"
+              },
+              "fullDescription": {
+                "text": "An attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-32149",
+              "help": {
+                "text": "Vulnerability CVE-2022-32149\nSeverity: HIGH\nPackage: golang.org/x/text\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse.",
+                "markdown": "**Vulnerability CVE-2022-32149**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/text|0.3.8|[CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)|\n\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
               "id": "CVE-2019-19794",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -388,60 +523,6 @@
               }
             },
             {
-              "id": "CVE-2022-27664",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "handle server errors after sending GOAWAY"
-              },
-              "fullDescription": {
-                "text": "In net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-27664",
-              "help": {
-                "text": "Vulnerability CVE-2022-27664\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error.",
-                "markdown": "**Vulnerability CVE-2022-27664**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.0.0-20220906165146-f3363e06e74c|[CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)|\n\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-41723",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "avoid quadratic complexity in HPACK decoding"
-              },
-              "fullDescription": {
-                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41723",
-              "help": {
-                "text": "Vulnerability CVE-2022-41723\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
-                "markdown": "**Vulnerability CVE-2022-41723**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.7.0|[CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
               "id": "CVE-2021-31525",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -461,33 +542,6 @@
               "properties": {
                 "precision": "very-high",
                 "security-severity": "5.9",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "MEDIUM"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-41717",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "excessive memory growth in a Go server accepting HTTP/2 requests"
-              },
-              "fullDescription": {
-                "text": "An attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41717",
-              "help": {
-                "text": "Vulnerability CVE-2022-41717\nSeverity: MEDIUM\nPackage: golang.org/x/net\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection.",
-                "markdown": "**Vulnerability CVE-2022-41717**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|golang.org/x/net|0.4.0|[CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)|\n\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "5.3",
                 "tags": [
                   "vulnerability",
                   "security",
@@ -550,33 +604,6 @@
               }
             },
             {
-              "id": "CVE-2022-32149",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "ParseAcceptLanguage takes a long time to parse complex tags"
-              },
-              "fullDescription": {
-                "text": "An attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-32149",
-              "help": {
-                "text": "Vulnerability CVE-2022-32149\nSeverity: HIGH\nPackage: golang.org/x/text\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse.",
-                "markdown": "**Vulnerability CVE-2022-32149**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/text|0.3.8|[CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)|\n\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
               "id": "CVE-2020-14040",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -600,33 +627,6 @@
                   "vulnerability",
                   "security",
                   "MEDIUM"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-21698",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "Denial of service using InstrumentHandlerCounter"
-              },
-              "fullDescription": {
-                "text": "client_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-21698",
-              "help": {
-                "text": "Vulnerability CVE-2022-21698\nSeverity: HIGH\nPackage: github.com/prometheus/client_golang\nFixed Version: 1.11.1\nLink: [CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)\nclient_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods.",
-                "markdown": "**Vulnerability CVE-2022-21698**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|github.com/prometheus/client_golang|1.11.1|[CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)|\n\nclient_golang is the instrumentation library for Go applications in Prometheus, and the promhttp package in client_golang provides tooling around HTTP servers and clients. In client_golang prior to version 1.11.1, HTTP server is susceptible to a Denial of Service through unbounded cardinality, and potential memory exhaustion, when handling requests with non-standard HTTP methods. In order to be affected, an instrumented software must use any of `promhttp.InstrumentHandler*` middleware except `RequestsInFlight`; not filter any specific methods (e.g GET) before middleware; pass metric with `method` label name to our middleware; and not have any firewall/LB/proxy that filters away requests with unknown `method`. client_golang version 1.11.1 contains a patch for this issue. Several workarounds are available, including removing the `method` label name from counter/gauge used in the InstrumentHandler; turning off affected promhttp handlers; adding custom middleware before promhttp handler that will sanitize the request method given by Go http.Request; and using a reverse proxy or web application firewall, configured to only allow a limited set of methods."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
                 ]
               }
             }
@@ -970,492 +970,6 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-2582",
-          "ruleIndex": 5,
-          "level": "warning",
-          "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2022-2582\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2022-2582](https://avd.aquasec.com/nvd/cve-2022-2582)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "GHSA-76wf-9vgp-pj7w",
-          "ruleIndex": 6,
-          "level": "warning",
-          "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability GHSA-76wf-9vgp-pj7w\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [GHSA-76wf-9vgp-pj7w](https://github.com/advisories/GHSA-76wf-9vgp-pj7w)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2020-8912",
-          "ruleIndex": 7,
-          "level": "note",
-          "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2019-19794",
-          "ruleIndex": 8,
-          "level": "warning",
-          "message": {
-            "text": "Package: github.com/miekg/dns\nInstalled Version: v1.0.14\nVulnerability CVE-2019-19794\nSeverity: MEDIUM\nFixed Version: 1.1.25-0.20191211073109-8ebf2e419df7\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: github.com/miekg/dns@v1.0.14"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2020-29652",
-          "ruleIndex": 9,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2020-29652\nSeverity: HIGH\nFixed Version: 0.0.0-20201216223049-8b5274cf687f\nLink: [CVE-2020-29652](https://avd.aquasec.com/nvd/cve-2020-29652)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2021-43565",
-          "ruleIndex": 10,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2021-43565\nSeverity: HIGH\nFixed Version: 0.0.0-20211202192323-5770296d904e\nLink: [CVE-2021-43565](https://avd.aquasec.com/nvd/cve-2021-43565)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-27191",
-          "ruleIndex": 11,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2022-27191\nSeverity: HIGH\nFixed Version: 0.0.0-20220314234659-1baeb1ce4c0b\nLink: [CVE-2022-27191](https://avd.aquasec.com/nvd/cve-2022-27191)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2021-33194",
-          "ruleIndex": 12,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-33194\nSeverity: HIGH\nFixed Version: 0.0.0-20210520170846-37e1c6afe023\nLink: [CVE-2021-33194](https://avd.aquasec.com/nvd/cve-2021-33194)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2021-44716",
-          "ruleIndex": 13,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-44716\nSeverity: HIGH\nFixed Version: 0.0.0-20211209124913-491a49abca63\nLink: [CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2021-31525",
-          "ruleIndex": 16,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-31525\nSeverity: MEDIUM\nFixed Version: 0.0.0-20210428140749-89ef3d95e781\nLink: [CVE-2021-31525](https://avd.aquasec.com/nvd/cve-2021-31525)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-29526",
-          "ruleIndex": 18,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/sys@v0.0.0-20191022100944-742c48ecaeb7"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2021-38561",
-          "ruleIndex": 19,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/text@v0.3.2"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/text@v0.3.2"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2020-14040",
-          "ruleIndex": 21,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/text@v0.3.2"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2020-8911",
-          "ruleIndex": 4,
-          "level": "warning",
-          "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
                   "uri": "bin/consul-k8s-control-plane",
                   "uriBaseId": "ROOTPATH"
                 },
@@ -1555,7 +1069,7 @@
         },
         {
           "ruleId": "CVE-2022-21698",
-          "ruleIndex": 22,
+          "ruleIndex": 8,
           "level": "error",
           "message": {
             "text": "Package: github.com/prometheus/client_golang\nInstalled Version: v1.11.0\nVulnerability CVE-2022-21698\nSeverity: HIGH\nFixed Version: 1.11.1\nLink: [CVE-2022-21698](https://avd.aquasec.com/nvd/cve-2022-21698)"
@@ -1582,7 +1096,7 @@
         },
         {
           "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
+          "ruleIndex": 9,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
@@ -1609,7 +1123,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
+          "ruleIndex": 10,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1636,7 +1150,7 @@
         },
         {
           "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
+          "ruleIndex": 11,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
@@ -1663,7 +1177,7 @@
         },
         {
           "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
+          "ruleIndex": 9,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
@@ -1690,7 +1204,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
+          "ruleIndex": 10,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1717,7 +1231,7 @@
         },
         {
           "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
+          "ruleIndex": 11,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
@@ -1744,7 +1258,7 @@
         },
         {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
+          "ruleIndex": 12,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.7\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
@@ -1765,6 +1279,492 @@
               },
               "message": {
                 "text": "bin/consul-cni: golang.org/x/text@v0.3.7"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-8911",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-2582",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2022-2582\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2022-2582](https://avd.aquasec.com/nvd/cve-2022-2582)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "GHSA-76wf-9vgp-pj7w",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability GHSA-76wf-9vgp-pj7w\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [GHSA-76wf-9vgp-pj7w](https://github.com/advisories/GHSA-76wf-9vgp-pj7w)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-8912",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: github.com/aws/aws-sdk-go@v1.25.41"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2019-19794",
+          "ruleIndex": 13,
+          "level": "warning",
+          "message": {
+            "text": "Package: github.com/miekg/dns\nInstalled Version: v1.0.14\nVulnerability CVE-2019-19794\nSeverity: MEDIUM\nFixed Version: 1.1.25-0.20191211073109-8ebf2e419df7\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: github.com/miekg/dns@v1.0.14"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-29652",
+          "ruleIndex": 14,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2020-29652\nSeverity: HIGH\nFixed Version: 0.0.0-20201216223049-8b5274cf687f\nLink: [CVE-2020-29652](https://avd.aquasec.com/nvd/cve-2020-29652)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-43565",
+          "ruleIndex": 15,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2021-43565\nSeverity: HIGH\nFixed Version: 0.0.0-20211202192323-5770296d904e\nLink: [CVE-2021-43565](https://avd.aquasec.com/nvd/cve-2021-43565)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-27191",
+          "ruleIndex": 16,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2022-27191\nSeverity: HIGH\nFixed Version: 0.0.0-20220314234659-1baeb1ce4c0b\nLink: [CVE-2022-27191](https://avd.aquasec.com/nvd/cve-2022-27191)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/crypto@v0.0.0-20201002170205-7f63de1d35b0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-33194",
+          "ruleIndex": 17,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-33194\nSeverity: HIGH\nFixed Version: 0.0.0-20210520170846-37e1c6afe023\nLink: [CVE-2021-33194](https://avd.aquasec.com/nvd/cve-2021-33194)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-44716",
+          "ruleIndex": 18,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-44716\nSeverity: HIGH\nFixed Version: 0.0.0-20211209124913-491a49abca63\nLink: [CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-27664",
+          "ruleIndex": 9,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-41723",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-31525",
+          "ruleIndex": 19,
+          "level": "warning",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-31525\nSeverity: MEDIUM\nFixed Version: 0.0.0-20210428140749-89ef3d95e781\nLink: [CVE-2021-31525](https://avd.aquasec.com/nvd/cve-2021-31525)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-41717",
+          "ruleIndex": 11,
+          "level": "warning",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29526",
+          "ruleIndex": 20,
+          "level": "warning",
+          "message": {
+            "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/sys@v0.0.0-20191022100944-742c48ecaeb7"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-38561",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/text@v0.3.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-32149",
+          "ruleIndex": 12,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/text@v0.3.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-14040",
+          "ruleIndex": 22,
+          "level": "warning",
+          "message": {
+            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/discover",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/discover: golang.org/x/text@v0.3.2"
               }
             }
           ]
