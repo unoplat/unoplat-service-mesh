@@ -1511,7 +1511,7 @@ ui:
   # configure `ui.service`.
   # @default: global.enabled
   # @type: boolean
-  enabled: "-"
+  enabled: "true"
 
   # Configure the service for the Consul UI.
   service:
@@ -1621,7 +1621,7 @@ ui:
     # will inherit from `global.metrics.enabled` value.
     # @type: boolean
     # @default: global.metrics.enabled
-    enabled: "-"
+    enabled: "false"
     # Provider for metrics. Refer to
     # [`metrics_provider`](https://developer.hashicorp.com/consul/docs/agent/config/config-files#ui_config_metrics_provider)
     # This value is only used if `ui.enabled` is set to true.
@@ -2051,11 +2051,11 @@ connectInject:
     #   - If metrics merging is disabled:
     #     the listener will just expose Envoy sidecar metrics.
     # This will inherit from `global.metrics.enabled`.
-    defaultEnabled: "-"
+    defaultEnabled: "true"
     # Configures the consul-dataplane to run a merged metrics server
     # to combine and serve both Envoy and Connect service metrics.
     # This feature is available only in Consul v1.10.0 or greater.
-    defaultEnableMerging: false
+    defaultEnableMerging: true
     # Configures the port at which the consul-dataplane will listen on to return
     # combined metrics. This port only needs to be changed if it conflicts with
     # the application's ports.
