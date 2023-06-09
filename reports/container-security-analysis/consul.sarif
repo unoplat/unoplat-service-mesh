@@ -118,33 +118,6 @@
               }
             },
             {
-              "id": "CVE-2023-27536",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "GSS delegation too eager connection re-use"
-              },
-              "fullDescription": {
-                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
-              "help": {
-                "text": "Vulnerability CVE-2023-27536\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
-                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
               "id": "CVE-2023-28319",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -195,6 +168,33 @@
                   "vulnerability",
                   "security",
                   "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-27536",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "GSS delegation too eager connection re-use"
+              },
+              "fullDescription": {
+                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
+              "help": {
+                "text": "Vulnerability CVE-2023-27536\nSeverity: MEDIUM\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
+                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
                 ]
               }
             },
@@ -771,35 +771,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 4,
-          "level": "error",
-          "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: curl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-28319",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28319\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28319](https://avd.aquasec.com/nvd/cve-2023-28319)"
@@ -826,10 +799,37 @@
         },
         {
           "ruleId": "CVE-2023-28321",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: curl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
@@ -1338,35 +1338,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 4,
-          "level": "error",
-          "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: libcurl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-28319",
-          "ruleIndex": 5,
+          "ruleIndex": 4,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28319\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28319](https://avd.aquasec.com/nvd/cve-2023-28319)"
@@ -1393,10 +1366,37 @@
         },
         {
           "ruleId": "CVE-2023-28321",
-          "ruleIndex": 6,
+          "ruleIndex": 5,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
