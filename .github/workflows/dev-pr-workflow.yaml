@@ -126,11 +126,12 @@ jobs:
 
     - name: Moving scan results to approapriate folders
       run: |
-        mv -f helm_results.sarif reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results.sarif
-        mv -f consul.sarif reports/container-security-analysis/consul.sarif
-        mv -f consul-control-plane.sarif reports/container-security-analysis/consul-control-plane.sarif
-        mv -f consul-data-plane.sarif reports/container-security-analysis/consul-data-plane.sarif
-        mv -f consul-envoy.sarif reports/container-security-analysis/consul-envoy.sarif
+        TIMESTAMP=$(date -u +%Y%m%d%H%M%S)s
+        mv -f helm_results.sarif reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results_${TIMESTAMP}.sarif
+        mv -f consul.sarif reports/container-security-analysis/consul_${TIMESTAMP}.sarif
+        mv -f consul-control-plane.sarif reports/container-security-analysis/consul-control-plane_${TIMESTAMP}.sarif
+        mv -f consul-data-plane.sarif reports/container-security-analysis/consul-data-plane_${TIMESTAMP}.sarif
+        mv -f consul-envoy.sarif reports/container-security-analysis/consul-envoy_${TIMESTAMP}.sarif
 
     - name: Push changes to our repository
       run: |
