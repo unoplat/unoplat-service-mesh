@@ -175,7 +175,7 @@
               "id": "CVE-2022-29458",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "ncurses: segfaulting OOB read"
+                "text": "segfaulting OOB read"
               },
               "fullDescription": {
                 "text": "ncurses 6.3 before patch 20220416 has an out-of-bounds read and segmentation violation in convert_strings in tinfo/read_entry.c in the terminfo library."
@@ -222,6 +222,33 @@
                   "vulnerability",
                   "security",
                   "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-4016",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "ps buffer overflow"
+              },
+              "fullDescription": {
+                "text": "Under some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-4016",
+              "help": {
+                "text": "Vulnerability CVE-2023-4016\nSeverity: MEDIUM\nPackage: procps\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)\nUnder some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+                "markdown": "**Vulnerability CVE-2023-4016**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|procps||[CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)|\n\nUnder some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
                 ]
               }
             },
@@ -472,7 +499,7 @@
               "id": "CVE-2023-31484",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "CPAN.pm before 2.35 does not verify TLS certificates when downloading  ..."
+                "text": "CPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS"
               },
               "fullDescription": {
                 "text": "CPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS."
@@ -523,7 +550,7 @@
               }
             }
           ],
-          "version": "0.42.0"
+          "version": "0.43.1"
         }
       },
       "results": [
@@ -852,8 +879,35 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-2650",
+          "ruleId": "CVE-2023-4016",
           "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: libprocps8\nInstalled Version: 2:3.3.16-1ubuntu2.3\nVulnerability CVE-2023-4016\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libprocps8@2:3.3.16-1ubuntu2.3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2650",
+          "ruleIndex": 9,
           "level": "warning",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
@@ -880,7 +934,7 @@
         },
         {
           "ruleId": "CVE-2023-0464",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
@@ -907,7 +961,7 @@
         },
         {
           "ruleId": "CVE-2023-0465",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
@@ -934,7 +988,7 @@
         },
         {
           "ruleId": "CVE-2023-0466",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "note",
           "message": {
             "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
@@ -961,7 +1015,7 @@
         },
         {
           "ruleId": "CVE-2022-3821",
-          "ruleIndex": 12,
+          "ruleIndex": 13,
           "level": "warning",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
@@ -988,7 +1042,7 @@
         },
         {
           "ruleId": "CVE-2022-4415",
-          "ruleIndex": 13,
+          "ruleIndex": 14,
           "level": "warning",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
@@ -1015,7 +1069,7 @@
         },
         {
           "ruleId": "CVE-2023-26604",
-          "ruleIndex": 14,
+          "ruleIndex": 15,
           "level": "note",
           "message": {
             "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
@@ -1123,7 +1177,7 @@
         },
         {
           "ruleId": "CVE-2022-3821",
-          "ruleIndex": 12,
+          "ruleIndex": 13,
           "level": "warning",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
@@ -1150,7 +1204,7 @@
         },
         {
           "ruleId": "CVE-2022-4415",
-          "ruleIndex": 13,
+          "ruleIndex": 14,
           "level": "warning",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
@@ -1177,7 +1231,7 @@
         },
         {
           "ruleId": "CVE-2023-26604",
-          "ruleIndex": 14,
+          "ruleIndex": 15,
           "level": "note",
           "message": {
             "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
@@ -1204,7 +1258,7 @@
         },
         {
           "ruleId": "CVE-2013-4235",
-          "ruleIndex": 15,
+          "ruleIndex": 16,
           "level": "note",
           "message": {
             "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
@@ -1231,7 +1285,7 @@
         },
         {
           "ruleId": "CVE-2023-29383",
-          "ruleIndex": 16,
+          "ruleIndex": 17,
           "level": "note",
           "message": {
             "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
@@ -1420,7 +1474,7 @@
         },
         {
           "ruleId": "CVE-2023-2650",
-          "ruleIndex": 8,
+          "ruleIndex": 9,
           "level": "warning",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
@@ -1447,7 +1501,7 @@
         },
         {
           "ruleId": "CVE-2023-0464",
-          "ruleIndex": 9,
+          "ruleIndex": 10,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
@@ -1474,7 +1528,7 @@
         },
         {
           "ruleId": "CVE-2023-0465",
-          "ruleIndex": 10,
+          "ruleIndex": 11,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
@@ -1501,7 +1555,7 @@
         },
         {
           "ruleId": "CVE-2023-0466",
-          "ruleIndex": 11,
+          "ruleIndex": 12,
           "level": "note",
           "message": {
             "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
@@ -1528,7 +1582,7 @@
         },
         {
           "ruleId": "CVE-2013-4235",
-          "ruleIndex": 15,
+          "ruleIndex": 16,
           "level": "note",
           "message": {
             "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
@@ -1555,7 +1609,7 @@
         },
         {
           "ruleId": "CVE-2023-29383",
-          "ruleIndex": 16,
+          "ruleIndex": 17,
           "level": "note",
           "message": {
             "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
@@ -1582,7 +1636,7 @@
         },
         {
           "ruleId": "CVE-2023-31484",
-          "ruleIndex": 17,
+          "ruleIndex": 18,
           "level": "warning",
           "message": {
             "text": "Package: perl-base\nInstalled Version: 5.30.0-9ubuntu0.3\nVulnerability CVE-2023-31484\nSeverity: MEDIUM\nFixed Version: 5.30.0-9ubuntu0.4\nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)"
@@ -1608,8 +1662,35 @@
           ]
         },
         {
+          "ruleId": "CVE-2023-4016",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: procps\nInstalled Version: 2:3.3.16-1ubuntu2.3\nVulnerability CVE-2023-4016\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: procps@2:3.3.16-1ubuntu2.3"
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2022-48303",
-          "ruleIndex": 18,
+          "ruleIndex": 19,
           "level": "warning",
           "message": {
             "text": "Package: tar\nInstalled Version: 1.30+dfsg-7ubuntu0.20.04.2\nVulnerability CVE-2022-48303\nSeverity: MEDIUM\nFixed Version: 1.30+dfsg-7ubuntu0.20.04.3\nLink: [CVE-2022-48303](https://avd.aquasec.com/nvd/cve-2022-48303)"
