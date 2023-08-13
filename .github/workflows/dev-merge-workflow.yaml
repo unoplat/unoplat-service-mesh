@@ -1,3 +1,4 @@
+# This code snippet is a GitHub Actions workflow that runs when a pull request is closed on the "develop" branch. It checks out the repository, configures Git, sets up Helm, copies a YAML file, saves changes to a specific file, and
 name: Merge with develop branch
 
 on:
