@@ -25,151 +25,74 @@ jobs:
         helm repo add hashicorp https://helm.releases.hashicorp.com
         helm repo update
 
+       
+
     - name: Fetch Consul Helm chart
       run: |
-        helm pull hashicorp/consul --untar
+        LATEST_VERSION=$(helm search repo hashicorp/consul --versions | grep consul | head -1 | awk '{print $2}')
+        echo "LATEST_VERSION=$LATEST_VERSION" >> $GITHUB_ENV
 
-    - name: Move Consul Helm Charts to charts folder
+    - name: Compare versions and create new branch if necessary
       run: |
-        rsync -a consul/ charts/
+        CURRENT_VERSION=$(cat charts/upstream-version.json | jq -r '.["consul"]')
+        if [ "$LATEST_VERSION" != "$CURRENT_VERSION" ]; then
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"       
+          git checkout -b upstream-sync-${LATEST_VERSION}
+          git push origin upstream-sync-${LATEST_VERSION}
+          rm -rf charts/consul/
+          helm fetch --untar --untardir charts/ hashicorp/consul --version $LATEST_VERSION
+          echo "NEW_BRANCH_CREATED=true" >> $GITHUB_ENV
+        fi 
 
-    - name: Install yq
-      run: |
-        sudo snap install yq
-
-    - name: Extract versions
-      run: |
-        IMAGES=$(yq e -r '.annotations."artifacthub.io/images"' charts/Chart.yaml)
-        CONSUL_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul") | .image' -)
-        CONSUL_K8S_CONTROL_PLANE_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul-k8s-control-plane") | .image' -)
-        CONSUL_DATAPLANE_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "consul-dataplane") | .image' -)
-        ENVOY_VERSION=$(echo "$IMAGES" | yq e '.[] | select(.name == "envoy") | .image' -)
-        echo "$CONSUL_VERSION"
-        echo "$CONSUL_K8S_CONTROL_PLANE_VERSION"
-        echo "$CONSUL_DATAPLANE_VERSION"
-        echo "$ENVOY_VERSION"
-        echo "CONSUL_VERSION=$CONSUL_VERSION" >> $GITHUB_ENV
-        echo "CONSUL_K8S_CONTROL_PLANE_VERSION=$CONSUL_K8S_CONTROL_PLANE_VERSION" >> $GITHUB_ENV
-        echo "CONSUL_DATAPLANE_VERSION=$CONSUL_DATAPLANE_VERSION" >> $GITHUB_ENV
-        echo "ENVOY_VERSION=$ENVOY_VERSION" >> $GITHUB_ENV
-
-    - name: Login to Github Container Registry
-      uses: docker/login-action@v2
-      with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Fetch consul images with specified tag
-      run: |
-        docker pull ${{ env.CONSUL_VERSION }}
-        docker pull ${{ env.CONSUL_K8S_CONTROL_PLANE_VERSION }}
-        docker pull ${{ env.CONSUL_DATAPLANE_VERSION }}
-        docker pull ${{ env.ENVOY_VERSION }}
-        
-
-    - name: Run Trivy vulnerability scanner for consul  plane
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: ${{ env.CONSUL_VERSION }}
-        format: 'sarif'
-        output: 'consul.sarif'
-
-    - name: Upload Trivy scan results for consul to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'consul.sarif'
-        category: "Container scan for Consul"
-          
-    - name: Run Trivy vulnerability scanner for consul control plane
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: ${{ env.CONSUL_K8S_CONTROL_PLANE_VERSION }}
-        format: 'sarif'
-        output: 'consul-control-plane.sarif'
-
-    - name: Upload Trivy scan results for consul control plane to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'consul-control-plane.sarif'
-        category: "Container scan for Consul Control Plane"
-
-    - name: Run Trivy vulnerability scanner for consul data plane
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: ${{ env.CONSUL_DATAPLANE_VERSION }}
-        format: 'sarif'
-        output: 'consul-data-plane.sarif'
-
-    - name: Upload Trivy scan results for consul data plane to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'consul-data-plane.sarif'
-        category: "Container scan for Consul Data Plane"
-
-    - name: Run Trivy vulnerability scanner for consul data plane
-      uses: aquasecurity/trivy-action@master
-      with:
-        image-ref: ${{ env.ENVOY_VERSION }}
-        format: 'sarif'
-        output: 'consul-envoy.sarif'
-
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: 'consul-envoy.sarif'
-        category: "Container scan for Consul Envoy"                
-
-    - uses: kubescape/github-action@main
+    - name: Helm Chart Scan
+      if: env.NEW_BRANCH_CREATED == 'true'
+      uses: kubescape/github-action@main  
       continue-on-error: true
       with:
         format: sarif
         outputFile: helm_results
-        files: "charts/*.yaml"
+        files: "charts/consul"
 
     - name: Upload Kubescape scan results to Github Code Scanning
+      if: env.NEW_BRANCH_CREATED == 'true'
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: helm_results.sarif  
         category: "Kubescape scan for Helm Charts"
 
-    - name: Moving scan results to approapriate folders
+    - name: Moving scan results to appropriate folders
+      if: env.NEW_BRANCH_CREATED == 'true'
       run: |
-        mv -f helm_results.sarif reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results.sarif
-        mv -f consul.sarif reports/container-security-analysis/consul.sarif
-        mv -f consul-control-plane.sarif reports/container-security-analysis/consul-control-plane.sarif
-        mv -f consul-data-plane.sarif reports/container-security-analysis/consul-data-plane.sarif
-        mv -f consul-envoy.sarif reports/container-security-analysis/consul-envoy.sarif
+        TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+        echo "Moving helm_results.sarif to reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results_${TIMESTAMP}.sarif"
+        mv -f "helm_results.sarif" "reports/kubernetes-nsa-cisa-yaml-scan-analysis/helm_results_${TIMESTAMP}.sarif"
 
     - name: Push changes to our repository
+      if: env.NEW_BRANCH_CREATED == 'true'
       run: |
         git config --global user.name "GitHub Action"
         git config --global user.email "action@github.com"
         git add charts/*
         git add reports/*
         git commit -m "added charts and scan results"
-        git push origin upstream-sync
-
+    
+    - name: Push changes
+      if: env.NEW_BRANCH_CREATED == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: upstream-sync-${{ env.LATEST_VERSION }}
+   
     - name: Create Pull Request
+      if: env.NEW_BRANCH_CREATED == 'true'
       uses: peter-evans/create-pull-request@v3
       with:
-        title: 'Sync with Upstream'
+        title: 'Sync with Upstream: ${{ env.LATEST_VERSION }}'
         commit-message: 'Changes Detected'
-        branch: 'upstream-sync'
+        branch: 'upstream-sync-${{ env.LATEST_VERSION }}'
         base: 'develop'
         token: ${{ secrets.GITHUB_TOKEN }}  
 
-    # - name: Package Helm chart
-    #   run: |
-    #     helm package charts
 
-    # - name: Log in to GitHub Container Registry
-    #   run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-    # - name: Push Helm chart to GitHub Packages
-    #   env:
-    #     CHART_VERSION: ${{ steps.update-values.outputs.chart-version }}
-    #   run: |
-    #     HELM_CHART_FILE="redpanda-${CHART_VERSION}.tgz"
-    #     HELM_CHART_REF="ghcr.io/${{ github.repository_owner }}/redpanda:${CHART_VERSION}"
-    #     curl -H "Authorization: Bearer ${{ secrets.GHCR_TOKEN }}" -X POST -T ${HELM_CHART_FILE} "${HELM_CHART_REF}"
+    
