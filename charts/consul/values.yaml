@@ -1621,7 +1621,7 @@ ui:
     # will inherit from `global.metrics.enabled` value.
     # @type: boolean
     # @default: global.metrics.enabled
-    enabled: "false"
+    enabled: "true"
     # Provider for metrics. Refer to
     # [`metrics_provider`](https://developer.hashicorp.com/consul/docs/agent/config/config-files#ui_config_metrics_provider)
     # This value is only used if `ui.enabled` is set to true.
@@ -1631,7 +1631,7 @@ ui:
     # baseURL is the URL of the prometheus server, usually the service URL.
     # This value is only used if `ui.enabled` is set to true.
     # @type: string
-    baseURL: http://prometheus-server
+    baseURL: http://unoplat-observability-prom-prometheus.unoplat-observability:9090
 
   # Corresponds to [`dashboard_url_templates`](https://developer.hashicorp.com/consul/docs/agent/config/config-files#ui_config_dashboard_url_templates)
   # configuration.
