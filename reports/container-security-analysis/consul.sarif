@@ -10,33 +10,6 @@
           "name": "Trivy",
           "rules": [
             {
-              "id": "CVE-2023-28322",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "more POST-after-PUT confusion"
-              },
-              "fullDescription": {
-                "text": "An information disclosure vulnerability exists in curl \u0026lt;v8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-28322",
-              "help": {
-                "text": "Vulnerability CVE-2023-28322\nSeverity: CRITICAL\nPackage: libcurl\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)\nAn information disclosure vulnerability exists in curl \u003cv8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST.",
-                "markdown": "**Vulnerability CVE-2023-28322**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|CRITICAL|libcurl|8.1.0-r0|[CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)|\n\nAn information disclosure vulnerability exists in curl \u003cv8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "9.1",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "CRITICAL"
-                ]
-              }
-            },
-            {
               "id": "CVE-2023-27533",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -91,60 +64,6 @@
               }
             },
             {
-              "id": "CVE-2023-27535",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "FTP too eager connection reuse"
-              },
-              "fullDescription": {
-                "text": "An authentication bypass vulnerability exists in libcurl \u0026lt;8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27535",
-              "help": {
-                "text": "Vulnerability CVE-2023-27535\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information.",
-                "markdown": "**Vulnerability CVE-2023-27535**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.88.1-r1|[CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)|\n\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2023-27536",
-              "name": "OsPackageVulnerability",
-              "shortDescription": {
-                "text": "GSS delegation too eager connection re-use"
-              },
-              "fullDescription": {
-                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
-              "help": {
-                "text": "Vulnerability CVE-2023-27536\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
-                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
               "id": "CVE-2023-28319",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -172,29 +91,56 @@
               }
             },
             {
-              "id": "CVE-2023-28321",
+              "id": "CVE-2023-27535",
               "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "IDN wildcard match may lead to Improper Cerificate Validation"
+                "text": "FTP too eager connection reuse"
               },
               "fullDescription": {
-                "text": "An improper certificate validation vulnerability exists in curl \u0026lt;v8.1.0 in the way it supports matching of wildcard patterns when listed as \u0026#34;Subject Alternative Name\u0026#34; in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`."
+                "text": "An authentication bypass vulnerability exists in libcurl \u0026lt;8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information."
               },
               "defaultConfiguration": {
-                "level": "error"
+                "level": "warning"
               },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-28321",
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27535",
               "help": {
-                "text": "Vulnerability CVE-2023-28321\nSeverity: HIGH\nPackage: libcurl\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)\nAn improper certificate validation vulnerability exists in curl \u003cv8.1.0 in the way it supports matching of wildcard patterns when listed as \"Subject Alternative Name\" in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`.",
-                "markdown": "**Vulnerability CVE-2023-28321**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcurl|8.1.0-r0|[CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)|\n\nAn improper certificate validation vulnerability exists in curl \u003cv8.1.0 in the way it supports matching of wildcard patterns when listed as \"Subject Alternative Name\" in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`."
+                "text": "Vulnerability CVE-2023-27535\nSeverity: MEDIUM\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information.",
+                "markdown": "**Vulnerability CVE-2023-27535**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcurl|7.88.1-r1|[CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)|\n\nAn authentication bypass vulnerability exists in libcurl \u003c8.0.0 in the FTP connection reuse feature that can result in wrong credentials being used during subsequent transfers. Previously created connections are kept in a connection pool for reuse if they match the current setup. However, certain FTP settings such as CURLOPT_FTP_ACCOUNT, CURLOPT_FTP_ALTERNATIVE_TO_USER, CURLOPT_FTP_SSL_CCC, and CURLOPT_USE_SSL were not included in the configuration match checks, causing them to match too easily. This could lead to libcurl using the wrong credentials when performing a transfer, potentially allowing unauthorized access to sensitive information."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "7.5",
+                "security-severity": "5.9",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "HIGH"
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-27536",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "GSS delegation too eager connection re-use"
+              },
+              "fullDescription": {
+                "text": "An authentication bypass vulnerability exists libcurl \u0026lt;8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-27536",
+              "help": {
+                "text": "Vulnerability CVE-2023-27536\nSeverity: MEDIUM\nPackage: libcurl\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed.",
+                "markdown": "**Vulnerability CVE-2023-27536**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcurl|7.88.1-r1|[CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)|\n\nAn authentication bypass vulnerability exists libcurl \u003c8.0.0 in the connection reuse feature which can reuse previously established connections with incorrect user permissions due to a failure to check for changes in the CURLOPT_GSSAPI_DELEGATION option. This vulnerability affects krb5/kerberos/negotiate/GSSAPI transfers and could potentially result in unauthorized access to sensitive information. The safest option is to not reuse connections if the CURLOPT_GSSAPI_DELEGATION option has been changed."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
                 ]
               }
             },
@@ -280,6 +226,60 @@
               }
             },
             {
+              "id": "CVE-2023-28321",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "IDN wildcard match may lead to Improper Cerificate Validation"
+              },
+              "fullDescription": {
+                "text": "An improper certificate validation vulnerability exists in curl \u0026lt;v8.1.0 in the way it supports matching of wildcard patterns when listed as \u0026#34;Subject Alternative Name\u0026#34; in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-28321",
+              "help": {
+                "text": "Vulnerability CVE-2023-28321\nSeverity: MEDIUM\nPackage: libcurl\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)\nAn improper certificate validation vulnerability exists in curl \u003cv8.1.0 in the way it supports matching of wildcard patterns when listed as \"Subject Alternative Name\" in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`.",
+                "markdown": "**Vulnerability CVE-2023-28321**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcurl|8.1.0-r0|[CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)|\n\nAn improper certificate validation vulnerability exists in curl \u003cv8.1.0 in the way it supports matching of wildcard patterns when listed as \"Subject Alternative Name\" in TLS server certificates. curl can be built to use its own name matching function for TLS rather than one provided by a TLS library. This private wildcard matching function would match IDN (International Domain Name) hosts incorrectly and could as a result accept patterns that otherwise should mismatch. IDN hostnames are converted to puny code before used for certificate checks. Puny coded names always start with `xn--` and should not be allowed to pattern match, but the wildcard check in curl could still check for `x*`, which would match even though the IDN name most likely contained nothing even resembling an `x`."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.9",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-28322",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "more POST-after-PUT confusion"
+              },
+              "fullDescription": {
+                "text": "An information disclosure vulnerability exists in curl \u0026lt;v8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-28322",
+              "help": {
+                "text": "Vulnerability CVE-2023-28322\nSeverity: LOW\nPackage: libcurl\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)\nAn information disclosure vulnerability exists in curl \u003cv8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST.",
+                "markdown": "**Vulnerability CVE-2023-28322**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libcurl|8.1.0-r0|[CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)|\n\nAn information disclosure vulnerability exists in curl \u003cv8.1.0 when doing HTTP(S) transfers, libcurl might erroneously use the read callback (`CURLOPT_READFUNCTION`) to ask for data to send, even when the `CURLOPT_POSTFIELDS` option has been set, if the same handle previously wasused to issue a `PUT` request which used that callback. This flaw may surprise the application and cause it to misbehave and either send off the wrong data or use memory after free or similar in the second transfer. The problem exists in the logic for a reused handle when it is (expected to be) changed from a PUT to a POST."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "3.7",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
               "id": "CVE-2023-2603",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -289,20 +289,20 @@
                 "text": "A vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
               },
               "defaultConfiguration": {
-                "level": "warning"
+                "level": "error"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2603",
               "help": {
-                "text": "Vulnerability CVE-2023-2603\nSeverity: MEDIUM\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB.",
-                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
+                "text": "Vulnerability CVE-2023-2603\nSeverity: HIGH\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB.",
+                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "5.5",
+                "security-severity": "7.8",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "MEDIUM"
+                  "HIGH"
                 ]
               }
             },
@@ -325,7 +325,7 @@
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "2.0",
+                "security-severity": "3.3",
                 "tags": [
                   "vulnerability",
                   "security",
@@ -469,6 +469,87 @@
               }
             },
             {
+              "id": "CVE-2023-2975",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "AES-SIV cipher implementation contains a bug that causes it to ignore empty associated data entries"
+              },
+              "fullDescription": {
+                "text": "Issue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2975",
+              "help": {
+                "text": "Vulnerability CVE-2023-2975\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue.",
+                "markdown": "**Vulnerability CVE-2023-2975**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.9-r2|[CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)|\n\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3446",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH keys and parameters"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus (\u0026#39;p\u0026#39; parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#39;-check\u0026#39; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3446",
+              "help": {
+                "text": "Vulnerability CVE-2023-3446\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3446**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.9-r3|[CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3817",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH q parameter value"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#34;-check\u0026#34; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3817",
+              "help": {
+                "text": "Vulnerability CVE-2023-3817\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3817**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.10-r0|[CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
               "id": "CVE-2023-29491",
               "name": "OsPackageVulnerability",
               "shortDescription": {
@@ -496,56 +577,29 @@
               }
             },
             {
-              "id": "CVE-2020-8911",
-              "name": "LanguageSpecificPackageVulnerability",
+              "id": "CVE-2023-35945",
+              "name": "OsPackageVulnerability",
               "shortDescription": {
-                "text": "aws/aws-sdk-go: CBC padding oracle issue in AWS S3 Crypto SDK for golang"
+                "text": "HTTP/2 memory leak in nghttp2 codec"
               },
               "fullDescription": {
-                "text": "A padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target\u0026#39;s S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC\u0026#39;s ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
+                "text": "Envoy is a cloud-native high-performance edge/middle/service proxy. Envoy’s HTTP/2 codec may leak a header map and bookkeeping structures upon receiving `RST_STREAM` immediately followed by the `GOAWAY` frames from an upstream server. In nghttp2, cleanup of pending requests due to receipt of the `GOAWAY` frame skips de-allocation of the bookkeeping structure and pending compressed header. The error return [code path] is taken if connection is already marked for not sending more requests due to `GOAWAY` frame. The clean-up code is right after the return statement, causing memory leak. Denial of service through memory exhaustion. This vulnerability was patched in versions(s) 1.26.3, 1.25.8, 1.24.9, 1.23.11."
               },
               "defaultConfiguration": {
-                "level": "warning"
+                "level": "error"
               },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2020-8911",
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-35945",
               "help": {
-                "text": "Vulnerability CVE-2020-8911\nSeverity: MEDIUM\nPackage: github.com/aws/aws-sdk-go\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
-                "markdown": "**Vulnerability CVE-2020-8911**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|github.com/aws/aws-sdk-go||[CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)|\n\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
+                "text": "Vulnerability CVE-2023-35945\nSeverity: HIGH\nPackage: nghttp2-libs\nFixed Version: 1.51.0-r1\nLink: [CVE-2023-35945](https://avd.aquasec.com/nvd/cve-2023-35945)\nEnvoy is a cloud-native high-performance edge/middle/service proxy. Envoy’s HTTP/2 codec may leak a header map and bookkeeping structures upon receiving `RST_STREAM` immediately followed by the `GOAWAY` frames from an upstream server. In nghttp2, cleanup of pending requests due to receipt of the `GOAWAY` frame skips de-allocation of the bookkeeping structure and pending compressed header. The error return [code path] is taken if connection is already marked for not sending more requests due to `GOAWAY` frame. The clean-up code is right after the return statement, causing memory leak. Denial of service through memory exhaustion. This vulnerability was patched in versions(s) 1.26.3, 1.25.8, 1.24.9, 1.23.11.",
+                "markdown": "**Vulnerability CVE-2023-35945**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|nghttp2-libs|1.51.0-r1|[CVE-2023-35945](https://avd.aquasec.com/nvd/cve-2023-35945)|\n\nEnvoy is a cloud-native high-performance edge/middle/service proxy. Envoy’s HTTP/2 codec may leak a header map and bookkeeping structures upon receiving `RST_STREAM` immediately followed by the `GOAWAY` frames from an upstream server. In nghttp2, cleanup of pending requests due to receipt of the `GOAWAY` frame skips de-allocation of the bookkeeping structure and pending compressed header. The error return [code path] is taken if connection is already marked for not sending more requests due to `GOAWAY` frame. The clean-up code is right after the return statement, causing memory leak. Denial of service through memory exhaustion. This vulnerability was patched in versions(s) 1.26.3, 1.25.8, 1.24.9, 1.23.11."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "5.6",
+                "security-severity": "7.5",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "MEDIUM"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2020-8912",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "aws-sdk-go: In-band key negotiation issue in AWS S3 Crypto SDK for golang"
-              },
-              "fullDescription": {
-                "text": "A vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
-              },
-              "defaultConfiguration": {
-                "level": "note"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2020-8912",
-              "help": {
-                "text": "Vulnerability CVE-2020-8912\nSeverity: LOW\nPackage: github.com/aws/aws-sdk-go\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
-                "markdown": "**Vulnerability CVE-2020-8912**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|github.com/aws/aws-sdk-go||[CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)|\n\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "2.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "LOW"
+                  "HIGH"
                 ]
               }
             },
@@ -553,7 +607,7 @@
               "id": "CVE-2022-2835",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
-                "text": "coreDNS: DNS Redirection of Internal Services"
+                "text": "DNS Redirection of Internal Services"
               },
               "fullDescription": {
                 "text": "A flaw was found in coreDNS. This flaw allows a malicious user to reroute internal calls to some internal services that were accessed by the FQDN in a format of \u0026lt;service\u0026gt;.\u0026lt;namespace\u0026gt;.svc."
@@ -658,40 +712,13 @@
               }
             }
           ],
-          "version": "0.42.0"
+          "version": "0.43.1"
         }
       },
       "results": [
         {
-          "ruleId": "CVE-2023-28322",
-          "ruleIndex": 0,
-          "level": "error",
-          "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28322\nSeverity: CRITICAL\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: curl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-27533",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27533\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27533](https://avd.aquasec.com/nvd/cve-2023-27533)"
@@ -718,7 +745,7 @@
         },
         {
           "ruleId": "CVE-2023-27534",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27534\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27534](https://avd.aquasec.com/nvd/cve-2023-27534)"
@@ -744,62 +771,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-27535",
-          "ruleIndex": 3,
-          "level": "error",
-          "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: curl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 4,
-          "level": "error",
-          "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: curl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-28319",
-          "ruleIndex": 5,
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28319\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28319](https://avd.aquasec.com/nvd/cve-2023-28319)"
@@ -825,11 +798,38 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-28321",
-          "ruleIndex": 6,
-          "level": "error",
+          "ruleId": "CVE-2023-27535",
+          "ruleIndex": 3,
+          "level": "warning",
           "message": {
-            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: curl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
@@ -853,7 +853,7 @@
         },
         {
           "ruleId": "CVE-2023-27537",
-          "ruleIndex": 7,
+          "ruleIndex": 5,
           "level": "warning",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27537\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27537](https://avd.aquasec.com/nvd/cve-2023-27537)"
@@ -880,7 +880,7 @@
         },
         {
           "ruleId": "CVE-2023-27538",
-          "ruleIndex": 8,
+          "ruleIndex": 6,
           "level": "warning",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27538\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27538](https://avd.aquasec.com/nvd/cve-2023-27538)"
@@ -907,7 +907,7 @@
         },
         {
           "ruleId": "CVE-2023-28320",
-          "ruleIndex": 9,
+          "ruleIndex": 7,
           "level": "warning",
           "message": {
             "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28320\nSeverity: MEDIUM\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28320](https://avd.aquasec.com/nvd/cve-2023-28320)"
@@ -933,11 +933,65 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-2603",
-          "ruleIndex": 10,
+          "ruleId": "CVE-2023-28321",
+          "ruleIndex": 8,
           "level": "warning",
           "message": {
-            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: MEDIUM\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: curl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-28322",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "Package: curl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28322\nSeverity: LOW\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: curl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2603",
+          "ruleIndex": 10,
+          "level": "error",
+          "message": {
+            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -989,9 +1043,9 @@
         {
           "ruleId": "CVE-2023-2603",
           "ruleIndex": 10,
-          "level": "warning",
+          "level": "error",
           "message": {
-            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -1043,9 +1097,9 @@
         {
           "ruleId": "CVE-2023-2603",
           "ruleIndex": 10,
-          "level": "warning",
+          "level": "error",
           "message": {
-            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -1230,11 +1284,11 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-28322",
-          "ruleIndex": 0,
-          "level": "error",
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 17,
+          "level": "warning",
           "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28322\nSeverity: CRITICAL\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)"
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
           },
           "locations": [
             {
@@ -1251,14 +1305,68 @@
                 }
               },
               "message": {
-                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+                "text": "hashicorp/consul: libcrypto3@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 18,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcrypto3@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 19,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcrypto3@3.0.8-r0"
               }
             }
           ]
         },
         {
           "ruleId": "CVE-2023-27533",
-          "ruleIndex": 1,
+          "ruleIndex": 0,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27533\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27533](https://avd.aquasec.com/nvd/cve-2023-27533)"
@@ -1285,7 +1393,7 @@
         },
         {
           "ruleId": "CVE-2023-27534",
-          "ruleIndex": 2,
+          "ruleIndex": 1,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27534\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27534](https://avd.aquasec.com/nvd/cve-2023-27534)"
@@ -1311,62 +1419,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-27535",
-          "ruleIndex": 3,
-          "level": "error",
-          "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: libcurl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2023-27536",
-          "ruleIndex": 4,
-          "level": "error",
-          "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: HIGH\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "hashicorp/consul",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "hashicorp/consul: libcurl@7.88.1-r0"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2023-28319",
-          "ruleIndex": 5,
+          "ruleIndex": 2,
           "level": "error",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28319\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28319](https://avd.aquasec.com/nvd/cve-2023-28319)"
@@ -1392,11 +1446,38 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-28321",
-          "ruleIndex": 6,
-          "level": "error",
+          "ruleId": "CVE-2023-27535",
+          "ruleIndex": 3,
+          "level": "warning",
           "message": {
-            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: HIGH\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27535\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27535](https://avd.aquasec.com/nvd/cve-2023-27535)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-27536",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27536\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27536](https://avd.aquasec.com/nvd/cve-2023-27536)"
           },
           "locations": [
             {
@@ -1420,7 +1501,7 @@
         },
         {
           "ruleId": "CVE-2023-27537",
-          "ruleIndex": 7,
+          "ruleIndex": 5,
           "level": "warning",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27537\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27537](https://avd.aquasec.com/nvd/cve-2023-27537)"
@@ -1447,7 +1528,7 @@
         },
         {
           "ruleId": "CVE-2023-27538",
-          "ruleIndex": 8,
+          "ruleIndex": 6,
           "level": "warning",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-27538\nSeverity: MEDIUM\nFixed Version: 7.88.1-r1\nLink: [CVE-2023-27538](https://avd.aquasec.com/nvd/cve-2023-27538)"
@@ -1474,10 +1555,64 @@
         },
         {
           "ruleId": "CVE-2023-28320",
-          "ruleIndex": 9,
+          "ruleIndex": 7,
           "level": "warning",
           "message": {
             "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28320\nSeverity: MEDIUM\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28320](https://avd.aquasec.com/nvd/cve-2023-28320)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-28321",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28321\nSeverity: MEDIUM\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28321](https://avd.aquasec.com/nvd/cve-2023-28321)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libcurl@7.88.1-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-28322",
+          "ruleIndex": 9,
+          "level": "note",
+          "message": {
+            "text": "Package: libcurl\nInstalled Version: 7.88.1-r0\nVulnerability CVE-2023-28322\nSeverity: LOW\nFixed Version: 8.1.0-r0\nLink: [CVE-2023-28322](https://avd.aquasec.com/nvd/cve-2023-28322)"
           },
           "locations": [
             {
@@ -1635,8 +1770,89 @@
           ]
         },
         {
-          "ruleId": "CVE-2023-29491",
+          "ruleId": "CVE-2023-2975",
           "ruleIndex": 17,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libssl3@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 18,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libssl3@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 19,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: libssl3@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 20,
           "level": "error",
           "message": {
             "text": "Package: ncurses-libs\nInstalled Version: 6.3_p20221119-r0\nVulnerability CVE-2023-29491\nSeverity: HIGH\nFixed Version: 6.3_p20221119-r1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
@@ -1663,7 +1879,7 @@
         },
         {
           "ruleId": "CVE-2023-29491",
-          "ruleIndex": 17,
+          "ruleIndex": 20,
           "level": "error",
           "message": {
             "text": "Package: ncurses-terminfo-base\nInstalled Version: 6.3_p20221119-r0\nVulnerability CVE-2023-29491\nSeverity: HIGH\nFixed Version: 6.3_p20221119-r1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
@@ -1684,6 +1900,33 @@
               },
               "message": {
                 "text": "hashicorp/consul: ncurses-terminfo-base@6.3_p20221119-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-35945",
+          "ruleIndex": 21,
+          "level": "error",
+          "message": {
+            "text": "Package: nghttp2-libs\nInstalled Version: 1.51.0-r0\nVulnerability CVE-2023-35945\nSeverity: HIGH\nFixed Version: 1.51.0-r1\nLink: [CVE-2023-35945](https://avd.aquasec.com/nvd/cve-2023-35945)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: nghttp2-libs@1.51.0-r0"
               }
             }
           ]
@@ -1824,17 +2067,17 @@
           ]
         },
         {
-          "ruleId": "CVE-2020-8911",
-          "ruleIndex": 18,
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 17,
           "level": "warning",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.42.34\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "bin/consul",
+                  "uri": "hashicorp/consul",
                   "uriBaseId": "ROOTPATH"
                 },
                 "region": {
@@ -1845,23 +2088,23 @@
                 }
               },
               "message": {
-                "text": "bin/consul: github.com/aws/aws-sdk-go@v1.42.34"
+                "text": "hashicorp/consul: openssl@3.0.8-r0"
               }
             }
           ]
         },
         {
-          "ruleId": "CVE-2020-8912",
-          "ruleIndex": 19,
-          "level": "note",
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 18,
+          "level": "warning",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.42.34\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "bin/consul",
+                  "uri": "hashicorp/consul",
                   "uriBaseId": "ROOTPATH"
                 },
                 "region": {
@@ -1872,14 +2115,41 @@
                 }
               },
               "message": {
-                "text": "bin/consul: github.com/aws/aws-sdk-go@v1.42.34"
+                "text": "hashicorp/consul: openssl@3.0.8-r0"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 19,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r0\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul: openssl@3.0.8-r0"
               }
             }
           ]
         },
         {
           "ruleId": "CVE-2022-2835",
-          "ruleIndex": 20,
+          "ruleIndex": 22,
           "level": "warning",
           "message": {
             "text": "Package: github.com/coredns/coredns\nInstalled Version: v1.6.6\nVulnerability CVE-2022-2835\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2022-2835](https://avd.aquasec.com/nvd/cve-2022-2835)"
@@ -1906,7 +2176,7 @@
         },
         {
           "ruleId": "CVE-2022-2837",
-          "ruleIndex": 21,
+          "ruleIndex": 23,
           "level": "warning",
           "message": {
             "text": "Package: github.com/coredns/coredns\nInstalled Version: v1.6.6\nVulnerability CVE-2022-2837\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2022-2837](https://avd.aquasec.com/nvd/cve-2022-2837)"
@@ -1933,7 +2203,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 22,
+          "ruleIndex": 24,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.4.0\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1960,7 +2230,7 @@
         },
         {
           "ruleId": "CVE-2020-8565",
-          "ruleIndex": 23,
+          "ruleIndex": 25,
           "level": "warning",
           "message": {
             "text": "Package: k8s.io/client-go\nInstalled Version: v0.18.2\nVulnerability CVE-2020-8565\nSeverity: MEDIUM\nFixed Version: 0.20.0-alpha.2\nLink: [CVE-2020-8565](https://avd.aquasec.com/nvd/cve-2020-8565)"
