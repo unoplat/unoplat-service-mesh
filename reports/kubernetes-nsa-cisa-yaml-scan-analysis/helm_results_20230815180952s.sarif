@@ -1,0 +1,3198 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "informationUri": "https://armosec.io",
+          "name": "kubescape",
+          "rules": [
+            {
+              "id": "C-0034",
+              "shortDescription": {
+                "text": "Automatic mapping of service account"
+              },
+              "fullDescription": {
+                "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Disable automatic mounting of service account tokens to PODs either at the service account level or at the individual POD level, by specifying the automountServiceAccountToken: false. Note that POD level takes precedence."
+              }
+            },
+            {
+              "id": "C-0030",
+              "shortDescription": {
+                "text": "Ingress and Egress blocked"
+              },
+              "fullDescription": {
+                "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Define a network policy that restricts ingress and egress connections."
+              }
+            },
+            {
+              "id": "C-0017",
+              "shortDescription": {
+                "text": "Immutable container filesystem"
+              },
+              "fullDescription": {
+                "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "help": {
+                "text": "Remediation: Set the filesystem of the container to read-only when possible (POD securityContext, readOnlyRootFilesystem: true). If containers application needs to write into the filesystem, it is recommended to mount secondary filesystems for specific directories where application require write access."
+              }
+            },
+            {
+              "id": "C-0018",
+              "shortDescription": {
+                "text": "Configured readiness probe"
+              },
+              "fullDescription": {
+                "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "help": {
+                "text": "Remediation: Ensure Readiness probes are configured wherever possible."
+              }
+            },
+            {
+              "id": "C-0013",
+              "shortDescription": {
+                "text": "Non-root containers"
+              },
+              "fullDescription": {
+                "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: If your application does not need root privileges, make sure to define the runAsUser or runAsGroup under the PodSecurityContext and use user ID 1000 or higher. Do not turn on allowPrivlegeEscalation bit and make sure runAsNonRoot is true."
+              }
+            },
+            {
+              "id": "C-0016",
+              "shortDescription": {
+                "text": "Allow privilege escalation"
+              },
+              "fullDescription": {
+                "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: If your application does not need it, make sure the allowPrivilegeEscalation field of the securityContext is set to false."
+              }
+            },
+            {
+              "id": "C-0055",
+              "shortDescription": {
+                "text": "Linux hardening"
+              },
+              "fullDescription": {
+                "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: You can use AppArmor, Seccomp, SELinux and Linux Capabilities mechanisms to restrict containers abilities to utilize unwanted privileges."
+              }
+            },
+            {
+              "id": "C-0056",
+              "shortDescription": {
+                "text": "Configured liveness probe"
+              },
+              "fullDescription": {
+                "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Ensure Liveness probes are configured wherever possible."
+              }
+            },
+            {
+              "id": "C-0086",
+              "shortDescription": {
+                "text": "CVE-2022-0492-cgroups-container-escape"
+              },
+              "fullDescription": {
+                "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Activate AppArmor or SELinux. Follow the least privilege principle and remove root privileges or privilege escalation option and CAP_DAC_OVERRIDE capability. Make sure you don't allow container images from potentially dangerous sources and that containers that must have high privileges are taken from protected repositories."
+              }
+            },
+            {
+              "id": "C-0077",
+              "shortDescription": {
+                "text": "K8s common labels usage"
+              },
+              "fullDescription": {
+                "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "help": {
+                "text": "Remediation: Define applicable labels or use the exception mechanism to prevent further notifications."
+              }
+            },
+            {
+              "id": "C-0012",
+              "shortDescription": {
+                "text": "Applications credentials in configuration files"
+              },
+              "fullDescription": {
+                "text": "Attackers who have access to configuration files can steal the stored secrets and use them. This control checks if ConfigMaps or pod specifications have sensitive information in their configuration."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Use Kubernetes secrets or Key Management Systems to store credentials."
+              }
+            },
+            {
+              "id": "C-0044",
+              "shortDescription": {
+                "text": "Container hostPort"
+              },
+              "fullDescription": {
+                "text": "Configuring hostPort requires a particular port number. If two objects specify the same HostPort, they could not be deployed to the same node. It may prevent the second object from starting, even if Kubernetes will try reschedule it on another node, provided there are available nodes with sufficient amount of resources. Also, if the number of replicas of such workload is higher than the number of nodes, the deployment will consistently fail."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Avoid usage of hostPort unless it is absolutely necessary, in which case define appropriate exception. Use NodePort / ClusterIP instead."
+              }
+            },
+            {
+              "id": "C-0004",
+              "shortDescription": {
+                "text": "Resources memory limit and request"
+              },
+              "fullDescription": {
+                "text": "This control identifies all Pods for which the memory limit is not set."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Set the memory limit or use exception mechanism to avoid unnecessary notifications."
+              }
+            },
+            {
+              "id": "C-0009",
+              "shortDescription": {
+                "text": "Resource limits"
+              },
+              "fullDescription": {
+                "text": "CPU and memory resources should have a limit set for every container or a namespace to prevent resource exhaustion. This control identifies all the Pods without resource limit definitions by checking their yaml definition file as well as their namespace LimitRange objects. It is also recommended to use ResourceQuota object to restrict overall namespace resources, but this is not verified by this control."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Define LimitRange and Resource Limits in the namespace or in the deployment/POD yamls."
+              }
+            },
+            {
+              "id": "C-0073",
+              "shortDescription": {
+                "text": "Naked PODs"
+              },
+              "fullDescription": {
+                "text": "It is not recommended to create PODs without parental Deployment, ReplicaSet, StatefulSet etc.Manual creation if PODs may lead to a configuration drifts and other untracked changes in the system. Such PODs won't be automatically rescheduled by Kubernetes in case of a crash or infrastructure failure. This control identifies every POD that does not have corresponding parental object."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "help": {
+                "text": "Remediation: Create necessary Deployment object for every POD making any POD a first class citizen in your IaC architecture."
+              }
+            },
+            {
+              "id": "C-0050",
+              "shortDescription": {
+                "text": "Resources CPU limit and request"
+              },
+              "fullDescription": {
+                "text": "This control identifies all Pods for which the CPU limit is not set."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Set the CPU limit or use exception mechanism to avoid unnecessary notifications."
+              }
+            },
+            {
+              "id": "C-0039",
+              "shortDescription": {
+                "text": "Validate admission controller (mutating)"
+              },
+              "fullDescription": {
+                "text": "Attackers may use mutating webhooks to intercept and modify all the resources in the cluster. This control lists all mutating webhook configurations that must be verified."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Ensure all the webhooks are necessary. Use exception mechanism to prevent repititive notifications."
+              }
+            },
+            {
+              "id": "C-0048",
+              "shortDescription": {
+                "text": "HostPath mount"
+              },
+              "fullDescription": {
+                "text": "Mounting host directory to the container can be used by attackers to get access to the underlying host. This control identifies all the PODs using hostPath mount."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Remove hostPath mounts unless they are absolutely necessary and use exception mechanism to remove notifications."
+              }
+            },
+            {
+              "id": "C-0057",
+              "shortDescription": {
+                "text": "Privileged container"
+              },
+              "fullDescription": {
+                "text": "Potential attackers may gain access to privileged containers and inherit access to the host resources. Therefore, it is not recommended to deploy privileged containers unless it is absolutely necessary. This control identifies all the privileged Pods."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Remove privileged capabilities by setting the securityContext.privileged to false. If you must deploy a Pod as privileged, add other restriction to it, such as network policy, Seccomp etc and still remove all unnecessary capabilities. Use the exception mechanism to remove unnecessary notifications."
+              }
+            },
+            {
+              "id": "C-0045",
+              "shortDescription": {
+                "text": "Writable hostPath mount"
+              },
+              "fullDescription": {
+                "text": "Mounting host directory to the container can be used by attackers to get access to the underlying host and gain persistence."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "help": {
+                "text": "Remediation: Refrain from using the hostPath mount or use the exception mechanism to remove unnecessary notifications."
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-statefulset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0012",
+          "ruleIndex": 10,
+          "message": {
+            "text": "Attackers who have access to configuration files can steal the stored secrets and use them. This control checks if ConfigMaps or pod specifications have sensitive information in their configuration."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/webhook-cert-manager-deployment.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/server-acl-init-cleanup-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-cleanup-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0012",
+          "ruleIndex": 10,
+          "message": {
+            "text": "Attackers who have access to configuration files can steal the stored secrets and use them. This control checks if ConfigMaps or pod specifications have sensitive information in their configuration."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0044",
+          "ruleIndex": 11,
+          "message": {
+            "text": "Configuring hostPort requires a particular port number. If two objects specify the same HostPort, they could not be deployed to the same node. It may prevent the second object from starting, even if Kubernetes will try reschedule it on another node, provided there are available nodes with sufficient amount of resources. Also, if the number of replicas of such workload is higher than the number of nodes, the deployment will consistently fail."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0004",
+          "ruleIndex": 12,
+          "message": {
+            "text": "This control identifies all Pods for which the memory limit is not set."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0009",
+          "ruleIndex": 13,
+          "message": {
+            "text": "CPU and memory resources should have a limit set for every container or a namespace to prevent resource exhaustion. This control identifies all the Pods without resource limit definitions by checking their yaml definition file as well as their namespace LimitRange objects. It is also recommended to use ResourceQuota object to restrict overall namespace resources, but this is not verified by this control."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0073",
+          "ruleIndex": 14,
+          "message": {
+            "text": "It is not recommended to create PODs without parental Deployment, ReplicaSet, StatefulSet etc.Manual creation if PODs may lead to a configuration drifts and other untracked changes in the system. Such PODs won't be automatically rescheduled by Kubernetes in case of a crash or infrastructure failure. This control identifies every POD that does not have corresponding parental object."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0050",
+          "ruleIndex": 15,
+          "message": {
+            "text": "This control identifies all Pods for which the CPU limit is not set."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tests/test-runner.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0039",
+          "ruleIndex": 16,
+          "message": {
+            "text": "Attackers may use mutating webhooks to intercept and modify all the resources in the cluster. This control lists all mutating webhook configurations that must be verified."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/connect-inject-mutatingwebhookconfiguration.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/client-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-cleanup-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0048",
+          "ruleIndex": 17,
+          "message": {
+            "text": "Mounting host directory to the container can be used by attackers to get access to the underlying host. This control identifies all the PODs using hostPath mount."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0057",
+          "ruleIndex": 18,
+          "message": {
+            "text": "Potential attackers may gain access to privileged containers and inherit access to the host resources. Therefore, it is not recommended to deploy privileged containers unless it is absolutely necessary. This control identifies all the privileged Pods."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0045",
+          "ruleIndex": 19,
+          "message": {
+            "text": "Mounting host directory to the container can be used by attackers to get access to the underlying host and gain persistence."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/cni-daemonset.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0030",
+          "ruleIndex": 1,
+          "message": {
+            "text": "Disable Ingress and Egress traffic on all pods wherever possible. It is recommended to define restrictive network policy on all new PODs, and then enable sources/destinations that this POD must communicate with."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0017",
+          "ruleIndex": 2,
+          "message": {
+            "text": "Mutable container filesystem can be abused to inject malicious code or data into containers. Use immutable (read-only) filesystem to limit potential attacks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0018",
+          "ruleIndex": 3,
+          "message": {
+            "text": "Readiness probe is intended to ensure that workload is ready to process network traffic. It is highly recommended to define readiness probe for every worker container. This control finds all the PODs where the readiness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0013",
+          "ruleIndex": 4,
+          "message": {
+            "text": "Potential attackers may gain access to a container and leverage its existing privileges to conduct an attack. Therefore, it is not recommended to deploy containers with root privileges unless it is absolutely necessary. This control identifies all the Pods running as root or can escalate to root."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0016",
+          "ruleIndex": 5,
+          "message": {
+            "text": "Attackers may gain access to a container and uplift its privilege to enable excessive capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0055",
+          "ruleIndex": 6,
+          "message": {
+            "text": "Containers may be given more privileges than they actually need. This can increase the potential impact of a container compromise."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0056",
+          "ruleIndex": 7,
+          "message": {
+            "text": "Liveness probe is intended to ensure that workload remains healthy during its entire execution lifecycle, or otherwise restrat the container. It is highly recommended to define liveness probe for every worker container. This control finds all the PODs where the Liveness probe is not configured."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0086",
+          "ruleIndex": 8,
+          "message": {
+            "text": "Linux Kernel vulnerability CVE-2022-0492 may allow malicious code running inside container to escape container isolation and gain root privileges on the entire node. When fixed Kernel version numbers will become available, this control will be modified to verify them and avoid false positive detections. This control identifies all the resources that don't deploy neither AppArmor nor SELinux, run as root or allow privileged escalation or have corresponding dangerous capabilities."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0077",
+          "ruleIndex": 9,
+          "message": {
+            "text": "Kubernetes common labels help manage and monitor Kubernetes cluster using different tools such as kubectl, dashboard and others in an interoperable way. Refer to https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/ for more information. This control helps you find objects that don't have any of these labels defined."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/tls-init-job.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gateway-resources-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/auth-method-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/ingress-gateways-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "C-0034",
+          "ruleIndex": 0,
+          "message": {
+            "text": "Potential attacker may gain access to a POD and steal its service account token. Therefore, it is recommended to disable automatic mapping of the service account tokens in service account configuration and enable it only for PODs that need to use them."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "charts/consul/templates/gossip-encryption-autogenerate-serviceaccount.yaml"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

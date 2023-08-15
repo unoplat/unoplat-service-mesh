@@ -1,0 +1,1736 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2016-2781",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "coreutils: Non-privileged session can escape to the parent session in chroot"
+              },
+              "fullDescription": {
+                "text": "chroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal\u0026#39;s input buffer."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-2781",
+              "help": {
+                "text": "Vulnerability CVE-2016-2781\nSeverity: LOW\nPackage: coreutils\nFixed Version: \nLink: [CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)\nchroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer.",
+                "markdown": "**Vulnerability CVE-2016-2781**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|coreutils||[CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)|\n\nchroot in GNU coreutils, when used with --userspec, allows local users to escape to the parent session via a crafted TIOCSTI ioctl call, which pushes characters to the terminal's input buffer."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-3219",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "denial of service issue (resource consumption) using compressed packets"
+              },
+              "fullDescription": {
+                "text": "GnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-3219",
+              "help": {
+                "text": "Vulnerability CVE-2022-3219\nSeverity: LOW\nPackage: gpgv\nFixed Version: \nLink: [CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)\nGnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB.",
+                "markdown": "**Vulnerability CVE-2022-3219**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|gpgv||[CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)|\n\nGnuPG can be made to spin on a relatively small input by (for example) crafting a public key with thousands of signatures attached, compressed down to just a few KB."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2016-20013",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": ""
+              },
+              "fullDescription": {
+                "text": "sha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm\u0026#39;s runtime is proportional to the square of the length of the password."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2016-20013",
+              "help": {
+                "text": "Vulnerability CVE-2016-20013\nSeverity: LOW\nPackage: libc6\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)\nsha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password.",
+                "markdown": "**Vulnerability CVE-2016-20013**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libc6||[CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)|\n\nsha256crypt and sha512crypt through 0.6 allow attackers to cause a denial of service (CPU consumption) because the algorithm's runtime is proportional to the square of the length of the password."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-0361",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "timing side-channel in the TLS RSA key exchange code"
+              },
+              "fullDescription": {
+                "text": "A timing side-channel in the handling of RSA ClientKeyExchange messages was discovered in GnuTLS. This side-channel can be sufficient to recover the key encrypted in the RSA ciphertext across a network in a Bleichenbacher style attack. To achieve a successful decryption the attacker would need to send a large amount of specially crafted messages to the vulnerable server. By recovering the secret from the ClientKeyExchange message, the attacker would be able to decrypt the application data exchanged over that connection."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-0361",
+              "help": {
+                "text": "Vulnerability CVE-2023-0361\nSeverity: MEDIUM\nPackage: libgnutls30\nFixed Version: 3.6.13-2ubuntu1.8\nLink: [CVE-2023-0361](https://avd.aquasec.com/nvd/cve-2023-0361)\nA timing side-channel in the handling of RSA ClientKeyExchange messages was discovered in GnuTLS. This side-channel can be sufficient to recover the key encrypted in the RSA ciphertext across a network in a Bleichenbacher style attack. To achieve a successful decryption the attacker would need to send a large amount of specially crafted messages to the vulnerable server. By recovering the secret from the ClientKeyExchange message, the attacker would be able to decrypt the application data exchanged over that connection.",
+                "markdown": "**Vulnerability CVE-2023-0361**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libgnutls30|3.6.13-2ubuntu1.8|[CVE-2023-0361](https://avd.aquasec.com/nvd/cve-2023-0361)|\n\nA timing side-channel in the handling of RSA ClientKeyExchange messages was discovered in GnuTLS. This side-channel can be sufficient to recover the key encrypted in the RSA ciphertext across a network in a Bleichenbacher style attack. To achieve a successful decryption the attacker would need to send a large amount of specially crafted messages to the vulnerable server. By recovering the secret from the ClientKeyExchange message, the attacker would be able to decrypt the application data exchanged over that connection."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-29491",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Local users can trigger security-relevant memory corruption via malformed data"
+              },
+              "fullDescription": {
+                "text": "ncurses before 6.4 20230408, when used by a setuid application, allows local users to trigger security-relevant memory corruption via malformed data in a terminfo database file that is found in $HOME/.terminfo or reached via the TERMINFO or TERM environment variable."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-29491",
+              "help": {
+                "text": "Vulnerability CVE-2023-29491\nSeverity: MEDIUM\nPackage: ncurses-bin\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)\nncurses before 6.4 20230408, when used by a setuid application, allows local users to trigger security-relevant memory corruption via malformed data in a terminfo database file that is found in $HOME/.terminfo or reached via the TERMINFO or TERM environment variable.",
+                "markdown": "**Vulnerability CVE-2023-29491**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|ncurses-bin|6.2-0ubuntu2.1|[CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)|\n\nncurses before 6.4 20230408, when used by a setuid application, allows local users to trigger security-relevant memory corruption via malformed data in a terminfo database file that is found in $HOME/.terminfo or reached via the TERMINFO or TERM environment variable."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2021-39537",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "heap-based buffer overflow in _nc_captoinfo() in captoinfo.c"
+              },
+              "fullDescription": {
+                "text": "An issue was discovered in ncurses through v6.2-1. _nc_captoinfo in captoinfo.c has a heap-based buffer overflow."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2021-39537",
+              "help": {
+                "text": "Vulnerability CVE-2021-39537\nSeverity: LOW\nPackage: ncurses-bin\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)\nAn issue was discovered in ncurses through v6.2-1. _nc_captoinfo in captoinfo.c has a heap-based buffer overflow.",
+                "markdown": "**Vulnerability CVE-2021-39537**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|ncurses-bin|6.2-0ubuntu2.1|[CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)|\n\nAn issue was discovered in ncurses through v6.2-1. _nc_captoinfo in captoinfo.c has a heap-based buffer overflow."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-29458",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "segfaulting OOB read"
+              },
+              "fullDescription": {
+                "text": "ncurses 6.3 before patch 20220416 has an out-of-bounds read and segmentation violation in convert_strings in tinfo/read_entry.c in the terminfo library."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-29458",
+              "help": {
+                "text": "Vulnerability CVE-2022-29458\nSeverity: LOW\nPackage: ncurses-bin\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)\nncurses 6.3 before patch 20220416 has an out-of-bounds read and segmentation violation in convert_strings in tinfo/read_entry.c in the terminfo library.",
+                "markdown": "**Vulnerability CVE-2022-29458**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|ncurses-bin|6.2-0ubuntu2.1|[CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)|\n\nncurses 6.3 before patch 20220416 has an out-of-bounds read and segmentation violation in convert_strings in tinfo/read_entry.c in the terminfo library."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2017-11164",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "pcre: OP_KETRMAX feature in the match function in pcre_exec.c"
+              },
+              "fullDescription": {
+                "text": "In PCRE 8.41, the OP_KETRMAX feature in the match function in pcre_exec.c allows stack exhaustion (uncontrolled recursion) when processing a crafted regular expression."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2017-11164",
+              "help": {
+                "text": "Vulnerability CVE-2017-11164\nSeverity: LOW\nPackage: libpcre3\nFixed Version: \nLink: [CVE-2017-11164](https://avd.aquasec.com/nvd/cve-2017-11164)\nIn PCRE 8.41, the OP_KETRMAX feature in the match function in pcre_exec.c allows stack exhaustion (uncontrolled recursion) when processing a crafted regular expression.",
+                "markdown": "**Vulnerability CVE-2017-11164**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libpcre3||[CVE-2017-11164](https://avd.aquasec.com/nvd/cve-2017-11164)|\n\nIn PCRE 8.41, the OP_KETRMAX feature in the match function in pcre_exec.c allows stack exhaustion (uncontrolled recursion) when processing a crafted regular expression."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-4016",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "ps buffer overflow"
+              },
+              "fullDescription": {
+                "text": "Under some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-4016",
+              "help": {
+                "text": "Vulnerability CVE-2023-4016\nSeverity: MEDIUM\nPackage: procps\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)\nUnder some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap.",
+                "markdown": "**Vulnerability CVE-2023-4016**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|procps||[CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)|\n\nUnder some circumstances, this weakness allows a user who has access to run the “ps” utility on a machine, the ability to write almost unlimited amounts of unfiltered data into the process heap."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-2650",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Possible DoS translating ASN.1 object identifiers"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with \u0026#39;n\u0026#39; being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer\u0026#39;s certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2650",
+              "help": {
+                "text": "Vulnerability CVE-2023-2650\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low.",
+                "markdown": "**Vulnerability CVE-2023-2650**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|1.1.1f-1ubuntu2.19|[CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)|\n\nIssue summary: Processing some specially crafted ASN.1 object identifiers or\ndata containing them may be very slow.\n\nImpact summary: Applications that use OBJ_obj2txt() directly, or use any of\nthe OpenSSL subsystems OCSP, PKCS7/SMIME, CMS, CMP/CRMF or TS with no message\nsize limit may experience notable to very long delays when processing those\nmessages, which may lead to a Denial of Service.\n\nAn OBJECT IDENTIFIER is composed of a series of numbers - sub-identifiers -\nmost of which have no size limit.  OBJ_obj2txt() may be used to translate\nan ASN.1 OBJECT IDENTIFIER given in DER encoding form (using the OpenSSL\ntype ASN1_OBJECT) to its canonical numeric text form, which are the\nsub-identifiers of the OBJECT IDENTIFIER in decimal form, separated by\nperiods.\n\nWhen one of the sub-identifiers in the OBJECT IDENTIFIER is very large\n(these are sizes that are seen as absurdly large, taking up tens or hundreds\nof KiBs), the translation to a decimal number in text may take a very long\ntime.  The time complexity is O(n^2) with 'n' being the size of the\nsub-identifiers in bytes (*).\n\nWith OpenSSL 3.0, support to fetch cryptographic algorithms using names /\nidentifiers in string form was introduced.  This includes using OBJECT\nIDENTIFIERs in canonical numeric text form as identifiers for fetching\nalgorithms.\n\nSuch OBJECT IDENTIFIERs may be received through the ASN.1 structure\nAlgorithmIdentifier, which is commonly used in multiple protocols to specify\nwhat cryptographic algorithm should be used to sign or verify, encrypt or\ndecrypt, or digest passed data.\n\nApplications that call OBJ_obj2txt() directly with untrusted data are\naffected, with any version of OpenSSL.  If the use is for the mere purpose\nof display, the severity is considered low.\n\nIn OpenSSL 3.0 and newer, this affects the subsystems OCSP, PKCS7/SMIME,\nCMS, CMP/CRMF or TS.  It also impacts anything that processes X.509\ncertificates, including simple things like verifying its signature.\n\nThe impact on TLS is relatively low, because all versions of OpenSSL have a\n100KiB limit on the peer's certificate chain.  Additionally, this only\nimpacts clients, or servers that have explicitly enabled client\nauthentication.\n\nIn OpenSSL 1.1.1 and 1.0.2, this only affects displaying diverse objects,\nsuch as X.509 certificates.  This is assumed to not happen in such a way\nthat it would cause a Denial of Service, so these versions are considered\nnot affected by this issue in such a way that it would be cause for concern,\nand the severity is therefore considered low."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-0464",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Denial of service by excessive resource usage in verifying X509 policy constraints"
+              },
+              "fullDescription": {
+                "text": "A security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy\u0026#39; argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()\u0026#39; function."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-0464",
+              "help": {
+                "text": "Vulnerability CVE-2023-0464\nSeverity: LOW\nPackage: openssl\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)\nA security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function.",
+                "markdown": "**Vulnerability CVE-2023-0464**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|openssl|1.1.1f-1ubuntu2.18|[CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)|\n\nA security vulnerability has been identified in all supported versions\n\nof OpenSSL related to the verification of X.509 certificate chains\nthat include policy constraints.  Attackers may be able to exploit this\nvulnerability by creating a malicious certificate chain that triggers\nexponential use of computational resources, leading to a denial-of-service\n(DoS) attack on affected systems.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-0465",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Invalid certificate policies in leaf certificates are silently ignored"
+              },
+              "fullDescription": {
+                "text": "Applications that use a non-default option when verifying certificates may be\nvulnerable to an attack from a malicious CA to circumvent certain checks.\n\nInvalid certificate policies in leaf certificates are silently ignored by\nOpenSSL and other certificate policy checks are skipped for that certificate.\nA malicious CA could use this to deliberately assert invalid certificate policies\nin order to circumvent policy checking on the certificate altogether.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy\u0026#39; argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()\u0026#39; function."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-0465",
+              "help": {
+                "text": "Vulnerability CVE-2023-0465\nSeverity: LOW\nPackage: openssl\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)\nApplications that use a non-default option when verifying certificates may be\nvulnerable to an attack from a malicious CA to circumvent certain checks.\n\nInvalid certificate policies in leaf certificates are silently ignored by\nOpenSSL and other certificate policy checks are skipped for that certificate.\nA malicious CA could use this to deliberately assert invalid certificate policies\nin order to circumvent policy checking on the certificate altogether.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function.",
+                "markdown": "**Vulnerability CVE-2023-0465**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|openssl|1.1.1f-1ubuntu2.18|[CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)|\n\nApplications that use a non-default option when verifying certificates may be\nvulnerable to an attack from a malicious CA to circumvent certain checks.\n\nInvalid certificate policies in leaf certificates are silently ignored by\nOpenSSL and other certificate policy checks are skipped for that certificate.\nA malicious CA could use this to deliberately assert invalid certificate policies\nin order to circumvent policy checking on the certificate altogether.\n\nPolicy processing is disabled by default but can be enabled by passing\nthe `-policy' argument to the command line utilities or by calling the\n`X509_VERIFY_PARAM_set1_policies()' function."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-0466",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Certificate policy check not enabled"
+              },
+              "fullDescription": {
+                "text": "The function X509_VERIFY_PARAM_add0_policy() is documented to\nimplicitly enable the certificate policy check when doing certificate\nverification. However the implementation of the function does not\nenable the check which allows certificates with invalid or incorrect\npolicies to pass the certificate verification.\n\nAs suddenly enabling the policy check could break existing deployments it was\ndecided to keep the existing behavior of the X509_VERIFY_PARAM_add0_policy()\nfunction.\n\nInstead the applications that require OpenSSL to perform certificate\npolicy check need to use X509_VERIFY_PARAM_set1_policies() or explicitly\nenable the policy check by calling X509_VERIFY_PARAM_set_flags() with\nthe X509_V_FLAG_POLICY_CHECK flag argument.\n\nCertificate policy checks are disabled by default in OpenSSL and are not\ncommonly used by applications."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-0466",
+              "help": {
+                "text": "Vulnerability CVE-2023-0466\nSeverity: LOW\nPackage: openssl\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)\nThe function X509_VERIFY_PARAM_add0_policy() is documented to\nimplicitly enable the certificate policy check when doing certificate\nverification. However the implementation of the function does not\nenable the check which allows certificates with invalid or incorrect\npolicies to pass the certificate verification.\n\nAs suddenly enabling the policy check could break existing deployments it was\ndecided to keep the existing behavior of the X509_VERIFY_PARAM_add0_policy()\nfunction.\n\nInstead the applications that require OpenSSL to perform certificate\npolicy check need to use X509_VERIFY_PARAM_set1_policies() or explicitly\nenable the policy check by calling X509_VERIFY_PARAM_set_flags() with\nthe X509_V_FLAG_POLICY_CHECK flag argument.\n\nCertificate policy checks are disabled by default in OpenSSL and are not\ncommonly used by applications.",
+                "markdown": "**Vulnerability CVE-2023-0466**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|openssl|1.1.1f-1ubuntu2.18|[CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)|\n\nThe function X509_VERIFY_PARAM_add0_policy() is documented to\nimplicitly enable the certificate policy check when doing certificate\nverification. However the implementation of the function does not\nenable the check which allows certificates with invalid or incorrect\npolicies to pass the certificate verification.\n\nAs suddenly enabling the policy check could break existing deployments it was\ndecided to keep the existing behavior of the X509_VERIFY_PARAM_add0_policy()\nfunction.\n\nInstead the applications that require OpenSSL to perform certificate\npolicy check need to use X509_VERIFY_PARAM_set1_policies() or explicitly\nenable the policy check by calling X509_VERIFY_PARAM_set_flags() with\nthe X509_V_FLAG_POLICY_CHECK flag argument.\n\nCertificate policy checks are disabled by default in OpenSSL and are not\ncommonly used by applications."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-3821",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "buffer overrun in format_timespan() function"
+              },
+              "fullDescription": {
+                "text": "An off-by-one Error issue was discovered in Systemd in format_timespan() function of time-util.c. An attacker could supply specific values for time and accuracy that leads to buffer overrun in format_timespan(), leading to a Denial of Service."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-3821",
+              "help": {
+                "text": "Vulnerability CVE-2022-3821\nSeverity: MEDIUM\nPackage: libudev1\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)\nAn off-by-one Error issue was discovered in Systemd in format_timespan() function of time-util.c. An attacker could supply specific values for time and accuracy that leads to buffer overrun in format_timespan(), leading to a Denial of Service.",
+                "markdown": "**Vulnerability CVE-2022-3821**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libudev1|245.4-4ubuntu3.20|[CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)|\n\nAn off-by-one Error issue was discovered in Systemd in format_timespan() function of time-util.c. An attacker could supply specific values for time and accuracy that leads to buffer overrun in format_timespan(), leading to a Denial of Service."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-4415",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "systemd: local information leak due to systemd-coredump not respecting fs.suid_dumpable kernel setting"
+              },
+              "fullDescription": {
+                "text": "A vulnerability was found in systemd. This security flaw can cause a local information leak due to systemd-coredump not respecting the fs.suid_dumpable kernel setting."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-4415",
+              "help": {
+                "text": "Vulnerability CVE-2022-4415\nSeverity: MEDIUM\nPackage: libudev1\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)\nA vulnerability was found in systemd. This security flaw can cause a local information leak due to systemd-coredump not respecting the fs.suid_dumpable kernel setting.",
+                "markdown": "**Vulnerability CVE-2022-4415**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libudev1|245.4-4ubuntu3.20|[CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)|\n\nA vulnerability was found in systemd. This security flaw can cause a local information leak due to systemd-coredump not respecting the fs.suid_dumpable kernel setting."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-26604",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "privilege escalation via the less pager"
+              },
+              "fullDescription": {
+                "text": "systemd before 247 does not adequately block local privilege escalation for some Sudo configurations, e.g., plausible sudoers files in which the \u0026#34;systemctl status\u0026#34; command may be executed. Specifically, systemd does not set LESSSECURE to 1, and thus other programs may be launched from the less program. This presents a substantial security risk when running systemctl from Sudo, because less executes as root when the terminal size is too small to show the complete systemctl output."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-26604",
+              "help": {
+                "text": "Vulnerability CVE-2023-26604\nSeverity: LOW\nPackage: libudev1\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)\nsystemd before 247 does not adequately block local privilege escalation for some Sudo configurations, e.g., plausible sudoers files in which the \"systemctl status\" command may be executed. Specifically, systemd does not set LESSSECURE to 1, and thus other programs may be launched from the less program. This presents a substantial security risk when running systemctl from Sudo, because less executes as root when the terminal size is too small to show the complete systemctl output.",
+                "markdown": "**Vulnerability CVE-2023-26604**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|libudev1||[CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)|\n\nsystemd before 247 does not adequately block local privilege escalation for some Sudo configurations, e.g., plausible sudoers files in which the \"systemctl status\" command may be executed. Specifically, systemd does not set LESSSECURE to 1, and thus other programs may be launched from the less program. This presents a substantial security risk when running systemctl from Sudo, because less executes as root when the terminal size is too small to show the complete systemctl output."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2013-4235",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "shadow-utils: TOCTOU race conditions by copying and removing directory trees"
+              },
+              "fullDescription": {
+                "text": "shadow: TOCTOU (time-of-check time-of-use) race condition when copying and removing directory trees"
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2013-4235",
+              "help": {
+                "text": "Vulnerability CVE-2013-4235\nSeverity: LOW\nPackage: passwd\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)\nshadow: TOCTOU (time-of-check time-of-use) race condition when copying and removing directory trees",
+                "markdown": "**Vulnerability CVE-2013-4235**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|passwd||[CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)|\n\nshadow: TOCTOU (time-of-check time-of-use) race condition when copying and removing directory trees"
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-29383",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Improper input validation in shadow-utils package utility chfn"
+              },
+              "fullDescription": {
+                "text": "In Shadow 4.13, it is possible to inject control characters into fields provided to the SUID program chfn (change finger). Although it is not possible to exploit this directly (e.g., adding a new user fails because \\n is in the block list), it is possible to misrepresent the /etc/passwd file when viewed. Use of \\r manipulations and Unicode characters to work around blocking of the : character make it possible to give the impression that a new user has been added. In other words, an adversary may be able to convince a system administrator to take the system offline (an indirect, social-engineered denial of service) by demonstrating that \u0026#34;cat /etc/passwd\u0026#34; shows a rogue user account."
+              },
+              "defaultConfiguration": {
+                "level": "note"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-29383",
+              "help": {
+                "text": "Vulnerability CVE-2023-29383\nSeverity: LOW\nPackage: passwd\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)\nIn Shadow 4.13, it is possible to inject control characters into fields provided to the SUID program chfn (change finger). Although it is not possible to exploit this directly (e.g., adding a new user fails because \\n is in the block list), it is possible to misrepresent the /etc/passwd file when viewed. Use of \\r manipulations and Unicode characters to work around blocking of the : character make it possible to give the impression that a new user has been added. In other words, an adversary may be able to convince a system administrator to take the system offline (an indirect, social-engineered denial of service) by demonstrating that \"cat /etc/passwd\" shows a rogue user account.",
+                "markdown": "**Vulnerability CVE-2023-29383**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|passwd||[CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)|\n\nIn Shadow 4.13, it is possible to inject control characters into fields provided to the SUID program chfn (change finger). Although it is not possible to exploit this directly (e.g., adding a new user fails because \\n is in the block list), it is possible to misrepresent the /etc/passwd file when viewed. Use of \\r manipulations and Unicode characters to work around blocking of the : character make it possible to give the impression that a new user has been added. In other words, an adversary may be able to convince a system administrator to take the system offline (an indirect, social-engineered denial of service) by demonstrating that \"cat /etc/passwd\" shows a rogue user account."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "2.0",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "LOW"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-31484",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "CPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS"
+              },
+              "fullDescription": {
+                "text": "CPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-31484",
+              "help": {
+                "text": "Vulnerability CVE-2023-31484\nSeverity: MEDIUM\nPackage: perl-base\nFixed Version: 5.30.0-9ubuntu0.4\nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS.",
+                "markdown": "**Vulnerability CVE-2023-31484**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|perl-base|5.30.0-9ubuntu0.4|[CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)|\n\nCPAN.pm before 2.35 does not verify TLS certificates when downloading distributions over HTTPS."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-48303",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "heap buffer overflow at from_header() in list.c via specially crafted checksum"
+              },
+              "fullDescription": {
+                "text": "GNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-48303",
+              "help": {
+                "text": "Vulnerability CVE-2022-48303\nSeverity: MEDIUM\nPackage: tar\nFixed Version: 1.30+dfsg-7ubuntu0.20.04.3\nLink: [CVE-2022-48303](https://avd.aquasec.com/nvd/cve-2022-48303)\nGNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters.",
+                "markdown": "**Vulnerability CVE-2022-48303**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|tar|1.30+dfsg-7ubuntu0.20.04.3|[CVE-2022-48303](https://avd.aquasec.com/nvd/cve-2022-48303)|\n\nGNU Tar through 1.34 has a one-byte out-of-bounds read that results in use of uninitialized memory for a conditional jump. Exploitation to change the flow of control has not been demonstrated. The issue occurs in from_header in list.c via a V7 archive in which mtime has approximately 11 whitespace characters."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            }
+          ],
+          "version": "0.43.1"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2016-2781",
+          "ruleIndex": 0,
+          "level": "note",
+          "message": {
+            "text": "Package: coreutils\nInstalled Version: 8.30-3ubuntu2\nVulnerability CVE-2016-2781\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-2781](https://avd.aquasec.com/nvd/cve-2016-2781)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: coreutils@8.30-3ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-3219",
+          "ruleIndex": 1,
+          "level": "note",
+          "message": {
+            "text": "Package: gpgv\nInstalled Version: 2.2.19-3ubuntu2.2\nVulnerability CVE-2022-3219\nSeverity: LOW\nFixed Version: \nLink: [CVE-2022-3219](https://avd.aquasec.com/nvd/cve-2022-3219)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: gpgv@2.2.19-3ubuntu2.2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-20013",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Package: libc-bin\nInstalled Version: 2.31-0ubuntu9.9\nVulnerability CVE-2016-20013\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libc-bin@2.31-0ubuntu9.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2016-20013",
+          "ruleIndex": 2,
+          "level": "note",
+          "message": {
+            "text": "Package: libc6\nInstalled Version: 2.31-0ubuntu9.9\nVulnerability CVE-2016-20013\nSeverity: LOW\nFixed Version: \nLink: [CVE-2016-20013](https://avd.aquasec.com/nvd/cve-2016-20013)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libc6@2.31-0ubuntu9.9"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0361",
+          "ruleIndex": 3,
+          "level": "warning",
+          "message": {
+            "text": "Package: libgnutls30\nInstalled Version: 3.6.13-2ubuntu1.7\nVulnerability CVE-2023-0361\nSeverity: MEDIUM\nFixed Version: 3.6.13-2ubuntu1.8\nLink: [CVE-2023-0361](https://avd.aquasec.com/nvd/cve-2023-0361)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libgnutls30@3.6.13-2ubuntu1.7"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libncurses6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2023-29491\nSeverity: MEDIUM\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncurses6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-39537",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: libncurses6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2021-39537\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncurses6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29458",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: libncurses6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2022-29458\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncurses6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libncursesw6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2023-29491\nSeverity: MEDIUM\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncursesw6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-39537",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: libncursesw6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2021-39537\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncursesw6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29458",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: libncursesw6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2022-29458\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libncursesw6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2017-11164",
+          "ruleIndex": 7,
+          "level": "note",
+          "message": {
+            "text": "Package: libpcre3\nInstalled Version: 2:8.39-12ubuntu0.1\nVulnerability CVE-2017-11164\nSeverity: LOW\nFixed Version: \nLink: [CVE-2017-11164](https://avd.aquasec.com/nvd/cve-2017-11164)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libpcre3@2:8.39-12ubuntu0.1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-4016",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: libprocps8\nInstalled Version: 2:3.3.16-1ubuntu2.3\nVulnerability CVE-2023-4016\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libprocps8@2:3.3.16-1ubuntu2.3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2650",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libssl1.1@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0464",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libssl1.1@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0465",
+          "ruleIndex": 11,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libssl1.1@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0466",
+          "ruleIndex": 12,
+          "level": "note",
+          "message": {
+            "text": "Package: libssl1.1\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libssl1.1@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-3821",
+          "ruleIndex": 13,
+          "level": "warning",
+          "message": {
+            "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libsystemd0@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-4415",
+          "ruleIndex": 14,
+          "level": "warning",
+          "message": {
+            "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libsystemd0@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-26604",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "Package: libsystemd0\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libsystemd0@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libtinfo6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2023-29491\nSeverity: MEDIUM\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libtinfo6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-39537",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: libtinfo6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2021-39537\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libtinfo6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29458",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: libtinfo6\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2022-29458\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libtinfo6@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-3821",
+          "ruleIndex": 13,
+          "level": "warning",
+          "message": {
+            "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-3821\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-3821](https://avd.aquasec.com/nvd/cve-2022-3821)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libudev1@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-4415",
+          "ruleIndex": 14,
+          "level": "warning",
+          "message": {
+            "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2022-4415\nSeverity: MEDIUM\nFixed Version: 245.4-4ubuntu3.20\nLink: [CVE-2022-4415](https://avd.aquasec.com/nvd/cve-2022-4415)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libudev1@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-26604",
+          "ruleIndex": 15,
+          "level": "note",
+          "message": {
+            "text": "Package: libudev1\nInstalled Version: 245.4-4ubuntu3.19\nVulnerability CVE-2023-26604\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-26604](https://avd.aquasec.com/nvd/cve-2023-26604)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: libudev1@245.4-4ubuntu3.19"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2013-4235",
+          "ruleIndex": 16,
+          "level": "note",
+          "message": {
+            "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: login@1:4.8.1-1ubuntu5.20.04.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29383",
+          "ruleIndex": 17,
+          "level": "note",
+          "message": {
+            "text": "Package: login\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: login@1:4.8.1-1ubuntu5.20.04.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: ncurses-base\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2023-29491\nSeverity: MEDIUM\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-base@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-39537",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: ncurses-base\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2021-39537\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-base@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29458",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: ncurses-base\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2022-29458\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-base@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29491",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: ncurses-bin\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2023-29491\nSeverity: MEDIUM\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2023-29491](https://avd.aquasec.com/nvd/cve-2023-29491)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-bin@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2021-39537",
+          "ruleIndex": 5,
+          "level": "note",
+          "message": {
+            "text": "Package: ncurses-bin\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2021-39537\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2021-39537](https://avd.aquasec.com/nvd/cve-2021-39537)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-bin@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-29458",
+          "ruleIndex": 6,
+          "level": "note",
+          "message": {
+            "text": "Package: ncurses-bin\nInstalled Version: 6.2-0ubuntu2\nVulnerability CVE-2022-29458\nSeverity: LOW\nFixed Version: 6.2-0ubuntu2.1\nLink: [CVE-2022-29458](https://avd.aquasec.com/nvd/cve-2022-29458)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: ncurses-bin@6.2-0ubuntu2"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2650",
+          "ruleIndex": 9,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-2650\nSeverity: MEDIUM\nFixed Version: 1.1.1f-1ubuntu2.19\nLink: [CVE-2023-2650](https://avd.aquasec.com/nvd/cve-2023-2650)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: openssl@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0464",
+          "ruleIndex": 10,
+          "level": "note",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0464\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0464](https://avd.aquasec.com/nvd/cve-2023-0464)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: openssl@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0465",
+          "ruleIndex": 11,
+          "level": "note",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0465\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0465](https://avd.aquasec.com/nvd/cve-2023-0465)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: openssl@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-0466",
+          "ruleIndex": 12,
+          "level": "note",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 1.1.1f-1ubuntu2.17\nVulnerability CVE-2023-0466\nSeverity: LOW\nFixed Version: 1.1.1f-1ubuntu2.18\nLink: [CVE-2023-0466](https://avd.aquasec.com/nvd/cve-2023-0466)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: openssl@1.1.1f-1ubuntu2.17"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2013-4235",
+          "ruleIndex": 16,
+          "level": "note",
+          "message": {
+            "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2013-4235\nSeverity: LOW\nFixed Version: \nLink: [CVE-2013-4235](https://avd.aquasec.com/nvd/cve-2013-4235)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: passwd@1:4.8.1-1ubuntu5.20.04.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-29383",
+          "ruleIndex": 17,
+          "level": "note",
+          "message": {
+            "text": "Package: passwd\nInstalled Version: 1:4.8.1-1ubuntu5.20.04.4\nVulnerability CVE-2023-29383\nSeverity: LOW\nFixed Version: \nLink: [CVE-2023-29383](https://avd.aquasec.com/nvd/cve-2023-29383)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: passwd@1:4.8.1-1ubuntu5.20.04.4"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-31484",
+          "ruleIndex": 18,
+          "level": "warning",
+          "message": {
+            "text": "Package: perl-base\nInstalled Version: 5.30.0-9ubuntu0.3\nVulnerability CVE-2023-31484\nSeverity: MEDIUM\nFixed Version: 5.30.0-9ubuntu0.4\nLink: [CVE-2023-31484](https://avd.aquasec.com/nvd/cve-2023-31484)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: perl-base@5.30.0-9ubuntu0.3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-4016",
+          "ruleIndex": 8,
+          "level": "warning",
+          "message": {
+            "text": "Package: procps\nInstalled Version: 2:3.3.16-1ubuntu2.3\nVulnerability CVE-2023-4016\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2023-4016](https://avd.aquasec.com/nvd/cve-2023-4016)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: procps@2:3.3.16-1ubuntu2.3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-48303",
+          "ruleIndex": 19,
+          "level": "warning",
+          "message": {
+            "text": "Package: tar\nInstalled Version: 1.30+dfsg-7ubuntu0.20.04.2\nVulnerability CVE-2022-48303\nSeverity: MEDIUM\nFixed Version: 1.30+dfsg-7ubuntu0.20.04.3\nLink: [CVE-2022-48303](https://avd.aquasec.com/nvd/cve-2022-48303)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "envoyproxy/envoy",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "envoyproxy/envoy: tar@1.30+dfsg-7ubuntu0.20.04.2"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      },
+      "properties": {
+        "imageName": "envoyproxy/envoy:v1.25.1",
+        "repoDigests": [
+          "envoyproxy/envoy@sha256:d988076dfe0c92d6c7b8dac20e6b278c8de6c2f374f0f2b90976b7886f9a2852"
+        ],
+        "repoTags": [
+          "envoyproxy/envoy:v1.25.1"
+        ]
+      }
+    }
+  ]
+}

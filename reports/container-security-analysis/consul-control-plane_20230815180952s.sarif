@@ -1,0 +1,359 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "fullName": "Trivy Vulnerability Scanner",
+          "informationUri": "https://github.com/aquasecurity/trivy",
+          "name": "Trivy",
+          "rules": [
+            {
+              "id": "CVE-2023-2975",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "AES-SIV cipher implementation contains a bug that causes it to ignore empty associated data entries"
+              },
+              "fullDescription": {
+                "text": "Issue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2975",
+              "help": {
+                "text": "Vulnerability CVE-2023-2975\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.1.1-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue.",
+                "markdown": "**Vulnerability CVE-2023-2975**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.1.1-r2|[CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)|\n\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3446",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH keys and parameters"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus (\u0026#39;p\u0026#39; parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#39;-check\u0026#39; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3446",
+              "help": {
+                "text": "Vulnerability CVE-2023-3446\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.1.1-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3446**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.1.1-r3|[CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3817",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH q parameter value"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#34;-check\u0026#34; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3817",
+              "help": {
+                "text": "Vulnerability CVE-2023-3817\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.1.2-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3817**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.1.2-r0|[CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            }
+          ],
+          "version": "0.43.1"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.1.1-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.1.1-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.1.2-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.1.1-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.1.1-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.1.2-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 0,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.1.1-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 1,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.1.1-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.1.1-r1"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 2,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.1.1-r1\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.1.2-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.1.1-r1"
+              }
+            }
+          ]
+        }
+      ],
+      "columnKind": "utf16CodeUnits",
+      "originalUriBaseIds": {
+        "ROOTPATH": {
+          "uri": "file:///"
+        }
+      },
+      "properties": {
+        "imageName": "hashicorp/consul-k8s-control-plane:1.2.0",
+        "repoDigests": [
+          "hashicorp/consul-k8s-control-plane@sha256:275a1ffc064440923deb59946508737843e13060a04fec8d5f41669a9b54128f"
+        ],
+        "repoTags": [
+          "hashicorp/consul-k8s-control-plane:1.2.0"
+        ]
+      }
+    }
+  ]
+}
