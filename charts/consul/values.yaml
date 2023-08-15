@@ -282,7 +282,7 @@ global:
 
   gossipEncryption:
     # Automatically generate a gossip encryption key and save it to a Kubernetes or Vault secret.
-    autoGenerate: false
+    autoGenerate: true
     # The name of the Kubernetes secret or Vault secret path that holds the gossip
     # encryption key. A Kubernetes secret must be in the same namespace that Consul is installed into.
     secretName: ""
@@ -305,12 +305,12 @@ global:
     # servers and clients and all consul-k8s-control-plane components, as well as generate certificate
     # authority (optional) and server and client certificates.
     # This setting is required for [Cluster Peering](https://developer.hashicorp.com/consul/docs/connect/cluster-peering/k8s).
-    enabled: false
+    enabled: true
 
     # If true, turns on the auto-encrypt feature on clients and servers.
     # It also switches consul-k8s-control-plane components to retrieve the CA from the servers
     # via the API. Requires Consul 1.7.1+.
-    enableAutoEncrypt: false
+    enableAutoEncrypt: true
 
     # A list of additional DNS names to set as Subject Alternative Names (SANs)
     # in the server certificate. This is useful when you need to access the
@@ -333,7 +333,7 @@ global:
 
     # If true, the Helm chart will configure Consul to disable the HTTP port on
     # both clients and servers and to only accept HTTPS connections.
-    httpsOnly: true
+    httpsOnly: false
 
     # A secret containing the certificate of the CA to use for TLS communication within the Consul cluster.
     # If you have generated the CA yourself with the consul CLI, you could use the following command to create the secret
@@ -392,7 +392,7 @@ global:
     # If true, the Helm chart will automatically manage ACL tokens and policies
     # for all Consul and consul-k8s-control-plane components.
     # This requires Consul >= 1.4.
-    manageSystemACLs: false
+    manageSystemACLs: true
 
     # A Kubernetes or Vault secret containing the bootstrap token to use for creating policies and
     # tokens for all Consul and consul-k8s-control-plane components. If `secretName` and `secretKey`
@@ -529,12 +529,12 @@ global:
     # to expose Prometheus metrics for the Consul service mesh. By default
     # this includes gateway metrics and sidecar metrics.
     # @type: boolean
-    enabled: false
+    enabled: true
 
     # Configures consul agent metrics. Only applicable if
     # `global.metrics.enabled` is true.
     # @type: boolean
-    enableAgentMetrics: false
+    enableAgentMetrics: true
 
     # Configures the retention time for metrics in Consul clients and
     # servers. This must be greater than 0 for Consul clients and servers
@@ -759,7 +759,7 @@ server:
   # servers' StatefulSet storage. For dynamically provisioned storage classes, this is the
   # desired size. For manually defined persistent volumes, this should be set to
   # the disk size of the attached volume.
-  storage: 10Gi
+  storage: 5Gi
 
   # The StorageClass to use for the servers' StatefulSet storage. It must be
   # able to be dynamically provisioned if you want the storage
@@ -776,7 +776,7 @@ server:
   # contains best practices and recommendations for selecting suitable
   # hardware sizes for your Consul servers.
   # @type: string
-  storageClass: null
+  storageClass: "civo-volume"
 
   # This will enable/disable [Connect](https://developer.hashicorp.com/consul/docs/connect). Setting this to true
   # _will not_ automatically secure pod communication, this
@@ -823,7 +823,7 @@ server:
       cpu: "100m"
     limits:
       memory: "200Mi"
-      cpu: "100m"
+      cpu: "450m"
 
   # The security context for the server pods. This should be a YAML map corresponding to a
   # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
@@ -1246,7 +1246,7 @@ client:
   # the resources necessary for a Consul client on every Kubernetes node. This _does not_ require
   # `server.enabled`, since the agents can be configured to join an external cluster.
   # @type: boolean
-  enabled: false
+  enabled: true
 
   # The name of the Docker image (including any tag) for the containers
   # running Consul client agents.
@@ -1313,8 +1313,8 @@ client:
       memory: "100Mi"
       cpu: "100m"
     limits:
-      memory: "100Mi"
-      cpu: "100m"
+      memory: "200Mi"
+      cpu: "400m"
 
   # The security context for the client pods. This should be a YAML map corresponding to a
   # Kubernetes [SecurityContext](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/) object.
@@ -1568,7 +1568,7 @@ ui:
   # configure `ui.service`.
   # @default: global.enabled
   # @type: boolean
-  enabled: "-"
+  enabled: "true"
 
   # Configure the service for the Consul UI.
   service:
@@ -1676,7 +1676,7 @@ ui:
     # will inherit from `global.metrics.enabled` value.
     # @type: boolean
     # @default: global.metrics.enabled
-    enabled: "-"
+    enabled: "true"
     # Provider for metrics. Refer to
     # [`metrics_provider`](https://developer.hashicorp.com/consul/docs/agent/config/config-files#ui_config_metrics_provider)
     # This value is only used if `ui.enabled` is set to true.
@@ -1686,7 +1686,7 @@ ui:
     # baseURL is the URL of the prometheus server, usually the service URL.
     # This value is only used if `ui.enabled` is set to true.
     # @type: string
-    baseURL: http://prometheus-server
+    baseURL: http://unoplat-observability-prom-prometheus.unoplat-observability:9090
 
   # Corresponds to [`dashboard_url_templates`](https://developer.hashicorp.com/consul/docs/agent/config/config-files#ui_config_dashboard_url_templates)
   # configuration.
@@ -2088,7 +2088,7 @@ connectInject:
     # If true, then all traffic redirection setup uses the consul-cni plugin.
     # Requires connectInject.enabled to also be true.
     # @type: boolean
-    enabled: false
+    enabled: true
 
     # Log level for the installer and plugin. Overrides global.logLevel
     # @type: string
@@ -2135,7 +2135,6 @@ connectInject:
       limits:
         memory: "250Mi"
         cpu: "400m"
-
 
     # Resource quotas for running the daemonset as system critical pods
     resourceQuota:
@@ -2198,11 +2197,11 @@ connectInject:
     #   - If metrics merging is disabled:
     #     the listener will just expose Envoy sidecar metrics.
     # This will inherit from `global.metrics.enabled`.
-    defaultEnabled: "-"
+    defaultEnabled: "true"
     # Configures the consul-dataplane to run a merged metrics server
     # to combine and serve both Envoy and Connect service metrics.
     # This feature is available only in Consul v1.10.0 or greater.
-    defaultEnableMerging: false
+    defaultEnableMerging: true
     # Configures the port at which the consul-dataplane will listen on to return
     # combined metrics. This port only needs to be changed if it conflicts with
     # the application's ports.
@@ -2287,14 +2286,14 @@ connectInject:
       memory: "200Mi"
       # Recommended production default: 250m
       # @type: string
-      cpu: "50m"
+      cpu: "100m"
     limits:
       # Recommended production default: 500Mi
       # @type: string
       memory: "200Mi"
       # Recommended production default: 250m
       # @type: string
-      cpu: "50m"
+      cpu: "250m"
 
   # Sets the failurePolicy for the mutating webhook. By default this will cause pods not part of the consul installation to fail scheduling while the webhook
   # is offline. This prevents a pod from skipping mutation if the webhook were to be momentarily offline.
@@ -2463,17 +2462,17 @@ connectInject:
       requests:
         # Recommended production default: 100Mi
         # @type: string
-        memory: null
+        memory: 100Mi
         # Recommended production default: 100m
         # @type: string
-        cpu: null
+        cpu: 100m
       limits:
         # Recommended production default: 100Mi
         # @type: string
-        memory: null
+        memory: 200Mi
         # Recommended production default: 100m
         # @type: string
-        cpu: null
+        cpu: 250m
 
   # The resource settings for the Connect injected init container. If null, the resources
   # won't be set for the initContainer. The defaults are optimized for developer instances of
@@ -2494,7 +2493,7 @@ connectInject:
         memory: "150Mi"
         # Recommended production default: 500m
         # @type: string
-        cpu: null
+        cpu: "250m"
 
 # [Mesh Gateways](https://developer.hashicorp.com/consul/docs/connect/gateways/mesh-gateway) enable Consul Connect to work across Consul datacenters.
 meshGateway:
@@ -2714,7 +2713,7 @@ meshGateway:
 # Requirements: consul >= 1.8.0
 ingressGateways:
   # Enable ingress gateway deployment. Requires `connectInject.enabled=true`.
-  enabled: false
+  enabled: true
 
   # Defaults sets default values for all gateway fields. With the exception
   # of annotations, defining any of these values in the `gateways` list
@@ -2729,7 +2728,7 @@ ingressGateways:
     service:
       # Type of service: LoadBalancer, ClusterIP or NodePort. If using NodePort service
       # type, you must set the desired nodePorts in the `ports` setting below.
-      type: ClusterIP
+      type: LoadBalancer
 
       # Ports that will be exposed on the service and gateway container. Any
       # ports defined as ingress listeners on the gateway's Consul configuration
@@ -2784,8 +2783,8 @@ ingressGateways:
         memory: "100Mi"
         cpu: "100m"
       limits:
-        memory: "100Mi"
-        cpu: "100m"
+        memory: "200Mi"
+        cpu: "250m"
 
     # This value defines the [affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity)
     # for ingress gateway pods. It defaults to `null` thereby allowing multiple gateway pods on each node. But if one would prefer
