@@ -282,10 +282,10 @@ global:
     autoGenerate: true
     # The name of the Kubernetes secret or Vault secret path that holds the gossip
     # encryption key. A Kubernetes secret must be in the same namespace that Consul is installed into.
-    secretName: "unoplat-consul-gossip"
+    secretName: ""
     # The key within the Kubernetes secret or Vault secret key that holds the gossip
     # encryption key.
-    secretKey: "unoplat-consul-gossip-key"
+    secretKey: ""
 
   # A list of addresses of upstream DNS servers that are used to recursively resolve DNS queries.
   # These values are given as `-recursor` flags to Consul servers and clients.
@@ -1986,7 +1986,7 @@ connectInject:
         memory: "75Mi"
         cpu: "75m"
       limits:
-        memory: "200Mi"
+        memory: "250Mi"
         cpu: "400m"
 
     # Resource quotas for running the daemonset as system critical pods
