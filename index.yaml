@@ -25,6 +25,43 @@ entries:
         url: https://keybase.io/hashicorp/pgp_keys.asc
     apiVersion: v2
     appVersion: 1.15.1
+    created: "2023-08-15T15:01:29.264562714Z"
+    description: Official HashiCorp Consul Chart
+    digest: c6cc083ba871a523f67caa971443e30a4b7c1bb538aac72901296b7a742e993b
+    home: https://www.consul.io
+    icon: https://raw.githubusercontent.com/hashicorp/consul-k8s/main/assets/icon.png
+    kubeVersion: '>=1.22.0-0'
+    name: consul
+    sources:
+    - https://github.com/hashicorp/consul
+    - https://github.com/hashicorp/consul-k8s
+    urls:
+    - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.11-dev/consul-1.1.11-dev.tgz
+    version: 1.1.11-dev
+  - annotations:
+      artifacthub.io/images: |
+        - name: consul
+          image: hashicorp/consul:1.15.1
+        - name: consul-k8s-control-plane
+          image: hashicorp/consul-k8s-control-plane:1.1.1
+        - name: consul-dataplane
+          image: hashicorp/consul-dataplane:1.1.0
+        - name: envoy
+          image: envoyproxy/envoy:v1.25.1
+      artifacthub.io/license: MPL-2.0
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://www.consul.io/docs/k8s
+        - name: hashicorp/consul
+          url: https://github.com/hashicorp/consul
+        - name: hashicorp/consul-k8s
+          url: https://github.com/hashicorp/consul-k8s
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: C874011F0AB405110D02105534365D9472D7468F
+        url: https://keybase.io/hashicorp/pgp_keys.asc
+    apiVersion: v2
+    appVersion: 1.15.1
     created: "2023-08-15T12:24:16.717299455Z"
     description: Official HashiCorp Consul Chart
     digest: 1afd843fba017d9bbcb02a15765740b3509d25bb5d04bfa060ca819f48355bf9
@@ -334,4 +371,4 @@ entries:
     urls:
     - https://github.com/unoplat/unoplat-service-mesh/releases/download/consul-1.1.2/consul-1.1.2.tgz
     version: 1.1.2
-generated: "2023-08-15T12:24:16.717708155Z"
+generated: "2023-08-15T15:01:29.264608114Z"
