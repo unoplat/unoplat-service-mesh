@@ -1,3 +1,6 @@
+# This code snippet sets up and installs/upgrades 
+# a service mesh called unoplat-consul-release on Civo using Helm.
+# It also prints a payload message and installs the jq package.
 name: Install/Upgrade on Civo
 
 on:

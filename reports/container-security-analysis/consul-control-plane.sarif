@@ -19,20 +19,20 @@
                 "text": "A vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
               },
               "defaultConfiguration": {
-                "level": "warning"
+                "level": "error"
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2603",
               "help": {
-                "text": "Vulnerability CVE-2023-2603\nSeverity: MEDIUM\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB.",
-                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
+                "text": "Vulnerability CVE-2023-2603\nSeverity: HIGH\nPackage: libcap2\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB.",
+                "markdown": "**Vulnerability CVE-2023-2603**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|libcap2|2.66-r1|[CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)|\n\nA vulnerability was found in libcap. This issue occurs in the _libcap_strdup() function and can lead to an integer overflow if the input string is close to 4GiB."
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "5.5",
+                "security-severity": "7.8",
                 "tags": [
                   "vulnerability",
                   "security",
-                  "MEDIUM"
+                  "HIGH"
                 ]
               }
             },
@@ -55,7 +55,7 @@
               },
               "properties": {
                 "precision": "very-high",
-                "security-severity": "2.0",
+                "security-severity": "3.3",
                 "tags": [
                   "vulnerability",
                   "security",
@@ -118,6 +118,168 @@
               }
             },
             {
+              "id": "CVE-2023-2975",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "AES-SIV cipher implementation contains a bug that causes it to ignore empty associated data entries"
+              },
+              "fullDescription": {
+                "text": "Issue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-2975",
+              "help": {
+                "text": "Vulnerability CVE-2023-2975\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue.",
+                "markdown": "**Vulnerability CVE-2023-2975**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.9-r2|[CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)|\n\nIssue summary: The AES-SIV cipher implementation contains a bug that causes\nit to ignore empty associated data entries which are unauthenticated as\na consequence.\n\nImpact summary: Applications that use the AES-SIV algorithm and want to\nauthenticate empty data entries as associated data can be mislead by removing\nadding or reordering such empty entries as these are ignored by the OpenSSL\nimplementation. We are currently unaware of any such applications.\n\nThe AES-SIV algorithm allows for authentication of multiple associated\ndata entries along with the encryption. To authenticate empty data the\napplication has to call EVP_EncryptUpdate() (or EVP_CipherUpdate()) with\nNULL pointer as the output buffer and 0 as the input buffer length.\nThe AES-SIV implementation in OpenSSL just returns success for such a call\ninstead of performing the associated data authentication operation.\nThe empty data thus will not be authenticated.\n\nAs this issue does not affect non-empty associated data authentication and\nwe expect it to be rare for an application to use empty associated data\nentries this is qualified as Low severity issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3446",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH keys and parameters"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus (\u0026#39;p\u0026#39; parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#39;-check\u0026#39; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3446",
+              "help": {
+                "text": "Vulnerability CVE-2023-3446\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3446**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.9-r3|[CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. One of those\nchecks confirms that the modulus ('p' parameter) is not too large. Trying to use\na very large modulus is slow and OpenSSL will not normally use a modulus which\nis over 10,000 bits in length.\n\nHowever the DH_check() function checks numerous aspects of the key or parameters\nthat have been supplied. Some of those checks use the supplied modulus value\neven if it has already been found to be too large.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulernable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the '-check' option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2023-3817",
+              "name": "OsPackageVulnerability",
+              "shortDescription": {
+                "text": "Excessive time spent checking DH q parameter value"
+              },
+              "fullDescription": {
+                "text": "Issue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \u0026#34;-check\u0026#34; option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "defaultConfiguration": {
+                "level": "warning"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2023-3817",
+              "help": {
+                "text": "Vulnerability CVE-2023-3817\nSeverity: MEDIUM\nPackage: openssl\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue.",
+                "markdown": "**Vulnerability CVE-2023-3817**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|openssl|3.0.10-r0|[CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)|\n\nIssue summary: Checking excessively long DH keys or parameters may be very slow.\n\nImpact summary: Applications that use the functions DH_check(), DH_check_ex()\nor EVP_PKEY_param_check() to check a DH key or DH parameters may experience long\ndelays. Where the key or parameters that are being checked have been obtained\nfrom an untrusted source this may lead to a Denial of Service.\n\nThe function DH_check() performs various checks on DH parameters. After fixing\nCVE-2023-3446 it was discovered that a large q parameter value can also trigger\nan overly long computation during some of these checks. A correct q value,\nif present, cannot be larger than the modulus p parameter, thus it is\nunnecessary to perform these checks if q is larger than p.\n\nAn application that calls DH_check() and supplies a key or parameters obtained\nfrom an untrusted source could be vulnerable to a Denial of Service attack.\n\nThe function DH_check() is itself called by a number of other OpenSSL functions.\nAn application calling any of those other functions may similarly be affected.\nThe other functions affected by this are DH_check_ex() and\nEVP_PKEY_param_check().\n\nAlso vulnerable are the OpenSSL dhparam and pkeyparam command line applications\nwhen using the \"-check\" option.\n\nThe OpenSSL SSL/TLS implementation is not affected by this issue.\n\nThe OpenSSL 3.0 and 3.1 FIPS providers are not affected by this issue."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "5.3",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "MEDIUM"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-27664",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "handle server errors after sending GOAWAY"
+              },
+              "fullDescription": {
+                "text": "In net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-27664",
+              "help": {
+                "text": "Vulnerability CVE-2022-27664\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error.",
+                "markdown": "**Vulnerability CVE-2022-27664**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.0.0-20220906165146-f3363e06e74c|[CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)|\n\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-41723",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "avoid quadratic complexity in HPACK decoding"
+              },
+              "fullDescription": {
+                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41723",
+              "help": {
+                "text": "Vulnerability CVE-2022-41723\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
+                "markdown": "**Vulnerability CVE-2022-41723**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.7.0|[CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
+              "id": "CVE-2022-32149",
+              "name": "LanguageSpecificPackageVulnerability",
+              "shortDescription": {
+                "text": "ParseAcceptLanguage takes a long time to parse complex tags"
+              },
+              "fullDescription": {
+                "text": "An attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
+              },
+              "defaultConfiguration": {
+                "level": "error"
+              },
+              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-32149",
+              "help": {
+                "text": "Vulnerability CVE-2022-32149\nSeverity: HIGH\nPackage: golang.org/x/text\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse.",
+                "markdown": "**Vulnerability CVE-2022-32149**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/text|0.3.8|[CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)|\n\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
+              },
+              "properties": {
+                "precision": "very-high",
+                "security-severity": "7.5",
+                "tags": [
+                  "vulnerability",
+                  "security",
+                  "HIGH"
+                ]
+              }
+            },
+            {
               "id": "CVE-2020-8911",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -131,8 +293,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2020-8911",
               "help": {
-                "text": "Vulnerability CVE-2020-8911\nSeverity: MEDIUM\nPackage: github.com/aws/aws-sdk-go\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
-                "markdown": "**Vulnerability CVE-2020-8911**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|github.com/aws/aws-sdk-go||[CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)|\n\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
+                "text": "Vulnerability CVE-2020-8911\nSeverity: MEDIUM\nPackage: github.com/aws/aws-sdk-go\nFixed Version: 1.34.0\nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
+                "markdown": "**Vulnerability CVE-2020-8911**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|github.com/aws/aws-sdk-go|1.34.0|[CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)|\n\nA padding oracle vulnerability exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. The SDK allows users to encrypt files with AES-CBC without computing a Message Authentication Code (MAC), which then allows an attacker who has write access to the target's S3 bucket and can observe whether or not an endpoint with access to the key can decrypt a file, they can reconstruct the plaintext with (on average) 128*length (plaintext) queries to the endpoint, by exploiting CBC's ability to manipulate the bytes of the next block and PKCS5 padding errors. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
               },
               "properties": {
                 "precision": "very-high",
@@ -212,8 +374,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2020-8912",
               "help": {
-                "text": "Vulnerability CVE-2020-8912\nSeverity: LOW\nPackage: github.com/aws/aws-sdk-go\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
-                "markdown": "**Vulnerability CVE-2020-8912**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|github.com/aws/aws-sdk-go||[CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)|\n\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
+                "text": "Vulnerability CVE-2020-8912\nSeverity: LOW\nPackage: github.com/aws/aws-sdk-go\nFixed Version: 1.34.0\nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files.",
+                "markdown": "**Vulnerability CVE-2020-8912**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|LOW|github.com/aws/aws-sdk-go|1.34.0|[CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)|\n\nA vulnerability in the in-band key negotiation exists in the AWS S3 Crypto SDK for GoLang versions prior to V2. An attacker with write access to the targeted bucket can change the encryption algorithm of an object in the bucket, which can then allow them to change AES-GCM to AES-CTR. Using this in combination with a decryption oracle can reveal the authentication key used by AES-GCM as decrypting the GMAC tag leaves the authentication key recoverable as an algebraic equation. It is recommended to update your SDK to V2 or later, and re-encrypt your files."
               },
               "properties": {
                 "precision": "very-high",
@@ -239,8 +401,8 @@
               },
               "helpUri": "https://avd.aquasec.com/nvd/cve-2019-19794",
               "help": {
-                "text": "Vulnerability CVE-2019-19794\nSeverity: MEDIUM\nPackage: github.com/miekg/dns\nFixed Version: 1.1.25-0.20191211073109-8ebf2e419df7\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)\nThe miekg Go DNS package before 1.1.25, as used in CoreDNS before 1.6.6 and other products, improperly generates random numbers because math/rand is used. The TXID becomes predictable, leading to response forgeries.",
-                "markdown": "**Vulnerability CVE-2019-19794**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|github.com/miekg/dns|1.1.25-0.20191211073109-8ebf2e419df7|[CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)|\n\nThe miekg Go DNS package before 1.1.25, as used in CoreDNS before 1.6.6 and other products, improperly generates random numbers because math/rand is used. The TXID becomes predictable, leading to response forgeries."
+                "text": "Vulnerability CVE-2019-19794\nSeverity: MEDIUM\nPackage: github.com/miekg/dns\nFixed Version: 1.1.25\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)\nThe miekg Go DNS package before 1.1.25, as used in CoreDNS before 1.6.6 and other products, improperly generates random numbers because math/rand is used. The TXID becomes predictable, leading to response forgeries.",
+                "markdown": "**Vulnerability CVE-2019-19794**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|github.com/miekg/dns|1.1.25|[CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)|\n\nThe miekg Go DNS package before 1.1.25, as used in CoreDNS before 1.6.6 and other products, improperly generates random numbers because math/rand is used. The TXID becomes predictable, leading to response forgeries."
               },
               "properties": {
                 "precision": "very-high",
@@ -283,7 +445,7 @@
               "id": "CVE-2021-43565",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
-                "text": "golang.org/x/crypto: empty plaintext packet causes panic"
+                "text": "empty plaintext packet causes panic"
               },
               "fullDescription": {
                 "text": "The x/crypto/ssh package before 0.0.0-20211202192323-5770296d904e of golang.org/x/crypto allows an attacker to panic an SSH server."
@@ -361,87 +523,6 @@
               }
             },
             {
-              "id": "CVE-2021-44716",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "golang: net/http: limit growth of header canonicalization cache"
-              },
-              "fullDescription": {
-                "text": "net/http in Go before 1.16.12 and 1.17.x before 1.17.5 allows uncontrolled memory consumption in the header canonicalization cache via HTTP/2 requests."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2021-44716",
-              "help": {
-                "text": "Vulnerability CVE-2021-44716\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.0.0-20211209124913-491a49abca63\nLink: [CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)\nnet/http in Go before 1.16.12 and 1.17.x before 1.17.5 allows uncontrolled memory consumption in the header canonicalization cache via HTTP/2 requests.",
-                "markdown": "**Vulnerability CVE-2021-44716**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.0.0-20211209124913-491a49abca63|[CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)|\n\nnet/http in Go before 1.16.12 and 1.17.x before 1.17.5 allows uncontrolled memory consumption in the header canonicalization cache via HTTP/2 requests."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-27664",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "handle server errors after sending GOAWAY"
-              },
-              "fullDescription": {
-                "text": "In net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-27664",
-              "help": {
-                "text": "Vulnerability CVE-2022-27664\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error.",
-                "markdown": "**Vulnerability CVE-2022-27664**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.0.0-20220906165146-f3363e06e74c|[CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)|\n\nIn net/http in Go before 1.18.6 and 1.19.x before 1.19.1, attackers can cause a denial of service because an HTTP/2 connection can hang during closing if shutdown were preempted by a fatal error."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-41723",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "avoid quadratic complexity in HPACK decoding"
-              },
-              "fullDescription": {
-                "text": "A maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41723",
-              "help": {
-                "text": "Vulnerability CVE-2022-41723\nSeverity: HIGH\nPackage: golang.org/x/net\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests.",
-                "markdown": "**Vulnerability CVE-2022-41723**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/net|0.7.0|[CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)|\n\nA maliciously crafted HTTP/2 stream could cause excessive CPU consumption in the HPACK decoder, sufficient to cause a denial of service from a small number of small requests."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
               "id": "CVE-2021-31525",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -461,33 +542,6 @@
               "properties": {
                 "precision": "very-high",
                 "security-severity": "5.9",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "MEDIUM"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2022-41717",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "excessive memory growth in a Go server accepting HTTP/2 requests"
-              },
-              "fullDescription": {
-                "text": "An attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-41717",
-              "help": {
-                "text": "Vulnerability CVE-2022-41717\nSeverity: MEDIUM\nPackage: golang.org/x/net\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection.",
-                "markdown": "**Vulnerability CVE-2022-41717**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|golang.org/x/net|0.4.0|[CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)|\n\nAn attacker can cause excessive memory growth in a Go server accepting HTTP/2 requests. HTTP/2 server connections contain a cache of HTTP header keys sent by the client. While the total number of entries in this cache is capped, an attacker sending very large keys can cause the server to allocate approximately 64 MiB per open connection."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "5.3",
                 "tags": [
                   "vulnerability",
                   "security",
@@ -550,60 +604,6 @@
               }
             },
             {
-              "id": "CVE-2022-32149",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "ParseAcceptLanguage takes a long time to parse complex tags"
-              },
-              "fullDescription": {
-                "text": "An attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
-              },
-              "defaultConfiguration": {
-                "level": "error"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2022-32149",
-              "help": {
-                "text": "Vulnerability CVE-2022-32149\nSeverity: HIGH\nPackage: golang.org/x/text\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse.",
-                "markdown": "**Vulnerability CVE-2022-32149**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|HIGH|golang.org/x/text|0.3.8|[CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)|\n\nAn attacker may cause a denial of service by crafting an Accept-Language header which ParseAcceptLanguage will take significant time to parse."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "7.5",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "HIGH"
-                ]
-              }
-            },
-            {
-              "id": "CVE-2020-14040",
-              "name": "LanguageSpecificPackageVulnerability",
-              "shortDescription": {
-                "text": "golang.org/x/text: possibility to trigger an infinite loop in encoding/unicode could lead to crash"
-              },
-              "fullDescription": {
-                "text": "The x/text package before 0.3.3 for Go has a vulnerability in encoding/unicode that could lead to the UTF-16 decoder entering an infinite loop, causing the program to crash or run out of memory. An attacker could provide a single byte to a UTF16 decoder instantiated with UseBOM or ExpectBOM to trigger an infinite loop if the String function on the Decoder is called, or the Decoder is passed to golang.org/x/text/transform.String."
-              },
-              "defaultConfiguration": {
-                "level": "warning"
-              },
-              "helpUri": "https://avd.aquasec.com/nvd/cve-2020-14040",
-              "help": {
-                "text": "Vulnerability CVE-2020-14040\nSeverity: MEDIUM\nPackage: golang.org/x/text\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)\nThe x/text package before 0.3.3 for Go has a vulnerability in encoding/unicode that could lead to the UTF-16 decoder entering an infinite loop, causing the program to crash or run out of memory. An attacker could provide a single byte to a UTF16 decoder instantiated with UseBOM or ExpectBOM to trigger an infinite loop if the String function on the Decoder is called, or the Decoder is passed to golang.org/x/text/transform.String.",
-                "markdown": "**Vulnerability CVE-2020-14040**\n| Severity | Package | Fixed Version | Link |\n| --- | --- | --- | --- |\n|MEDIUM|golang.org/x/text|0.3.3|[CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)|\n\nThe x/text package before 0.3.3 for Go has a vulnerability in encoding/unicode that could lead to the UTF-16 decoder entering an infinite loop, causing the program to crash or run out of memory. An attacker could provide a single byte to a UTF16 decoder instantiated with UseBOM or ExpectBOM to trigger an infinite loop if the String function on the Decoder is called, or the Decoder is passed to golang.org/x/text/transform.String."
-              },
-              "properties": {
-                "precision": "very-high",
-                "security-severity": "6.7",
-                "tags": [
-                  "vulnerability",
-                  "security",
-                  "MEDIUM"
-                ]
-              }
-            },
-            {
               "id": "CVE-2022-21698",
               "name": "LanguageSpecificPackageVulnerability",
               "shortDescription": {
@@ -631,16 +631,16 @@
               }
             }
           ],
-          "version": "0.42.0"
+          "version": "0.43.1"
         }
       },
       "results": [
         {
           "ruleId": "CVE-2023-2603",
           "ruleIndex": 0,
-          "level": "warning",
+          "level": "error",
           "message": {
-            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -692,9 +692,9 @@
         {
           "ruleId": "CVE-2023-2603",
           "ruleIndex": 0,
-          "level": "warning",
+          "level": "error",
           "message": {
-            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap-utils\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -746,9 +746,9 @@
         {
           "ruleId": "CVE-2023-2603",
           "ruleIndex": 0,
-          "level": "warning",
+          "level": "error",
           "message": {
-            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: MEDIUM\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
+            "text": "Package: libcap2\nInstalled Version: 2.66-r0\nVulnerability CVE-2023-2603\nSeverity: HIGH\nFixed Version: 2.66-r1\nLink: [CVE-2023-2603](https://avd.aquasec.com/nvd/cve-2023-2603)"
           },
           "locations": [
             {
@@ -852,6 +852,87 @@
           ]
         },
         {
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: libcrypto3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libcrypto3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
           "ruleId": "CVE-2023-2650",
           "ruleIndex": 2,
           "level": "error",
@@ -884,6 +965,87 @@
           "level": "warning",
           "message": {
             "text": "Package: libssl3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-1255\nSeverity: MEDIUM\nFixed Version: 3.0.8-r4\nLink: [CVE-2023-1255](https://avd.aquasec.com/nvd/cve-2023-1255)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-2975",
+          "ruleIndex": 4,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: libssl3@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: libssl3\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
           },
           "locations": [
             {
@@ -960,11 +1122,173 @@
           ]
         },
         {
-          "ruleId": "CVE-2020-8911",
+          "ruleId": "CVE-2023-2975",
           "ruleIndex": 4,
           "level": "warning",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-2975\nSeverity: MEDIUM\nFixed Version: 3.0.9-r2\nLink: [CVE-2023-2975](https://avd.aquasec.com/nvd/cve-2023-2975)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3446",
+          "ruleIndex": 5,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3446\nSeverity: MEDIUM\nFixed Version: 3.0.9-r3\nLink: [CVE-2023-3446](https://avd.aquasec.com/nvd/cve-2023-3446)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2023-3817",
+          "ruleIndex": 6,
+          "level": "warning",
+          "message": {
+            "text": "Package: openssl\nInstalled Version: 3.0.8-r3\nVulnerability CVE-2023-3817\nSeverity: MEDIUM\nFixed Version: 3.0.10-r0\nLink: [CVE-2023-3817](https://avd.aquasec.com/nvd/cve-2023-3817)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "hashicorp/consul-k8s-control-plane",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "hashicorp/consul-k8s-control-plane: openssl@3.0.8-r3"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-27664",
+          "ruleIndex": 7,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/consul-cni",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-41723",
+          "ruleIndex": 8,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/consul-cni",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2022-32149",
+          "ruleIndex": 9,
+          "level": "error",
+          "message": {
+            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.7\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "bin/consul-cni",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1
+                }
+              },
+              "message": {
+                "text": "bin/consul-cni: golang.org/x/text@v0.3.7"
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CVE-2020-8911",
+          "ruleIndex": 10,
+          "level": "warning",
+          "message": {
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
           },
           "locations": [
             {
@@ -988,7 +1312,7 @@
         },
         {
           "ruleId": "CVE-2022-2582",
-          "ruleIndex": 5,
+          "ruleIndex": 11,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2022-2582\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2022-2582](https://avd.aquasec.com/nvd/cve-2022-2582)"
@@ -1015,7 +1339,7 @@
         },
         {
           "ruleId": "GHSA-76wf-9vgp-pj7w",
-          "ruleIndex": 6,
+          "ruleIndex": 12,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability GHSA-76wf-9vgp-pj7w\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [GHSA-76wf-9vgp-pj7w](https://github.com/advisories/GHSA-76wf-9vgp-pj7w)"
@@ -1042,10 +1366,10 @@
         },
         {
           "ruleId": "CVE-2020-8912",
-          "ruleIndex": 7,
+          "ruleIndex": 13,
           "level": "note",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: 1.34.0\nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
           },
           "locations": [
             {
@@ -1069,10 +1393,10 @@
         },
         {
           "ruleId": "CVE-2019-19794",
-          "ruleIndex": 8,
+          "ruleIndex": 14,
           "level": "warning",
           "message": {
-            "text": "Package: github.com/miekg/dns\nInstalled Version: v1.0.14\nVulnerability CVE-2019-19794\nSeverity: MEDIUM\nFixed Version: 1.1.25-0.20191211073109-8ebf2e419df7\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)"
+            "text": "Package: github.com/miekg/dns\nInstalled Version: v1.0.14\nVulnerability CVE-2019-19794\nSeverity: MEDIUM\nFixed Version: 1.1.25\nLink: [CVE-2019-19794](https://avd.aquasec.com/nvd/cve-2019-19794)"
           },
           "locations": [
             {
@@ -1096,7 +1420,7 @@
         },
         {
           "ruleId": "CVE-2020-29652",
-          "ruleIndex": 9,
+          "ruleIndex": 15,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2020-29652\nSeverity: HIGH\nFixed Version: 0.0.0-20201216223049-8b5274cf687f\nLink: [CVE-2020-29652](https://avd.aquasec.com/nvd/cve-2020-29652)"
@@ -1123,7 +1447,7 @@
         },
         {
           "ruleId": "CVE-2021-43565",
-          "ruleIndex": 10,
+          "ruleIndex": 16,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2021-43565\nSeverity: HIGH\nFixed Version: 0.0.0-20211202192323-5770296d904e\nLink: [CVE-2021-43565](https://avd.aquasec.com/nvd/cve-2021-43565)"
@@ -1150,7 +1474,7 @@
         },
         {
           "ruleId": "CVE-2022-27191",
-          "ruleIndex": 11,
+          "ruleIndex": 17,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/crypto\nInstalled Version: v0.0.0-20201002170205-7f63de1d35b0\nVulnerability CVE-2022-27191\nSeverity: HIGH\nFixed Version: 0.0.0-20220314234659-1baeb1ce4c0b\nLink: [CVE-2022-27191](https://avd.aquasec.com/nvd/cve-2022-27191)"
@@ -1177,7 +1501,7 @@
         },
         {
           "ruleId": "CVE-2021-33194",
-          "ruleIndex": 12,
+          "ruleIndex": 18,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-33194\nSeverity: HIGH\nFixed Version: 0.0.0-20210520170846-37e1c6afe023\nLink: [CVE-2021-33194](https://avd.aquasec.com/nvd/cve-2021-33194)"
@@ -1203,35 +1527,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2021-44716",
-          "ruleIndex": 13,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-44716\nSeverity: HIGH\nFixed Version: 0.0.0-20211209124913-491a49abca63\nLink: [CVE-2021-44716](https://avd.aquasec.com/nvd/cve-2021-44716)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
+          "ruleIndex": 7,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
@@ -1258,7 +1555,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
+          "ruleIndex": 8,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1285,7 +1582,7 @@
         },
         {
           "ruleId": "CVE-2021-31525",
-          "ruleIndex": 16,
+          "ruleIndex": 19,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2021-31525\nSeverity: MEDIUM\nFixed Version: 0.0.0-20210428140749-89ef3d95e781\nLink: [CVE-2021-31525](https://avd.aquasec.com/nvd/cve-2021-31525)"
@@ -1311,35 +1608,8 @@
           ]
         },
         {
-          "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20191004110552-13f9640d40b9\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/net@v0.0.0-20191004110552-13f9640d40b9"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2022-29526",
-          "ruleIndex": 18,
+          "ruleIndex": 20,
           "level": "warning",
           "message": {
             "text": "Package: golang.org/x/sys\nInstalled Version: v0.0.0-20191022100944-742c48ecaeb7\nVulnerability CVE-2022-29526\nSeverity: MEDIUM\nFixed Version: 0.0.0-20220412211240-33da011f77ad\nLink: [CVE-2022-29526](https://avd.aquasec.com/nvd/cve-2022-29526)"
@@ -1366,7 +1636,7 @@
         },
         {
           "ruleId": "CVE-2021-38561",
-          "ruleIndex": 19,
+          "ruleIndex": 21,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2021-38561\nSeverity: HIGH\nFixed Version: 0.3.7\nLink: [CVE-2021-38561](https://avd.aquasec.com/nvd/cve-2021-38561)"
@@ -1393,7 +1663,7 @@
         },
         {
           "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
+          "ruleIndex": 9,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
@@ -1419,38 +1689,11 @@
           ]
         },
         {
-          "ruleId": "CVE-2020-14040",
-          "ruleIndex": 21,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.2\nVulnerability CVE-2020-14040\nSeverity: MEDIUM\nFixed Version: 0.3.3\nLink: [CVE-2020-14040](https://avd.aquasec.com/nvd/cve-2020-14040)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/discover",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/discover: golang.org/x/text@v0.3.2"
-              }
-            }
-          ]
-        },
-        {
           "ruleId": "CVE-2020-8911",
-          "ruleIndex": 4,
+          "ruleIndex": 10,
           "level": "warning",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: \nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8911\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2020-8911](https://avd.aquasec.com/nvd/cve-2020-8911)"
           },
           "locations": [
             {
@@ -1474,7 +1717,7 @@
         },
         {
           "ruleId": "CVE-2022-2582",
-          "ruleIndex": 5,
+          "ruleIndex": 11,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2022-2582\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [CVE-2022-2582](https://avd.aquasec.com/nvd/cve-2022-2582)"
@@ -1501,7 +1744,7 @@
         },
         {
           "ruleId": "GHSA-76wf-9vgp-pj7w",
-          "ruleIndex": 6,
+          "ruleIndex": 12,
           "level": "warning",
           "message": {
             "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability GHSA-76wf-9vgp-pj7w\nSeverity: MEDIUM\nFixed Version: 1.34.0\nLink: [GHSA-76wf-9vgp-pj7w](https://github.com/advisories/GHSA-76wf-9vgp-pj7w)"
@@ -1528,10 +1771,10 @@
         },
         {
           "ruleId": "CVE-2020-8912",
-          "ruleIndex": 7,
+          "ruleIndex": 13,
           "level": "note",
           "message": {
-            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: \nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
+            "text": "Package: github.com/aws/aws-sdk-go\nInstalled Version: v1.25.41\nVulnerability CVE-2020-8912\nSeverity: LOW\nFixed Version: 1.34.0\nLink: [CVE-2020-8912](https://avd.aquasec.com/nvd/cve-2020-8912)"
           },
           "locations": [
             {
@@ -1582,7 +1825,7 @@
         },
         {
           "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
+          "ruleIndex": 7,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
@@ -1609,7 +1852,7 @@
         },
         {
           "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
+          "ruleIndex": 8,
           "level": "error",
           "message": {
             "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
@@ -1630,141 +1873,6 @@
               },
               "message": {
                 "text": "bin/consul-k8s-control-plane: golang.org/x/net@v0.0.0-20220127200216-cd36cc0744dd"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20220127200216-cd36cc0744dd\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-k8s-control-plane",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-k8s-control-plane: golang.org/x/net@v0.0.0-20220127200216-cd36cc0744dd"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-27664",
-          "ruleIndex": 14,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-27664\nSeverity: HIGH\nFixed Version: 0.0.0-20220906165146-f3363e06e74c\nLink: [CVE-2022-27664](https://avd.aquasec.com/nvd/cve-2022-27664)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-cni",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-41723",
-          "ruleIndex": 15,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-41723\nSeverity: HIGH\nFixed Version: 0.7.0\nLink: [CVE-2022-41723](https://avd.aquasec.com/nvd/cve-2022-41723)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-cni",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-41717",
-          "ruleIndex": 17,
-          "level": "warning",
-          "message": {
-            "text": "Package: golang.org/x/net\nInstalled Version: v0.0.0-20211216030914-fe4d6282115f\nVulnerability CVE-2022-41717\nSeverity: MEDIUM\nFixed Version: 0.4.0\nLink: [CVE-2022-41717](https://avd.aquasec.com/nvd/cve-2022-41717)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-cni",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-cni: golang.org/x/net@v0.0.0-20211216030914-fe4d6282115f"
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "CVE-2022-32149",
-          "ruleIndex": 20,
-          "level": "error",
-          "message": {
-            "text": "Package: golang.org/x/text\nInstalled Version: v0.3.7\nVulnerability CVE-2022-32149\nSeverity: HIGH\nFixed Version: 0.3.8\nLink: [CVE-2022-32149](https://avd.aquasec.com/nvd/cve-2022-32149)"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "bin/consul-cni",
-                  "uriBaseId": "ROOTPATH"
-                },
-                "region": {
-                  "startLine": 1,
-                  "startColumn": 1,
-                  "endLine": 1,
-                  "endColumn": 1
-                }
-              },
-              "message": {
-                "text": "bin/consul-cni: golang.org/x/text@v0.3.7"
               }
             }
           ]
