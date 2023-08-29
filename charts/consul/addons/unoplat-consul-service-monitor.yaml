@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: unoplat-consul-metrics
+  labels:
+    release: unoplat-observability-prom-stack  # Adjust this label to match your Prometheus Operator setup
+spec:
+  selector:
+    matchLabels:
+      release: unoplat-consul-release  # Adjust this label to match your Consul service's label
+  namespaceSelector:
+    matchNames:
+    - unoplat-service-mesh  # Replace with the namespace where Consul is running
+  endpoints:
+  - port: http  # The port name might differ based on your Consul service definition
+    interval: 15s  # Scrape interval; adjust as needed
+    path: /v1/agent/metrics
+    scheme: http  # Use 'https' if your Consul setup uses TLS
+    bearerTokenSecret:
+      name: agent-read-secret
+      key: token
+    tlsConfig:
+      insecureSkipVerify: true  # Set to false if you want to verify TLS certificates
